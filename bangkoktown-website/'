@@ -1,0 +1,77 @@
+
+import { Container, Heading1, Heading2, Heading3, BodyText, Card } from '../components/ui';
+
+export const AboutPage = () => {
+  return (
+    <div className="min-h-screen bg-thai-cream">
+      <main className="section-padding">
+        <Container>
+          <div className="text-center mb-16 bg-transparent">
+            <Heading1 className="mb-6">About Bangkoktown</Heading1>
+            <BodyText className="max-w-2xl mx-auto">
+              Learn about our story, heritage, and commitment to authentic Thai cuisine.
+            </BodyText>
+          </div>
+
+          <div className="space-y-16">
+            <Card variant="elevated" className="p-8 md:p-12">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                  <Heading2 className="mb-4">Our Story</Heading2>
+                  <BodyText className="mb-4">
+                    From the bustling streets of Bangkok to the heart of the UAE, Bangkoktown brings you a taste of Thailand's rich culinary heritage. Our journey began with a simple passion: to share the authentic flavours and warm hospitality of our homeland with the world.
+                  </BodyText>
+                  <BodyText>
+                    Founded by a family of food lovers, our restaurant is a tribute to the vibrant street food culture and the sophisticated royal cuisine of Thailand. Every dish at Bangkoktown is a celebration of fresh ingredients, traditional recipes, and the art of Thai cooking.
+                  </BodyText>
+                </div>
+                <img src="/images/thai-temple.jpg" alt="Thai Temple" className="rounded-lg shadow-lg" />
+              </div>
+            </Card>
+
+            <Card variant="elevated" className="p-8 md:p-12">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <img src="/images/thai-bowl.png" alt="Thai Bowl" className="rounded-lg shadow-lg order-last md:order-first" />
+                <div>
+                  <Heading2 className="mb-4">Our Philosophy</Heading2>
+                  <BodyText className="mb-4">
+                    At Bangkoktown, we believe in the power of food to bring people together. Our philosophy is centered around three core principles: authenticity, quality, and hospitality.
+                  </BodyText>
+                  <ul className="space-y-2">
+                    <li><strong>Authenticity:</strong> We stay true to the traditional recipes passed down through generations, using authentic Thai herbs and spices.</li>
+                    <li><strong>Quality:</strong> We source the freshest local and imported ingredients to ensure every dish is of the highest quality.</li>
+                    <li><strong>Hospitality:</strong> We welcome you with the warmth and grace of Thai hospitality, making you feel at home from the moment you step in.</li>
+                  </ul>
+                </div>
+              </div>
+            </Card>
+
+            <Card variant="elevated" className="p-8 md:p-12 text-center">
+              <Heading2 className="mb-6">Our Locations</Heading2>
+              <BodyText className="max-w-2xl mx-auto mb-8">
+                Visit us at any of our vibrant locations across the UAE and embark on a culinary journey to Thailand.
+              </BodyText>
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <img src="/images/dubai.jpg" alt="Dubai" className="rounded-lg shadow-lg mb-4" />
+                  <Heading3 className="text-xl mb-2">Dubai</Heading3>
+                  <BodyText>Experience the magic of Bangkok in the heart of Dubai.</BodyText>
+                </div>
+                <div className="text-center">
+                  <img src="/images/al majaz waterfron.jpg" alt="Al Majaz Waterfront" className="rounded-lg shadow-lg mb-4" />
+                  <Heading3 className="text-xl mb-2">Majaz Qasba</Heading3>
+                  <BodyText>Enjoy stunning views and delicious food at our Majaz Qasba branch.</BodyText>
+                </div>
+                <div className="text-center">
+                  <img src="/images/burjkhalifa.jpg" alt="Zawaya Walk" className="rounded-lg shadow-lg mb-4" />
+                  <Heading3 className="text-xl mb-2">Zawaya Walk</Heading3>
+                  <BodyText>A perfect spot for a memorable dining experience with family and friends.</BodyText>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </Container>
+      </main>
+    </div>
+  );
+};

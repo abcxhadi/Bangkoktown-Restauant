@@ -1,0 +1,7 @@
+.dirhams-white {
+  filter: brightness(0) invert(1);
+}
+
+.dirhams-gold {
+  filter: brightness(0) saturate(100%) invert(84%) sepia(23%) saturate(1066%) hue-rotate(327deg) brightness(92%) contrast(92%);
+}
