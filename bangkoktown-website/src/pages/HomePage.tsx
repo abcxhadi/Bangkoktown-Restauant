@@ -431,3 +431,5 @@ const PremiumWhyChooseUsSection = () => (
 );
 
 import { PremiumLocationsSection } from '../components/ui/PremiumLocationsSection';
+
+export const HomePage = () => {
