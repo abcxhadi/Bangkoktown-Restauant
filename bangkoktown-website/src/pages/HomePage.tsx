@@ -14,6 +14,7 @@ import {
 import { MenuPreview } from "../components/menu";
 
 import { NetflixButton } from '../components/ui/NetflixButton';
+import { PremiumLocationsSection } from '../components/ui/PremiumLocationsSection';
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -430,6 +431,4 @@ const PremiumWhyChooseUsSection = () => (
   </section>
 );
 
-import { PremiumLocationsSection } from '../components/ui/PremiumLocationsSection';
 
-export const HomePage = () => {
