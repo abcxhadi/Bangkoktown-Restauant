@@ -1,5 +1,6 @@
-export { MenuItem } from './MenuItem';
-export { MenuFilters } from './MenuFilters';
-export { MenuContainer } from './MenuContainer';
-export { MenuPreview } from './MenuPreview';
-export { FeaturedDishesCarousel } from './FeaturedDishesCarousel';
+
+export * from './FeaturedDishesCarousel';
+export * from './MenuContainer';
+export * from './MenuFilters';
+export * from './MenuItem';
+export * from './MenuPreview';

@@ -1,25 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from "react";
 
-export function useScrollDirection() {
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
+export const useScrollDirection = () => {
+  const [scrollDirection, setScrollDirection] = useState("top");
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    let lastScrollY = window.pageYOffset;
-
     const updateScrollDirection = () => {
       const scrollY = window.pageYOffset;
-      const direction = scrollY > lastScrollY ? 'down' : 'up';
-      if (direction !== scrollDirection && (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5)) {
-        setScrollDirection(direction);
+      const currentScrollDirection = scrollY > lastScrollY.current ? "down" : "up";
+
+      if (
+        currentScrollDirection !== scrollDirection &&
+        (Math.abs(scrollY - lastScrollY.current) > 10)
+      ) {
+        setScrollDirection(currentScrollDirection);
       }
-      lastScrollY = scrollY > 0 ? scrollY : 0;
+
+      if (scrollY === 0) {
+        setScrollDirection("top");
+      }
+
+      lastScrollY.current = scrollY > 0 ? scrollY : 0;
     };
 
-    window.addEventListener('scroll', updateScrollDirection);
+    window.addEventListener("scroll", updateScrollDirection);
     return () => {
-      window.removeEventListener('scroll', updateScrollDirection);
-    }
-  }, [scrollDirection]);
+      window.removeEventListener("scroll", updateScrollDirection);
+    };
+  }, []);
 
   return scrollDirection;
-}
+};

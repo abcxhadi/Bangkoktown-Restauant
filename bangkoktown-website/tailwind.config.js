@@ -11,7 +11,8 @@ module.exports = {
           gold: '#FFD700',
           orange: '#FF6B35',
           green: '#2D5016',
-          cream: '#1a1a1a',
+          lightGreen: '#A8D8B9',
+          cream: '#000000',
           warmGray: '#8B7355'
         }
       },

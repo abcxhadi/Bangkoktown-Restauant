@@ -11,7 +11,7 @@ import {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-thai-cream max-w-screen-2xl mx-auto shadow-top">
+      <div className="min-h-screen max-w-screen-2xl mx-auto shadow-top">
         <ResponsiveNavigation />
         
         <Routes>

@@ -7,7 +7,7 @@ const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Menu', path: '/menu' },
   { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' },
+  
   { name: 'Reservations', path: '/reservations' },
 ];
 
@@ -59,7 +59,7 @@ export const MobileNavigation = () => {
       <div className={`fixed top-4 left-4 z-50 transition-transform duration-300 ${scrollDirection === 'down' ? '-translate-y-20' : 'translate-y-0'}`}>
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`p-3 rounded-full shadow-lg transition-colors duration-300 ${isScrolled ? 'bg-thai-cream/70 backdrop-blur-md' : 'bg-transparent'}`}
+          className={`p-3 rounded-full shadow-lg transition-colors duration-300 ${scrollDirection === 'top' ? '!bg-transparent' : 'bg-black/80 backdrop-blur-md'}`}
         >
           <HamburgerIcon isOpen={isOpen} />
         </button>

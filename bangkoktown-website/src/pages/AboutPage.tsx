@@ -1,305 +1,376 @@
-import { Container, Heading1, Heading2, Heading3, BodyText, Card } from '../components/ui';
+import {
+  Container,
+  Heading1,
+  Heading2,
+  Heading3,
+  BodyText,
+  Card,
+} from "../components/ui";
+import { useNavigate } from "react-router-dom";
+import { NetflixButton } from "../components/ui/NetflixButton";
+import { PremiumLocationsSection } from "../components/ui/PremiumLocationsSection";
 
 export const AboutPage = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-thai-cream">
-      <main className="section-padding">
-        <Container>
-          {/* Hero Section */}
-          <div className="text-center mb-20">
-            <Heading1 className="mb-6 bg-gradient-to-r from-thai-gold via-thai-orange to-thai-gold bg-clip-text text-transparent">
-              About Our Journey
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Subtle animated background patterns matching homepage */}
+      <div className="fixed inset-0 opacity-5 pointer-events-none">
+        <div
+          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-red-600 to-amber-600 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "8s" }}
+        ></div>
+        <div
+          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-amber-600 to-red-600 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "12s" }}
+        ></div>
+      </div>
+
+      {/* Netflix-style gradient overlay */}
+      <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none -z-20"></div>
+
+      {/* Hero Section - Netflix Cinematic Style */}
+      <section className="relative min-h-screen flex items-center justify-center z-20">
+        <div className="absolute inset-0">
+          <img
+            src="/images/gradient-hero-prerender.webp"
+            alt="Thai cuisine heritage background"
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/40"></div>
+        </div>
+
+        <Container className="relative z-10 text-center">
+          {/* Premium floating badge */}
+          <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600/20 to-amber-600/20 backdrop-blur-xl rounded-full border border-red-500/30 mb-12 hover:scale-105 transition-all duration-500">
+            <div className="w-3 h-3 bg-gradient-to-r from-red-500 to-amber-500 rounded-full animate-pulse"></div>
+            <span className="text-sm font-semibold text-red-400 tracking-wider uppercase">
+              Our Heritage Journey
+            </span>
+            <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-red-500 rounded-full animate-pulse"></div>
+          </div>
+
+          <div className="max-w-6xl mx-auto">
+            <Heading1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-12 tracking-tight leading-none">
+              Our{" "}
+              <span className="bg-gradient-to-r from-red-400 via-amber-300 to-red-400 bg-clip-text text-transparent">
+                Story
+              </span>
             </Heading1>
-            <BodyText className="text-xl max-w-3xl mx-auto text-thai-warmGray leading-relaxed">
-              Bringing the authentic taste of Thailand to the UAE through generations of family recipes and unwavering dedication to quality.
+            <BodyText className="text-2xl md:text-3xl text-gray-300 max-w-5xl mx-auto leading-relaxed font-light">
+              From Bangkok streets to UAE hearts. Three generations of authentic
+              Thai flavors that honor tradition while creating new memories.
             </BodyText>
           </div>
+        </Container>
+      </section>
 
-          <div className="space-y-24">
-            {/* Our Story Section */}
-            <section className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-thai-orange/5 to-thai-gold/5 rounded-3xl transform -rotate-1"></div>
-              <Card variant="transparent" className="relative p-8 md:p-16 bg-thai-cream/50 backdrop-blur-sm border border-thai-gold/20 rounded-3xl">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div className="order-2 lg:order-1">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-thai-gold/10 rounded-full mb-6">
-                      <span className="text-2xl">📖</span>
-                      <span className="text-sm font-semibold text-thai-gold">Our Story</span>
-                    </div>
-                    <Heading2 className="mb-6 text-3xl lg:text-4xl leading-tight">
-                      From Bangkok Streets to UAE Hearts
-                    </Heading2>
-                    <BodyText className="mb-6 text-lg leading-relaxed text-thai-warmGray">
-                      Our culinary journey began in the vibrant streets of Bangkok, where our grandmother's secret recipes were passed down through generations. Today, we bring that same authentic Thai experience to the UAE, celebrating fresh ingredients, traditional cooking methods, and the warm hospitality that makes Thai culture so special.
-                    </BodyText>
-                    <div className="grid grid-cols-2 gap-6 mt-8">
-                      <div className="text-center p-4 bg-thai-gold/5 rounded-xl">
-                        <div className="text-2xl font-bold text-thai-gold mb-1">25+</div>
-                        <div className="text-sm text-thai-warmGray">Years Experience</div>
-                      </div>
-                      <div className="text-center p-4 bg-thai-orange/5 rounded-xl">
-                        <div className="text-2xl font-bold text-thai-orange mb-1">100%</div>
-                        <div className="text-sm text-thai-warmGray">Authentic Recipes</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="order-1 lg:order-2 relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-thai-gold/20 to-thai-orange/20 rounded-2xl transform rotate-3"></div>
-                    <img 
-                      src="/images/thai-temple.jpg" 
-                      alt="Thai Temple representing our heritage" 
-                      className="relative rounded-2xl shadow-2xl w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                </div>
-              </Card>
-            </section>
-
-            {/* Our Philosophy Section */}
-            <section className="relative">
-              <div className="absolute inset-0 bg-gradient-to-l from-thai-green/5 to-thai-gold/5 rounded-3xl transform rotate-1"></div>
-              <Card variant="transparent" className="relative p-8 md:p-16 bg-thai-cream/50 backdrop-blur-sm border border-thai-green/20 rounded-3xl">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-thai-green/20 to-thai-gold/20 rounded-2xl transform -rotate-3"></div>
-                    <img 
-                      src="/images/thai-bowl.png" 
-                      alt="Traditional Thai bowl showcasing our philosophy" 
-                      className="relative rounded-2xl shadow-2xl w-full h-80 object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-thai-green/10 rounded-full mb-6">
-                      <span className="text-2xl">🌱</span>
-                      <span className="text-sm font-semibold text-thai-green">Our Philosophy</span>
-                    </div>
-                    <Heading2 className="mb-6 text-3xl lg:text-4xl leading-tight">
-                      Connecting Cultures Through Food
-                    </Heading2>
-                    <BodyText className="mb-8 text-lg leading-relaxed text-thai-warmGray">
-                      We believe food is more than nourishment—it's a bridge between cultures, a way to share stories, and create lasting memories. Our philosophy centers on authentic flavors, premium ingredients, and the genuine warmth of Thai hospitality that makes every meal a celebration.
-                    </BodyText>
-                    <div className="flex flex-wrap gap-4">
-                      <div className="flex items-center gap-3 px-4 py-2 bg-thai-gold/10 rounded-full">
-                        <span className="text-lg">🥘</span>
-                        <span className="text-sm font-medium text-thai-gold">Authentic Flavors</span>
-                      </div>
-                      <div className="flex items-center gap-3 px-4 py-2 bg-thai-orange/10 rounded-full">
-                        <span className="text-lg">🌿</span>
-                        <span className="text-sm font-medium text-thai-orange">Fresh Ingredients</span>
-                      </div>
-                      <div className="flex items-center gap-3 px-4 py-2 bg-thai-green/10 rounded-full">
-                        <span className="text-lg">❤️</span>
-                        <span className="text-sm font-medium text-thai-green">Thai Hospitality</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </section>
-
-            {/* Why Choose Us Section */}
-            <section className="relative overflow-hidden">
-              <div className="absolute inset-0 rounded-3xl">
-                <img 
-                  src="/images/gradient-hero-prerender.webp" 
-                  alt="Thai cuisine background" 
-                  className="w-full h-full object-cover rounded-3xl"
-                />
-                <div className="absolute inset-0 bg-black/40 rounded-3xl"></div>
-              </div>
-              <div className="relative p-8 md:p-16">
-                <div className="text-center mb-12">
-                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full mb-6">
-                    <span className="text-2xl">✨</span>
-                    <span className="text-sm font-semibold text-white">Why Choose Us</span>
-                  </div>
-                  <Heading2 className="text-3xl lg:text-4xl text-white mb-4">
-                    What Sets Us Apart
-                  </Heading2>
-                  <BodyText className="text-white/90 text-lg max-w-2xl mx-auto">
-                    Discover the unique qualities that make our Thai restaurant the preferred choice for authentic cuisine lovers.
-                  </BodyText>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="group">
-                    <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl h-full border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                      <div className="text-center">
-                        <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🌶️</div>
-                        <Heading3 className="text-xl font-bold text-white mb-4">100% Authentic</Heading3>
-                        <BodyText className="text-white/90 leading-relaxed">
-                          Traditional recipes passed down through generations, using imported spices and authentic cooking techniques from Thailand.
-                        </BodyText>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="group">
-                    <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl h-full border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                      <div className="text-center">
-                        <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">⭐</div>
-                        <Heading3 className="text-xl font-bold text-white mb-4">Premium Quality</Heading3>
-                        <BodyText className="text-white/90 leading-relaxed">
-                          Only the freshest ingredients, carefully sourced and prepared daily. No compromises on quality, ever.
-                        </BodyText>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="group">
-                    <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl h-full border border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
-                      <div className="text-center">
-                        <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">❤️</div>
-                        <Heading3 className="text-xl font-bold text-white mb-4">Thai Hospitality</Heading3>
-                        <BodyText className="text-white/90 leading-relaxed">
-                          Experience the genuine warmth of Thai culture with our friendly service and welcoming family atmosphere.
-                        </BodyText>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Awards Section */}
-            <section className="relative">
-              <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-6 py-3 bg-thai-gold/10 rounded-full mb-6">
-                  <span className="text-2xl">🏆</span>
-                  <span className="text-sm font-semibold text-thai-gold">Recognition</span>
-                </div>
-                <Heading2 className="text-3xl lg:text-4xl mb-4">
-                  Awards & Achievements
-                </Heading2>
-                <BodyText className="text-thai-warmGray text-lg max-w-2xl mx-auto">
-                  Our commitment to excellence has been recognized by food critics and customers alike.
-                </BodyText>
+      {/* Main Content */}
+      <main className="relative bg-black z-30">
+        <Container>
+          {/* Heritage Story Section */}
+          <section className="py-24">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-600/20 to-red-600/20 backdrop-blur-xl rounded-full border border-amber-500/30 mb-12">
+                <div className="text-3xl animate-pulse">📖</div>
+                <span className="text-sm font-semibold text-amber-400 tracking-wider uppercase">
+                  Heritage Journey
+                </span>
               </div>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="group bg-gradient-to-br from-thai-gold/5 to-thai-orange/5 p-6 rounded-2xl text-center border border-thai-gold/10 hover:border-thai-gold/30 transition-all duration-300 hover:scale-105">
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🏆</div>
-                  <Heading3 className="text-lg font-bold mb-2 text-thai-gold">Best Thai Restaurant</Heading3>
-                  <BodyText className="text-sm text-thai-warmGray">UAE Food Awards 2024</BodyText>
-                </div>
-
-                <div className="group bg-gradient-to-br from-thai-orange/5 to-thai-gold/5 p-6 rounded-2xl text-center border border-thai-orange/10 hover:border-thai-orange/30 transition-all duration-300 hover:scale-105">
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">⭐</div>
-                  <Heading3 className="text-lg font-bold mb-2 text-thai-orange">4.8/5 Rating</Heading3>
-                  <BodyText className="text-sm text-thai-warmGray">Google Reviews</BodyText>
-                </div>
-
-                <div className="group bg-gradient-to-br from-thai-green/5 to-thai-gold/5 p-6 rounded-2xl text-center border border-thai-green/10 hover:border-thai-green/30 transition-all duration-300 hover:scale-105">
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">👥</div>
-                  <Heading3 className="text-lg font-bold mb-2 text-thai-green">50,000+</Heading3>
-                  <BodyText className="text-sm text-thai-warmGray">Happy Customers</BodyText>
-                </div>
-
-                <div className="group bg-gradient-to-br from-thai-gold/5 to-thai-green/5 p-6 rounded-2xl text-center border border-thai-gold/10 hover:border-thai-gold/30 transition-all duration-300 hover:scale-105">
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">🌟</div>
-                  <Heading3 className="text-lg font-bold mb-2 text-thai-gold">TripAdvisor</Heading3>
-                  <BodyText className="text-sm text-thai-warmGray">Certificate of Excellence</BodyText>
-                </div>
-              </div>
-            </section>
-
-            {/* Locations Section */}
-            <section className="relative">
-              <div className="text-center mb-12">
-                <div className="inline-flex items-center gap-2 px-6 py-3 bg-thai-orange/10 rounded-full mb-6">
-                  <span className="text-2xl">📍</span>
-                  <span className="text-sm font-semibold text-thai-orange">Our Locations</span>
-                </div>
-                <Heading2 className="text-3xl lg:text-4xl mb-4">
-                  Visit Us Across the UAE
-                </Heading2>
-                <BodyText className="text-thai-warmGray text-lg max-w-2xl mx-auto">
-                  Experience authentic Thai cuisine at any of our beautifully designed locations, each offering a unique ambiance and the same exceptional quality.
-                </BodyText>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="group">
-                  <div className="relative overflow-hidden rounded-2xl mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-                    <img 
-                      src="/images/dubai.jpg" 
-                      alt="Our Dubai location" 
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute bottom-4 left-4 z-20">
-                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                        <span className="text-sm font-semibold text-thai-green">Dubai</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Heading3 className="text-xl font-bold mb-3 text-thai-gold">Dubai Branch</Heading3>
-                  <BodyText className="text-thai-warmGray leading-relaxed">
-                    Experience the magic of Bangkok in the heart of Dubai's bustling cityscape, where modern luxury meets traditional Thai charm.
-                  </BodyText>
-                </div>
-
-                <div className="group">
-                  <div className="relative overflow-hidden rounded-2xl mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-                    <img 
-                      src="/images/al majaz waterfron.jpg" 
-                      alt="Our Al Majaz Waterfront location" 
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute bottom-4 left-4 z-20">
-                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                        <span className="text-sm font-semibold text-thai-orange">Majaz Qasba</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Heading3 className="text-xl font-bold mb-3 text-thai-orange">Majaz Qasba</Heading3>
-                  <BodyText className="text-thai-warmGray leading-relaxed">
-                    Dine with stunning waterfront views at our Majaz Qasba location, where delicious Thai cuisine meets scenic beauty for an unforgettable experience.
-                  </BodyText>
-                </div>
-
-                <div className="group">
-                  <div className="relative overflow-hidden rounded-2xl mb-6">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
-                    <img 
-                      src="/images/burjkhalifa.jpg" 
-                      alt="Our Zawaya Walk location" 
-                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute bottom-4 left-4 z-20">
-                      <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                        <span className="text-sm font-semibold text-thai-green">Zawaya Walk</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Heading3 className="text-xl font-bold mb-3 text-thai-green">Zawaya Walk</Heading3>
-                  <BodyText className="text-thai-warmGray leading-relaxed">
-                    Perfect for memorable dining experiences with family and friends, our Zawaya Walk location offers an intimate setting with exceptional Thai hospitality.
-                  </BodyText>
-                </div>
-              </div>
-            </section>
-
-            {/* Call to Action */}
-            <section className="text-center bg-gradient-to-r from-thai-gold/10 via-thai-orange/5 to-thai-gold/10 p-12 rounded-3xl border border-thai-gold/20">
-              <Heading2 className="text-3xl lg:text-4xl mb-4">
-                Ready to Experience Authentic Thai Cuisine?
+              <Heading2 className="text-5xl lg:text-7xl mb-8 text-white font-black tracking-tight">
+                Bangkok to Your Table
               </Heading2>
-              <BodyText className="text-thai-warmGray text-lg max-w-2xl mx-auto mb-8">
-                Join thousands of satisfied customers who have made us their favorite Thai restaurant in the UAE.
+
+              <BodyText className="text-gray-300 text-xl max-w-4xl mx-auto font-light leading-relaxed">
+                A legacy that began in Thailand's bustling capital and continues
+                to flourish in the heart of the UAE.
               </BodyText>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="px-8 py-4 bg-gradient-to-r from-thai-red to-red-500 text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  View Our Menu
-                </button>
-                <button className="px-8 py-4 border-2 border-thai-gold text-thai-gold font-semibold rounded-xl hover:bg-thai-gold hover:text-white transition-all duration-300">
-                  Book a Table
-                </button>
-              </div>
-            </section>
+            </div>
+
+            {/* Story Card */}
+            <div className="group relative mb-24">
+              <div className="absolute -inset-1 bg-gradient-to-r from-amber-600/30 to-red-600/30 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <Card
+                variant="transparent"
+                className="relative p-16 bg-gray-900/60 backdrop-blur-xl border border-gray-700/50 rounded-3xl shadow-2xl"
+              >
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                  <div className="order-2 lg:order-1">
+                    <Heading3 className="text-4xl lg:text-5xl mb-8 bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent font-bold">
+                      Our Heritage
+                    </Heading3>
+
+                    <BodyText className="mb-8 text-xl leading-relaxed text-gray-300 font-light">
+                      What started in Bangkok's vibrant street markets has
+                      evolved into the UAE's most beloved Thai dining
+                      destination. Our grandmother's secret recipes, perfected
+                      over three generations, form the heart of every dish we
+                      serve with pride and passion.
+                    </BodyText>
+
+                    <div className="grid grid-cols-2 gap-8">
+                      <div className="group/stat text-center p-8 bg-gradient-to-br from-amber-600/10 to-red-600/10 backdrop-blur-sm rounded-2xl border border-amber-500/20 hover:border-amber-500/40 transition-all duration-300">
+                        <div className="text-4xl font-black text-amber-400 mb-3 group-hover/stat:scale-110 transition-transform duration-300">
+                          25+
+                        </div>
+                        <div className="text-lg text-gray-400 font-medium">
+                          Years of Excellence
+                        </div>
+                      </div>
+                      <div className="group/stat text-center p-8 bg-gradient-to-br from-red-600/10 to-amber-600/10 backdrop-blur-sm rounded-2xl border border-red-500/20 hover:border-red-500/40 transition-all duration-300">
+                        <div className="text-4xl font-black text-red-400 mb-3 group-hover/stat:scale-110 transition-transform duration-300">
+                          100%
+                        </div>
+                        <div className="text-lg text-gray-400 font-medium">
+                          Authentic Recipes
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="order-1 lg:order-2 relative group/image">
+                    <div className="absolute -inset-4 bg-gradient-to-br from-amber-600/20 to-red-600/20 rounded-3xl blur-2xl opacity-60 group-hover/image:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative overflow-hidden rounded-2xl">
+                      <img
+                        src="/images/thai-temple.jpg"
+                        alt="Thai heritage and tradition"
+                        className="w-full h-96 object-cover transform group-hover/image:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </section>
+
+          {/* Netflix-style content divider */}
+          <div className="relative py-16">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/20 to-transparent h-px"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/20 to-transparent h-px top-1"></div>
           </div>
+
+          {/* Philosophy Section */}
+          <section className="py-24">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600/20 to-teal-600/20 backdrop-blur-xl rounded-full border border-emerald-500/30 mb-12">
+                <div className="text-3xl animate-bounce">🌱</div>
+                <span className="text-sm font-semibold text-emerald-400 tracking-wider uppercase">
+                  Our Philosophy
+                </span>
+              </div>
+
+              <Heading2 className="text-5xl lg:text-7xl mb-8 text-white font-black tracking-tight">
+                More Than Food
+              </Heading2>
+
+              <BodyText className="text-gray-300 text-xl max-w-4xl mx-auto font-light leading-relaxed">
+                Every dish tells a story. Every meal creates connections. Every
+                experience builds bridges between cultures.
+              </BodyText>
+            </div>
+
+            {/* Philosophy Card */}
+            <div className="group relative mb-16">
+              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-600/30 to-teal-600/30 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <Card
+                variant="transparent"
+                className="relative p-16 bg-gray-900/60 backdrop-blur-xl border border-gray-700/50 rounded-3xl shadow-2xl"
+              >
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                  <div className="relative group/image">
+                    <div className="absolute -inset-4 bg-gradient-to-br from-emerald-600/20 to-teal-600/20 rounded-3xl blur-2xl opacity-60 group-hover/image:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative overflow-hidden rounded-2xl">
+                      <img
+                        src="/images/thai-bowl.png"
+                        alt="Traditional Thai cuisine philosophy"
+                        className="w-full h-96 object-cover transform group-hover/image:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Heading3 className="text-4xl lg:text-5xl mb-8 bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent font-bold">
+                      Cultural Connection
+                    </Heading3>
+
+                    <BodyText className="mb-10 text-xl leading-relaxed text-gray-300 font-light">
+                      We believe food is the universal language that transcends
+                      borders and unites hearts. Every dish we craft serves as a
+                      bridge between Thailand's rich culinary heritage and the
+                      vibrant multicultural tapestry of the UAE.
+                    </BodyText>
+
+                    <div className="flex flex-wrap gap-4">
+                      <div className="group/tag flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-amber-600/20 to-red-600/20 backdrop-blur-sm rounded-full border border-amber-500/30 hover:border-amber-500/60 transition-all duration-300">
+                        <span className="text-xl group-hover/tag:scale-110 transition-transform duration-300">
+                          🌶️
+                        </span>
+                        <span className="text-sm font-semibold text-amber-400 tracking-wide">
+                          Authentic Flavors
+                        </span>
+                      </div>
+                      <div className="group/tag flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-emerald-600/20 to-teal-600/20 backdrop-blur-sm rounded-full border border-emerald-500/30 hover:border-emerald-500/60 transition-all duration-300">
+                        <span className="text-xl group-hover/tag:scale-110 transition-transform duration-300">
+                          🌿
+                        </span>
+                        <span className="text-sm font-semibold text-emerald-400 tracking-wide">
+                          Premium Ingredients
+                        </span>
+                      </div>
+                      <div className="group/tag flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-rose-600/20 to-pink-600/20 backdrop-blur-sm rounded-full border border-rose-500/30 hover:border-rose-500/60 transition-all duration-300">
+                        <span className="text-xl group-hover/tag:scale-110 transition-transform duration-300">
+                          ❤️
+                        </span>
+                        <span className="text-sm font-semibold text-rose-400 tracking-wide">
+                          Thai Hospitality
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </section>
+
+          <div className="relative py-16">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent h-px"></div>
+          </div>
+
+          {/* Recognition Section */}
+          <section className="py-24">
+            <div className="text-center mb-20">
+              <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-600/20 to-amber-600/20 backdrop-blur-xl rounded-full border border-yellow-500/30 mb-12">
+                <div className="text-3xl animate-pulse">🏆</div>
+                <span className="text-sm font-semibold text-yellow-400 tracking-wider uppercase">
+                  Recognition & Awards
+                </span>
+              </div>
+
+              <Heading2 className="text-5xl lg:text-7xl mb-8 text-white font-black tracking-tight">
+                Proven Excellence
+              </Heading2>
+
+              <BodyText className="text-gray-300 text-xl max-w-4xl mx-auto font-light leading-relaxed">
+                Our commitment to authentic Thai cuisine and exceptional service
+                has earned recognition from critics and customers across the
+                UAE.
+              </BodyText>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  icon: "🏆",
+                  title: "Best Thai Restaurant",
+                  subtitle: "UAE Food Awards 2024",
+                  gradient: "from-yellow-500/20 to-amber-500/20",
+                  border: "border-yellow-500/30 hover:border-yellow-500/60",
+                },
+                {
+                  icon: "⭐",
+                  title: "4.8/5 Rating",
+                  subtitle: "Google Reviews",
+                  gradient: "from-blue-500/20 to-cyan-500/20",
+                  border: "border-blue-500/30 hover:border-blue-500/60",
+                },
+                {
+                  icon: "👥",
+                  title: "50,000+",
+                  subtitle: "Happy Customers",
+                  gradient: "from-green-500/20 to-emerald-500/20",
+                  border: "border-green-500/30 hover:border-green-500/60",
+                },
+                {
+                  icon: "🌟",
+                  title: "TripAdvisor Excellence",
+                  subtitle: "Certificate Winner",
+                  gradient: "from-purple-500/20 to-pink-500/20",
+                  border: "border-purple-500/30 hover:border-purple-500/60",
+                },
+              ].map((award, index) => (
+                <div
+                  key={index}
+                  className={`group/award bg-gray-900/60 backdrop-blur-sm p-10 rounded-2xl text-center border ${award.border} transition-all duration-500 hover:scale-105 hover:bg-gray-800/60`}
+                >
+                  <div className="text-6xl mb-6 group-hover/award:scale-110 transition-transform duration-500">
+                    {award.icon}
+                  </div>
+                  <Heading3 className="text-2xl font-bold mb-4 text-white">
+                    {award.title}
+                  </Heading3>
+                  <BodyText className="text-gray-400 font-medium">
+                    {award.subtitle}
+                  </BodyText>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <div className="relative py-16">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent h-px"></div>
+          </div>
+
+          {/* Locations Section */}
+          <PremiumLocationsSection />
+
+          <div className="relative py-16">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-red-500/20 to-transparent h-px"></div>
+          </div>
+
+          {/* CTA Section - Netflix Style */}
+          <section className="py-32">
+            <div className="relative overflow-hidden rounded-3xl group">
+              <div className="absolute inset-0">
+                <div className="w-full h-full bg-gradient-to-br from-red-600/30 via-transparent to-amber-600/30 rounded-3xl"></div>
+                <div className="absolute inset-0 bg-black/60 rounded-3xl"></div>
+              </div>
+
+              <div className="relative p-16 md:p-24 text-center">
+                <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 mb-12">
+                  <div className="w-3 h-3 bg-gradient-to-r from-white to-red-300 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-semibold text-white tracking-wider uppercase">
+                    Ready to Experience
+                  </span>
+                  <div className="w-3 h-3 bg-gradient-to-r from-red-300 to-white rounded-full animate-pulse"></div>
+                </div>
+
+                <Heading2 className="text-5xl lg:text-7xl text-white mb-12 font-black tracking-tight leading-tight">
+                  Authentic Thai <br />
+                  <span className="bg-gradient-to-r from-red-400 via-amber-300 to-red-400 bg-clip-text text-transparent">
+                    Cuisine
+                  </span>
+                </Heading2>
+
+                <BodyText className="text-white/80 text-2xl max-w-4xl mx-auto mb-16 leading-relaxed font-light">
+                  Join thousands who've made us their favorite Thai restaurant
+                  in the UAE. Taste the difference that three generations of
+                  tradition makes.
+                </BodyText>
+
+                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                  <NetflixButton
+                    variant="primary"
+                    onClick={() => navigate("/menu")}
+                    icon="📖"
+                  >
+                    Explore Menu
+                  </NetflixButton>
+                  <NetflixButton
+                    variant="outline"
+                    onClick={() => navigate("/reservations")}
+                    icon="🍽️"
+                  >
+                    Reserve Table
+                  </NetflixButton>
+                </div>
+              </div>
+            </div>
+          </section>
         </Container>
       </main>
     </div>

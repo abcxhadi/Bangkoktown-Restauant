@@ -16,14 +16,14 @@ export const ResponsiveNavigation = ({
     <>
       {/* Desktop Navigation - always rendered but hidden on mobile */}
       <div className="hidden md:block">
-        <Navigation className={className} showSpacer={!isHomePage} />
+        <Navigation className={className} showSpacer={false} />
       </div>
 
       {/* Mobile Navigation - always rendered but hidden on desktop */}
       <div className="block md:hidden">
         <MobileNavigation />
         {/* Add bottom padding to prevent content from hiding behind mobile nav - only on non-home pages */}
-        {!isHomePage && <div className="h-24" />}
+        
       </div>
     </>
   );

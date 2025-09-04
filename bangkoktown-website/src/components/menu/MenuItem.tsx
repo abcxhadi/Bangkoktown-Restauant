@@ -53,10 +53,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
             className="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent backdrop-blur-sm"></div>
         <div className="relative z-10 flex flex-col h-full p-6 text-white">
           <div className="flex-grow">
-            <h3 className="font-thai-serif text-2xl font-bold mb-2 group-hover:text-thai-gold transition-colors duration-300">
+            <h3 className="font-thai-serif text-2xl font-bold mb-2 text-thai-gold transition-colors duration-300">
               {item.name}
             </h3>
             {item.description && (

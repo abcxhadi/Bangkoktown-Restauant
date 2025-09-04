@@ -9,26 +9,15 @@ interface NavigationProps {
 }
 
 export const Navigation = ({ className = '', showSpacer = true }: NavigationProps) => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const scrollDirection = useScrollDirection();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navigationItems = [
     { name: 'Home', path: '/' },
     { name: 'Menu', path: '/menu' },
     { name: 'About Us', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    
     { name: 'Reservations', path: '/reservations' }
   ];
 
@@ -42,9 +31,9 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
       <nav
         className={`
           fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out
-          ${isScrolled
-            ? 'bg-thai-cream/70 backdrop-blur-md shadow-thai'
-            : 'bg-transparent'
+          ${scrollDirection === 'top'
+            ? '!bg-transparent'
+            : 'bg-black/80 backdrop-blur-md shadow-thai'
           }
           ${scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'}
           ${className}

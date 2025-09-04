@@ -1,3 +1,5 @@
-export { Navigation } from './Navigation';
-export { MobileNavigation } from './MobileNavigation';
-export { ResponsiveNavigation } from './ResponsiveNavigation';
+
+export * from './MobileNavigation';
+export * from './Navigation';
+export * from './ResponsiveNavigation';
+export * from './SimpleNavigation';
