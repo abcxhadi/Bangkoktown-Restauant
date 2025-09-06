@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Logo } from '../ui';
 import { useScrollDirection } from '../../hooks/useScrollDirection';
 
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Menu', path: '/menu' },
-  { name: 'About', path: '/about' },
+  { name: 'About', path: '/#about-us' },
   
   { name: 'Reservations', path: '/reservations' },
 ];
@@ -29,6 +29,7 @@ export const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const scrollDirection = useScrollDirection();
 
   useEffect(() => {
@@ -53,6 +54,28 @@ export const MobileNavigation = () => {
   useEffect(() => {
     setIsOpen(false);
   }, [location]);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path.startsWith('/#')) {
+      e.preventDefault();
+      const id = path.substring(2);
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -85,6 +108,7 @@ export const MobileNavigation = () => {
                 <NavLink
                   key={link.name}
                   to={link.path}
+                  onClick={(e) => handleLinkClick(e, link.path)}
                   className={({ isActive }) =>
                     `text-2xl font-semibold transition-colors py-2 block 
                     ${isActive ? 'text-thai-gold' : 'text-white/80 hover:text-white'}`

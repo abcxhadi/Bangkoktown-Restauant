@@ -8,23 +8,25 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.126",
+    "@types/node": "^24.3.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "effect": "^3.17.13",
     "framer-motion": "^11.15.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.54.2",
     "react-router-dom": "^7.8.0",
     "react-scripts": "5.0.1",
+    "react-typing-effect": "^2.0.5",
     "typescript": "^4.9.5",
+    "typing": "^0.1.9",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -46,8 +48,10 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.12",
+    "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.0"
+    "tailwindcss": "^3.4.0",
+    "vite": "^7.1.4"
   }
 }

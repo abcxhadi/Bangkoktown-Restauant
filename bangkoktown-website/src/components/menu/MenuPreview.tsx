@@ -18,7 +18,7 @@ import {
 } from '../../data/menuData';
 import { MenuCategory } from '../../types';
 import { useAutoScroll } from '../../hooks/useAutoScroll';
-import { FeaturedDishesCarousel } from './FeaturedDishesCarousel';
+
 
 interface MenuPreviewProps {
   maxItems?: number;
@@ -130,7 +130,7 @@ export const MenuPreview: React.FC<MenuPreviewProps> = ({
       <Container>
         
 
-        <FeaturedDishesCarousel />
+        
 
         <div className="p-8">
           <ThaiDivider />

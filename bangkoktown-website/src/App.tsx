@@ -4,7 +4,6 @@ import { ResponsiveNavigation } from './components/layout';
 import { 
   HomePage, 
   MenuPage, 
-  AboutPage, 
   ReservationsPage
 } from './pages';
 
@@ -17,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/menu" element={<MenuPage />} />
-          <Route path="/about" element={<AboutPage />} />
+          
           
           <Route path="/reservations" element={<ReservationsPage />} />
         </Routes>

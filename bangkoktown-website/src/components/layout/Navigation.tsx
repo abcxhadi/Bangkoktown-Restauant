@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LanternIcon, ThaiPatternIcon, Logo } from '../ui';
 import { useScrollDirection } from '../../hooks/useScrollDirection';
 
@@ -11,18 +11,40 @@ interface NavigationProps {
 export const Navigation = ({ className = '', showSpacer = true }: NavigationProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const scrollDirection = useScrollDirection();
 
   const navigationItems = [
     { name: 'Home', path: '/' },
     { name: 'Menu', path: '/menu' },
-    { name: 'About Us', path: '/about' },
+    { name: 'About Us', path: '/#about-us' },
     
     { name: 'Reservations', path: '/reservations' }
   ];
 
   const isActive = (path: string) => {
     return location.pathname === path;
+  };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    if (path.startsWith('/#')) {
+      e.preventDefault();
+      const id = path.substring(2);
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      } else {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
   };
 
   return (
@@ -50,6 +72,7 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={(e) => handleLinkClick(e, item.path)}
                   className={`
                     relative font-thai-sans font-medium transition-all duration-200
                     hover:text-thai-gold group
@@ -126,7 +149,10 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
               <Link
                 key={item.path}
                 to={item.path}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  handleLinkClick(e, item.path);
+                  setIsMobileMenuOpen(false);
+                }}
                 className={`
                   block px-4 py-3 rounded-lg font-thai-sans font-medium transition-all duration-200
                   ${isActive(item.path)
