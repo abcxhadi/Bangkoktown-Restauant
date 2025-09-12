@@ -50,7 +50,7 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
           <input
             type="text"
             placeholder="Search our delicious menu..."
-            className="bg-transparent flex-1 text-white placeholder-white/50 focus:outline-none"
+            className="bg-transparent flex-1 text-white placeholder-white/50 focus:outline-none netflix-body"
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
           />
@@ -81,8 +81,9 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
       {/* Category Filters */}
       <div className="flex flex-wrap justify-center gap-3">
         <Button
-          variant={activeCategory === 'all' ? "secondary" : "outline"}
+          variant="outline"
           onClick={() => onCategoryChange('all')}
+          className={`${activeCategory === 'all' ? 'bg-red-500 text-white' : 'text-white'} hover:bg-white hover:text-black netflix-caption`}
         >
           <span className="text-lg">🍽️</span>
           <span className="hidden sm:inline">All Items</span>
@@ -92,8 +93,9 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
         {categories.map((category) => (
           <Button
             key={category}
-            variant={activeCategory === category ? "secondary" : "outline"}
+            variant="outline"
             onClick={() => onCategoryChange(category)}
+            className={`${activeCategory === category ? 'bg-red-500 text-white' : 'text-white'} hover:bg-white hover:text-black netflix-caption`}
           >
             <span className="text-lg">{getCategoryIcon(category)}</span>
             <span className="hidden sm:inline">{getCategoryName(category)}</span>
@@ -105,10 +107,10 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
       {/* Active Filters Display */}
       {(activeCategory !== 'all' || isVegOnly || searchTerm) && (
         <div className="flex flex-wrap justify-center gap-2 text-sm items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 max-w-md w-full shadow-lg">
-          <span className="text-white/50 mr-3">Active filters:</span>
+          <span className="text-white/50 mr-3 netflix-caption">Active filters:</span>
           
           {activeCategory !== 'all' && (
-            <span className="inline-flex items-center gap-1 bg-thai-gold/20 text-thai-gold px-2 py-1 rounded-full text-xs">
+            <span className="inline-flex items-center gap-1 bg-thai-gold/20 text-thai-gold px-2 py-1 rounded-full text-xs netflix-caption">
               <span>{getCategoryIcon(activeCategory)}</span>
               <span>{getCategoryName(activeCategory)}</span>
               <button
@@ -121,7 +123,7 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
           )}
           
           {isVegOnly && (
-            <span className="inline-flex items-center gap-1 bg-thai-green/20 text-thai-green px-2 py-1 rounded-full text-xs">
+            <span className="inline-flex items-center gap-1 bg-thai-green/20 text-thai-green px-2 py-1 rounded-full text-xs netflix-caption">
               <VegIcon size={12} />
               <span>Vegetarian</span>
               <button
@@ -134,7 +136,7 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
           )}
           
           {searchTerm && (
-            <span className="inline-flex items-center gap-1 bg-thai-orange/20 text-thai-orange px-2 py-1 rounded-full text-xs">
+            <span className="inline-flex items-center gap-1 bg-thai-orange/20 text-thai-orange px-2 py-1 rounded-full text-xs netflix-caption">
               <span>"{searchTerm}"</span>
               <button
                 onClick={() => onSearchChange('')}

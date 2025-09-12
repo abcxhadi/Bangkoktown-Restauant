@@ -55,7 +55,7 @@ export const MenuPreview: React.FC<MenuPreviewProps> = ({
 
   if (showCategoryPreviews) {
     return (
-      <section className="py-16">
+       <section className="py-16 overflow-hidden">
         <Container>
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-4">
@@ -126,31 +126,59 @@ export const MenuPreview: React.FC<MenuPreviewProps> = ({
   }
 
   return (
-    <section className="py-16">
+    <section className="py-16 overflow-hidden">
       <Container>
-        
-
-        
-
-        <div className="p-8">
-          <ThaiDivider />
-
-          <div className="text-center mt-8">
-            <BodyText className="mb-6 text-thai-warmGray">
-              This is just a taste of what awaits you. Our full menu features over 30 authentic Thai dishes across 12 categories.
-            </BodyText>
-
-            <div className="flex justify-center">
-              <Button
-                variant="secondary"
-                size="lg"
-                className="transform transition-all duration-300 hover:scale-105 hover:shadow-thai-lg"
-                onClick={handleViewFullMenu}
-              >
-                View Full Menu
-              </Button>
-            </div>
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center mb-4">
+            <LanternIcon size={48} color="#D4AF37" className="mr-4" />
+            <Heading2>Our Featured Dishes</Heading2>
+            <LanternIcon size={48} color="#D4AF37" className="ml-4" />
           </div>
+          <BodyText className="max-w-2xl mx-auto text-thai-warmGray">
+            A selection of our most popular and highly-rated dishes, showcasing the best of Bangkoktown's culinary expertise.
+          </BodyText>
+        </div>
+
+        <div 
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div 
+            ref={scrollRef} 
+            className="flex overflow-x-auto scrollbar-hide space-x-8 pb-8"
+          >
+            {featuredItems.map((item, index) => (
+              <div key={`${item.id}-${index}`} className="w-80 flex-shrink-0">
+                <MenuItem
+                  id={item.id}
+                  name={item.name}
+                  description={item.description}
+                  price={item.price}
+                  image={item.image}
+                  isVeg={item.isVeg}
+                  category={item.category}
+                  isFeatured
+                />
+              </div>
+            ))}
+          </div>
+          <ScrollArrows 
+            onLeftClick={scrollLeft} 
+            onRightClick={scrollRight} 
+            isHovered={isHovered} 
+          />
+        </div>
+
+                <div className="mt-12 text-center">
+          <Button
+            variant="primary"
+            size="lg"
+            className="netflix-button"
+            onClick={handleViewFullMenu}
+          >
+            View Full Menu
+          </Button>
         </div>
       </Container>
     </section>

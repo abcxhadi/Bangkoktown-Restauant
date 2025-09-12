@@ -36,8 +36,11 @@ export {
 } from './ThaiDecorations';
 
 // Hero Components
-export { HeroVideoSection } from './HeroVideoSection';
+
 
 // Logo Component
 export { Logo } from './Logo';
 export { ScrollArrows } from './ScrollArrows';
+export { PremiumLocationsSection } from './PremiumLocationsSection';
+export { PremiumAboutSection } from './PremiumAboutSection';
+export { PremiumWhyChooseUsSection } from './PremiumWhyChooseUsSection';

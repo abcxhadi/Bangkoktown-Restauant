@@ -41,7 +41,7 @@ export const menuItems: MenuItem[] = [
     isVeg: false,
     hasVegOption: true,
     description:
-      "Assorted steamed dumplings filled with pork, shrimp, and vegetables, served with soy dipping sauce",
+      "Assorted steamed dumplings filled with , shrimp, and vegetables, served with soy dipping sauce",
     spiceLevel: 1,
     image: "/images/itemImages/mixed_steamed_dumplings.jpg",
   },
@@ -271,7 +271,7 @@ export const menuItems: MenuItem[] = [
     isVeg: false,
     hasVegOption: true,
     description:
-      "Clear broth with handmade wontons filled with seasoned pork and vegetables",
+      "Clear broth with handmade wontons filled with seasoned and vegetables",
     spiceLevel: 1,
     image: "/images/itemImages/wonton_soup.jpg",
   },
@@ -909,7 +909,7 @@ export const menuItems: MenuItem[] = [
     isVeg: false,
     hasVegOption: true,
     description:
-      "Chicken or beef satay with peanut sauce, cucumber relish, and jasmine rice",
+      "A delightful combination of chicken satay, beef satay, and spring rolls, served with peanut sauce, cucumber relish, and jasmine rice",
     spiceLevel: 2,
     image: "/images/itemImages/satay_combo.jpg",
   },
