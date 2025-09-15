@@ -11,15 +11,18 @@ import {
   getFeaturedItems,
 } from "../../data/menuData";
 
-export const MenuContainer: React.FC<MenuContainerProps> = ({
+export const MenuContainer: React.FC<MenuContainerProps & { searchTerm: string; isVegOnly: boolean; setSearchTerm: (term: string) => void; setIsVegOnly: (vegOnly: boolean) => void; }> = ({
   isPreview = false,
   maxItems = 6,
+  searchTerm,
+  isVegOnly,
+  setSearchTerm,
+  setIsVegOnly,
 }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isVegOnly, setIsVegOnly] = useState(false);
+  
 
   // Handle URL parameters for category filtering
   useEffect(() => {
@@ -81,13 +84,7 @@ export const MenuContainer: React.FC<MenuContainerProps> = ({
     setActiveCategory(category);
   };
 
-  const handleSearchChange = (term: string) => {
-    setSearchTerm(term);
-  };
-
-  const handleVegToggle = (vegOnly: boolean) => {
-    setIsVegOnly(vegOnly);
-  };
+  
 
   if (isPreview) {
     return (
@@ -135,8 +132,8 @@ export const MenuContainer: React.FC<MenuContainerProps> = ({
         searchTerm={searchTerm}
         isVegOnly={isVegOnly}
         onCategoryChange={handleCategoryChange}
-        onSearchChange={handleSearchChange}
-        onVegToggle={handleVegToggle}
+        onSearchChange={setSearchTerm}
+        onVegToggle={setIsVegOnly}
       />
 
       {/* View Mode Toggle */}

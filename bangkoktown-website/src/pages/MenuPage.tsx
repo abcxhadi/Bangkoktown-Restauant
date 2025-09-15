@@ -1,12 +1,8 @@
+import React, { useState } from 'react';
 import {
   Container,
-  Heading1,
-  Heading2,
-  Heading3,
-  BodyText,
-  Card,
 } from "../components/ui";
-import { MenuContainer } from "../components/menu";
+import { MenuContainer, SearchBar } from "../components/menu";
 
 const menuPageCss = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
@@ -54,6 +50,8 @@ const menuPageCss = `
 `;
 
 export const MenuPage = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isVegOnly, setIsVegOnly] = useState(false);
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       <style>{menuPageCss}</style>
@@ -72,8 +70,10 @@ export const MenuPage = () => {
       {/* Netflix-style gradient overlay */}
       <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none -z-20"></div>
 
+      
+
       {/* Hero Section - Netflix Cinematic Style */}
-      <section className="relative min-h-screen flex items-center justify-center z-20">
+      <section className="relative min-h-[20vh] flex items-center justify-center z-20">
         <div className="absolute inset-0">
           <img
             src="/images/gradient-hero-prerender.webp"
@@ -83,33 +83,24 @@ export const MenuPage = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/40"></div>
         </div>
-
-        <Container className="relative z-10 text-center">
-          {/* Premium floating badge */}
-          <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-red-600/20 to-amber-600/20 rounded-full border border-red-500/30 mb-12 hover:scale-105 transition-all duration-500">
-            <div className="w-3 h-3 bg-gradient-to-r from-red-500 to-amber-500 rounded-full animate-pulse"></div>
-            <span className="netflix-caption text-red-400">
-              Our Culinary Journey
-            </span>
-            <div className="w-3 h-3 bg-gradient-to-r from-amber-500 to-red-500 rounded-full animate-pulse"></div>
-          </div>
-
-          <div className="max-w-6xl mx-auto">
-            <h1 className="netflix-heading text-6xl md:text-8xl lg:text-9xl mb-12 text-white">
-              Our <span className="bg-gradient-to-r from-red-400 via-amber-300 to-red-400 bg-clip-text text-transparent">Menu</span>
-            </h1>
-            <p className="netflix-body text-2xl md:text-3xl text-gray-300 max-w-5xl mx-auto leading-relaxed">
-              From Bangkok streets to UAE hearts. Three generations of authentic
-              Thai flavors that honor tradition while creating new memories.
-            </p>
-          </div>
-        </Container>
       </section>
 
       {/* Main Content */}
       <main className="relative bg-black z-30">
         <Container>
-          <MenuContainer isPreview={false} />
+          <SearchBar 
+            searchTerm={searchTerm} 
+            isVegOnly={isVegOnly} 
+            onSearchChange={setSearchTerm} 
+            onVegToggle={setIsVegOnly} 
+          />
+          <MenuContainer 
+            isPreview={false} 
+            searchTerm={searchTerm} 
+            isVegOnly={isVegOnly} 
+            setSearchTerm={setSearchTerm}
+            setIsVegOnly={setIsVegOnly}
+          />
           <div className="text-center mt-8"></div>
         </Container>
       </main>

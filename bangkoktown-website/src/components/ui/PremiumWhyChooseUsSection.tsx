@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
-// Premium Why Choose Us Section
-export const PremiumWhyChooseUsSection = () => (
-  <section className="py-24">
-    <div className="relative overflow-hidden rounded-3xl group">
-      <div className="absolute inset-0">
-        <img
-          src="/images/gradient-hero-prerender.webp"
-          alt="Thai cuisine background"
-          className="w-full h-full object-cover rounded-3xl transform group-hover:scale-105 transition-transform duration-1000"
-        />
-        <div className="absolute inset-0 bg-black/80 rounded-3xl"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-red-600/30 via-transparent to-amber-600/30 rounded-3xl"></div>
+// Premium Why Choose Us Section with Netflix aesthetics
+export const PremiumWhyChooseUsSection = () => {
+  const ref = useRef(null);
+  const isVisible = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section className="py-24 relative overflow-hidden" ref={ref}>
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(https://www.istockphoto.com/photo/assorted-thai-food-in-bowls-and-plates-gm1333230133-415808956)`,
+        }}
+      >
+        <div className="absolute inset-0 bg-black/80"></div>
       </div>
-
       <div className="relative p-16 md:p-24">
         <div className="text-center mb-20">
           <div className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-xl rounded-full border border-white/20 mb-12">
@@ -52,8 +54,18 @@ export const PremiumWhyChooseUsSection = () => (
               desc: "Experience the genuine warmth of Thai culture with our friendly service and welcoming family atmosphere that feels like home.",
             },
           ].map((item, index) => (
-            <div key={index} className="group/card">
-              <div className="bg-white/5 backdrop-blur-xl p-10 rounded-3xl h-full border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10">
+            <motion.div
+              key={index}
+              className="group/card"
+              initial={{ opacity: 0, y: 50 }}
+              animate={
+                isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+              }
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              whileHover={{ scale: 1.05, rotate: 1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="bg-gray-800/50 backdrop-blur-xl p-10 rounded-3xl h-full border border-white/10 hover:bg-gray-700/70 hover:border-white/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-white/10">
                 <div className="text-center">
                   <div className="text-7xl mb-8 group-hover/card:scale-110 transition-transform duration-500">
                     {item.icon}
@@ -66,7 +78,7 @@ export const PremiumWhyChooseUsSection = () => (
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -90,9 +102,16 @@ export const PremiumWhyChooseUsSection = () => (
                 subtitle: "Certificate of Excellence",
               },
             ].map((award, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="group/award bg-white/5 backdrop-blur-sm p-8 rounded-2xl text-center border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-500 hover:scale-105"
+                className="group/award bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl text-center border border-white/10 hover:border-white/30 hover:bg-gray-700/70 transition-all duration-500 hover:scale-105"
+                initial={{ opacity: 0, y: 50 }}
+                animate={
+                  isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                }
+                transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                whileHover={{ scale: 1.1, rotate: -2 }}
+                whileTap={{ scale: 0.9 }}
               >
                 <div className="text-5xl mb-4 group-hover/award:scale-110 transition-transform duration-500">
                   {award.icon}
@@ -103,11 +122,11 @@ export const PremiumWhyChooseUsSection = () => (
                 <p className="netflix-body-medium text-sm text-white/70">
                   {award.subtitle}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Container, Heading1, BodyText, Card, Button } from "../components/ui";
+import { Container, ProgressBar, StripePayment } from "../components/ui";
 
 declare const emailjs: any;
 
@@ -92,8 +92,7 @@ export const ReservationsPage = () => {
     setTimeSlots(getTimeSlots());
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setIsSubmitting(true);
 
     try {
@@ -114,20 +113,7 @@ export const ReservationsPage = () => {
 
       await emailjs.send(serviceID, templateID, templateParams, userID);
       console.log("Reservation email sent successfully!");
-      alert(
-        "Your reservation has been submitted successfully! We will confirm your booking within 2 hours.",
-      );
-
-      // Reset form
-      setFullName("");
-      setEmail("");
-      setPhone("");
-      setDate("");
-      setTime("");
-      setGuests(1);
-      setLocation("");
-      setSpecialRequests("");
-      setCurrentStep(1);
+      setCurrentStep(4);
     } catch (error) {
       console.error("Failed to send reservation email:", error);
       alert(
@@ -162,14 +148,35 @@ export const ReservationsPage = () => {
   const guestOptions = [1, 2, 3, 4, 5, 6, 7, 8];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-black relative overflow-hidden">
       <style>{reservationsPageCss}</style>
-      {/* Animated background elements */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-3/4 left-3/4 w-64 h-64 bg-orange-600/10 rounded-full blur-2xl animate-pulse delay-2000"></div>
+      {/* Subtle animated background patterns matching homepage */}
+      <div className="fixed inset-0 opacity-5 pointer-events-none">
+        <div
+          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-red-600 to-amber-600 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "8s" }}
+        ></div>
+        <div
+          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-amber-600 to-red-600 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "12s" }}
+        ></div>
       </div>
+
+      {/* Netflix-style gradient overlay */}
+      <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none -z-20"></div>
+
+      {/* Hero Section - Netflix Cinematic Style */}
+      <section className="relative min-h-[20vh] flex items-center justify-center z-20">
+        <div className="absolute inset-0">
+          <img
+            src="/images/gradient-hero-prerender.webp"
+            alt="Thai cuisine heritage background"
+            className="w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/40"></div>
+        </div>
+      </section>
 
       <main className="relative z-10">
         <Container>
@@ -177,72 +184,21 @@ export const ReservationsPage = () => {
             {/* Header */}
             <div className="text-center mb-16">
               <h1 className="netflix-heading text-4xl lg:text-6xl text-white mb-6">
-                Reserve Your
-                <span className="bg-gradient-to-r from-red-400 to-amber-400 bg-clip-text text-transparent">
-                  {" "}
-                  Experience
-                </span>
+                Reservations
               </h1>
-              <p className="netflix-body text-gray-300 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
-                Book your table in just a few simple steps. We'll confirm within
-                2 hours.
-              </p>
             </div>
 
             {/* Progress Steps */}
             <div className="max-w-2xl mx-auto mb-12">
-              <div className="flex items-center justify-between">
-                {[
+              <ProgressBar 
+                currentStep={currentStep} 
+                steps={[
                   { number: 1, title: "Details", icon: "👤" },
                   { number: 2, title: "When & Where", icon: "📅" },
-                  { number: 3, title: "Confirm", icon: "✨" },
-                ].map((step) => (
-                  <div key={step.number} className="flex items-center">
-                    <div
-                      className={`relative flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ${
-                        currentStep >= step.number
-                          ? "bg-gradient-to-r from-red-500 to-amber-500 text-white shadow-lg"
-                          : "bg-gray-800 text-gray-400 border-2 border-gray-700"
-                      }`}
-                    >
-                      {currentStep > step.number ? (
-                        <span className="text-lg">✓</span>
-                      ) : (
-                        <span className="text-lg">{step.icon}</span>
-                      )}
-                    </div>
-                    <div className="ml-3 hidden sm:block">
-                      <p
-                        className={`netflix-body-medium text-sm ${
-                          currentStep >= step.number
-                            ? "text-white"
-                            : "text-gray-400"
-                        }`}
-                      >
-                        Step {step.number}
-                      </p>
-                      <p
-                        className={`netflix-caption text-xs ${
-                          currentStep >= step.number
-                            ? "text-gray-200"
-                            : "text-gray-500"
-                        }`}
-                      >
-                        {step.title}
-                      </p>
-                    </div>
-                    {step.number < 3 && (
-                      <div
-                        className={`hidden sm:block w-16 h-0.5 ml-6 transition-all duration-300 ${
-                          currentStep > step.number
-                            ? "bg-gradient-to-r from-red-500 to-amber-500"
-                            : "bg-gray-700"
-                        }`}
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
+                  { number: 3, title: "Confirm & Pay", icon: "✨" },
+                  { number: 4, title: "Confirmed", icon: "🎉" },
+                ]}
+              />
             </div>
 
             {/* Form Container */}
@@ -447,22 +403,22 @@ export const ReservationsPage = () => {
                           disabled={!location || !date || !time}
                           className="flex-1 py-4 bg-gradient-to-r from-red-500 to-amber-500 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 netflix-body-medium"
                         >
-                          Review Booking
+                          Proceed to Payment
                         </button>
                       </div>
                     </div>
                   )}
 
-                  {/* Step 3: Confirmation */}
+                  {/* Step 3: Confirm & Pay */}
                   {currentStep === 3 && (
                     <div className="space-y-6 animate-fadeIn">
                       <div className="text-center mb-8">
                         <div className="text-4xl mb-4">✨</div>
                         <h2 className="netflix-subheading text-2xl text-white mb-2">
-                          Almost there!
+                          Confirm & Pay
                         </h2>
                         <p className="netflix-body text-gray-400">
-                          Review your booking details
+                          Review your booking details and complete the payment.
                         </p>
                       </div>
 
@@ -525,6 +481,8 @@ export const ReservationsPage = () => {
                         />
                       </div>
 
+                      <StripePayment onPaymentSuccess={handleSubmit} />
+
                       <div className="flex gap-3">
                         <button
                           type="button"
@@ -533,21 +491,39 @@ export const ReservationsPage = () => {
                         >
                           Back
                         </button>
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="flex-1 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 netflix-body-medium"
-                        >
-                          {isSubmitting ? (
-                            <div className="flex items-center justify-center gap-2">
-                              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                              Confirming...
-                            </div>
-                          ) : (
-                            "Confirm Reservation 🍽️"
-                          )}
-                        </button>
                       </div>
+                    </div>
+                  )}
+
+                  {/* Step 4: Confirmed */}
+                  {currentStep === 4 && (
+                    <div className="space-y-6 animate-fadeIn text-center">
+                      <div className="text-4xl mb-4">🎉</div>
+                      <h2 className="netflix-subheading text-3xl text-white mb-2">
+                        Reservation Confirmed!
+                      </h2>
+                      <p className="netflix-body text-gray-400 mb-8">
+                        Thank you for your reservation. A confirmation email has been sent to {email}.
+                        We look forward to seeing you on {date} at {time}!
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          // Reset form
+                          setFullName("");
+                          setEmail("");
+                          setPhone("");
+                          setDate("");
+                          setTime("");
+                          setGuests(1);
+                          setLocation("");
+                          setSpecialRequests("");
+                          setCurrentStep(1);
+                        }}
+                        className="py-4 px-8 bg-gradient-to-r from-red-500 to-amber-500 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg netflix-body-medium"
+                      >
+                        Make Another Reservation
+                      </button>
                     </div>
                   )}
                 </form>
