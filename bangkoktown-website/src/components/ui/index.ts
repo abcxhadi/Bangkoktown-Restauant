@@ -44,7 +44,7 @@ export { ScrollArrows } from './ScrollArrows';
 export { PremiumLocationsSection } from './PremiumLocationsSection';
 export { PremiumAboutSection } from './PremiumAboutSection';
 export { PremiumWhyChooseUsSection } from './PremiumWhyChooseUsSection';
-export { LightingEffect } from './LightingEffect';
+
 
 export { FadingSection } from './FadingSection';
 export { ProgressBar } from './ProgressBar';

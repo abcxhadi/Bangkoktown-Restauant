@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
-import { PremiumAboutSection, PremiumWhyChooseUsSection, LightingEffect, FadingSection } from "../components/ui";
+import { PremiumAboutSection, PremiumWhyChooseUsSection, FadingSection } from "../components/ui";
 import { Card, PremiumLocationsSection, Container } from "../components/ui";
 import { getFeaturedItems } from "../data/menuData";
 import "../currency.css";
@@ -196,7 +196,7 @@ export const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-black relative">
-      <LightingEffect />
+      
       <style>{carouselCss}</style>
       {/* Subtle animated background patterns */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
