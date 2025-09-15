@@ -150,23 +150,13 @@ export const MenuPreview: React.FC<MenuPreviewProps> = ({
           >
             {featuredItems.map((item, index) => (
               <div key={`${item.id}-${index}`} className="w-80 flex-shrink-0">
-                <MenuItem
-                  id={item.id}
-                  name={item.name}
-                  description={item.description}
-                  price={item.price}
-                  image={item.image}
-                  isVeg={item.isVeg}
-                  category={item.category}
-                  isFeatured
-                />
+                <MenuItem item={item} />
               </div>
             ))}
           </div>
           <ScrollArrows 
-            onLeftClick={scrollLeft} 
-            onRightClick={scrollRight} 
-            isHovered={isHovered} 
+            onScrollLeft={scrollLeft} 
+            onScrollRight={scrollRight} 
           />
         </div>
 
