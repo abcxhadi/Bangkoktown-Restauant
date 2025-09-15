@@ -181,6 +181,18 @@ const carouselCss = `
     text-transform: uppercase;
     font-size: 0.875rem;
 }
+
+@media (max-width: 768px) {
+    .netflix-caption {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .netflix-caption {
+        font-size: 0.65rem;
+    }
+}
 `;
 
 export const HomePage = () => {

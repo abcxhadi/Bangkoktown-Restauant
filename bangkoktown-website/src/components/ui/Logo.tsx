@@ -33,8 +33,9 @@ export const Logo = ({
       {/* Logo Image with Curved Borders */}
       <div className={`
         ${sizeClasses[size]} 
-        rounded-2xl overflow-hidden 
-        ring-2 ring-thai-gold/30 
+        rounded-full overflow-hidden 
+        border-2 border-thai-gold/50
+        ring-4 ring-thai-gold/30 
         group-hover:ring-thai-gold/60 
         transition-all duration-300 
         group-hover:scale-105
