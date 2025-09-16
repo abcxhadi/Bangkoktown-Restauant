@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logoImage from '/logo.png';
+
 
 interface LogoProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
@@ -43,7 +43,7 @@ export const Logo = ({
         bg-gradient-to-br from-purple-300 to-purple-400
       `}>
         <img
-          src={logoImage}
+          src={'/logo.png'}
           alt="Bangkok Town Thai Restaurant"
           className="w-full h-full object-cover"
           onError={(e) => {
