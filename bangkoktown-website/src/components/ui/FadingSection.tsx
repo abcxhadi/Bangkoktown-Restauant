@@ -10,16 +10,15 @@ export const FadingSection: React.FC<FadingSectionProps> = ({ children }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["start center", "end center"],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.3, 1, 1, 0.3]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
   return (
     <motion.div 
       ref={ref} 
-      style={{ opacity, scale }}
+      style={{ opacity }}
     >
       {children}
     </motion.div>

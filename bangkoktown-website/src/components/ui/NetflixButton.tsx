@@ -31,9 +31,9 @@ export const NetflixButton: React.FC<NetflixButtonProps> = ({
   };
 
   const sizes = {
-    large: "px-12 py-4 text-lg rounded-xl",
-    medium: "px-8 py-3 text-base rounded-lg",
-    small: "px-6 py-2 text-sm rounded-lg",
+    large: "px-8 md:px-12 py-3 md:py-4 text-xs md:text-lg rounded-xl",
+    medium: "px-6 md:px-8 py-2 md:py-3 text-xs md:text-base rounded-lg",
+    small: "px-4 md:px-6 py-1.5 md:py-2 text-xxs md:text-sm rounded-lg",
   };
 
   return (

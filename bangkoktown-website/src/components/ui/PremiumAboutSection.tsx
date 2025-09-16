@@ -7,7 +7,7 @@ export const PremiumAboutSection = () => {
   const isVisible = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-32 bg-black relative overflow-hidden" ref={ref}>
+    <section id="about-us" className="py-32 bg-black relative overflow-hidden" ref={ref}>
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

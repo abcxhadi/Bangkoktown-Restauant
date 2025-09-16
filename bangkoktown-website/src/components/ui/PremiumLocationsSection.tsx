@@ -8,22 +8,14 @@ export const PremiumLocationsSection = () => {
 
   return (
     <section className="py-24">
+
+
       <div className="text-center mb-20">
-        <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-600/20 to-red-600/20 rounded-full border border-amber-500/30 mb-12">
-          <div className="text-3xl animate-bounce">📍</div>
-          <span className="netflix-caption text-amber-400">
-            Our Locations
-          </span>
-        </div>
-
         <h2 className="netflix-heading text-5xl lg:text-6xl mb-8 text-white">
-          Visit Us Across the UAE
+          Our Locations
         </h2>
-
         <p className="netflix-body text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light">
-          Experience authentic Thai cuisine at any of our beautifully designed
-          locations, each offering a unique ambiance and the same exceptional
-          quality you love.
+          Find us in various locations across the UAE, each offering a unique ambiance and the same exceptional quality you love.
         </p>
       </div>
 
@@ -60,14 +52,7 @@ export const PremiumLocationsSection = () => {
 
               {/* Content Overlay */}
               <div className="relative z-10 h-full flex flex-col justify-between p-8">
-                {/* Location Badge */}
-                <div className="self-start">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
-                    <span className="text-xs font-medium text-white/90 tracking-wider uppercase">
-                      {location.tag}
-                    </span>
-                  </div>
-                </div>
+                
 
                 {/* Bottom Content */}
                 <div className="text-center">

@@ -18,8 +18,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        'thai-serif': ['Playfair Display', 'serif'],
-        'thai-sans': ['Roboto', 'sans-serif']
+        'netflix-font': ['Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+        'netflix-display': ['Poppins', 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif']
       },
       screens: {
         'xs': '475px',
@@ -39,6 +39,7 @@ module.exports = {
         'subtle-float': 'subtle-float 6s ease-in-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'bounce-slow': 'bounce 2s infinite',
+        'textShine': 'textShine 5s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -64,6 +65,10 @@ module.exports = {
         'subtle-float': {
           '0%, 100%': { transform: 'translateY(0px) rotate(-1deg)' },
           '50%': { transform: 'translateY(-15px) rotate(1deg)' }
+        },
+        textShine: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '200% 50%' },
         }
       },
       backdropBlur: {

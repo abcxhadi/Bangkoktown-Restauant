@@ -1,202 +1,33 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
-import { PremiumAboutSection, PremiumWhyChooseUsSection, FadingSection } from "../components/ui";
-import { Card, PremiumLocationsSection, Container } from "../components/ui";
+import { PremiumAboutSection, PremiumWhyChooseUsSection, PremiumLocationsSection, Container, Card } from "../components/ui";
+
+
 import { getFeaturedItems } from "../data/menuData";
 import "../currency.css";
+import "../components/ui/Carousel.css";
 
-import { motion, useInView } from "framer-motion";
+
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { NetflixButton } from "../components/ui/NetflixButton";
 
 import { MenuItem } from "../types";
 
-const carouselCss = `
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Netflix-inspired font system */
-:root {
-  --netflix-font: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --netflix-display: 'Poppins', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-.dish-card {
-    min-width: 100%;
-    position: relative;
-    height: 60vh;
-    min-height: 400px;
-    max-height: 600px;
-    display: flex;
-    align-items: end;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    overflow: hidden;
-}
-
-.dish-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    z-index: -1;
-    background-image: var(--bg-image);
-}
-
-.dish-card:hover {
-    transform: scale(1.02);
-}
-
-.dish-overlay {
-    background: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.9) 100%);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    padding: clamp(20px, 5vw, 40px);
-}
-
-.dish-name {
-    font-family: var(--netflix-display);
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #d4af37;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    letter-spacing: -0.5px;
-}
-
-.dish-description {
-    font-family: var(--netflix-font);
-    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-    font-weight: 400;
-    line-height: 1.5;
-    color: #f5f5f5;
-    max-width: 80%;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    margin-bottom: 15px;
-}
-
-.dish-price {
-    font-family: var(--netflix-display);
-    font-size: clamp(1.2rem, 3vw, 1.6rem);
-    font-weight: 700;
-    color: #d4af37;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    letter-spacing: -0.5px;
-}
-
- @media (max-width: 768px) {
-    .dish-card {
-        height: 50vh;
-        min-height: 350px;
-    }
-}
-
- @media (max-width: 480px) {
-    .dish-card {
-        height: 45vh;
-        min-height: 320px;
-    }
-    
-    .dish-description {
-        max-width: 95%;
-    }
-}
-
-.carousel-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    margin-bottom: 40px;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-indicators {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 30px 0;
-}
-
-.indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(212, 175, 55, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.indicator.active {
-    background: #d4af37;
-    transform: scale(1.2);
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-}
-
-/* Netflix-style typography classes */
-.netflix-heading {
-    font-family: var(--netflix-display);
-    font-weight: 800;
-    letter-spacing: -1px;
-    line-height: 1.1;
-}
-
-.netflix-subheading {
-    font-family: var(--netflix-display);
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-}
-
-.netflix-body {
-    font-family: var(--netflix-font);
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.netflix-body-medium {
-    font-family: var(--netflix-font);
-    font-weight: 500;
-    line-height: 1.4;
-}
-
-.netflix-caption {
-    font-family: var(--netflix-font);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-}
-
-@media (max-width: 768px) {
-    .netflix-caption {
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .netflix-caption {
-        font-size: 0.65rem;
-    }
-}
-`;
 
 export const HomePage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [location]);
 
   const handleViewMenu = () => {
     navigate("/menu");
@@ -206,10 +37,33 @@ export const HomePage = () => {
     navigate("/reservations");
   };
 
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
+
+  const heroRef = useRef(null);
+  const featuredRef = useRef(null);
+  const aboutRef = useRef(null);
+  const whyChooseUsRef = useRef(null);
+  const locationsRef = useRef(null);
+
+  const sections = [heroRef, featuredRef, aboutRef, whyChooseUsRef, locationsRef];
+
+  const opacities = sections.map((sec, i) => {
+    const start = i / sections.length;
+    const end = (i + 1) / sections.length;
+
+    if (i === sections.length - 1) { // Last section
+      return useTransform(scrollYProgress, [start, end], [1, 1]); // Stays fully visible
+    } else {
+      const nextSectionStart = (i + 1) / sections.length;
+      return useTransform(scrollYProgress, [start, nextSectionStart - 0.1, nextSectionStart], [1, 1, 0]);
+    }
+  });
+
   return (
-    <div className="min-h-screen bg-black relative">
+    <div ref={containerRef} className="min-h-screen bg-black relative">
       
-      <style>{carouselCss}</style>
+      
       {/* Subtle animated background patterns */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div
@@ -225,7 +79,8 @@ export const HomePage = () => {
       {/* Netflix-style gradient overlay */}
       <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none z-10"></div>
 
-      <FadingSection>
+      
+        <motion.div ref={heroRef} style={{ opacity: opacities[0] }}>
         <HeroVideoSection
           videoSrc="/videos/hero.mp4"
           posterSrc="/images/hero-fallback.jpg"
@@ -249,21 +104,16 @@ export const HomePage = () => {
             </NetflixButton>,
           ]}
         />
-      </FadingSection>
+      </motion.div>
+      
 
       {/* Main Content Section */}
       <main className="relative bg-black z-30">
         <Container>
-          {/* Featured Menu Section */}
-          <FadingSection>
+          <motion.div ref={featuredRef} style={{ opacity: opacities[1] }}>
             <section className="py-24">
               <div className="text-center mb-20">
-                <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-600/20 to-red-600/20 rounded-full border border-amber-500/30 mb-12">
-                  <div className="text-3xl animate-bounce">🍜</div>
-                  <span className="netflix-caption text-amber-400">
-                    Featured Culinary Experience
-                  </span>
-                </div>
+                
 
                 <h2 className="netflix-heading text-5xl lg:text-6xl mb-8 text-white">
                   Taste the Authentic Flavors
@@ -288,19 +138,26 @@ export const HomePage = () => {
                 </NetflixButton>
               </div>
             </section>
-          </FadingSection>
+          </motion.div>
+          
 
-          <FadingSection>
+          
+            <motion.div ref={aboutRef} style={{ opacity: opacities[2] }}>
             <PremiumAboutSection />
-          </FadingSection>
+          </motion.div>
+          
 
-          <FadingSection>
+          
+            <motion.div ref={whyChooseUsRef} style={{ opacity: opacities[3] }}>
             <PremiumWhyChooseUsSection />
-          </FadingSection>
+          </motion.div>
+          
 
-          <FadingSection>
+          
+            <motion.div ref={locationsRef} style={{ opacity: opacities[4] }}>
             <PremiumLocationsSection />
-          </FadingSection>
+          </motion.div>
+          
         </Container>
       </main>
     </div>

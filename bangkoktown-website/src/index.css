@@ -1,19 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --netflix-font: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --netflix-display: 'Poppins', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
   body {
-    @apply font-thai-sans text-gray-100 antialiased;
+    @apply font-[var(--netflix-font)] text-gray-100 antialiased;
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-thai-serif;
+    @apply font-[var(--netflix-display)];
   }
 }
 
@@ -163,5 +168,26 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Netflix-style typography classes */
+  .netflix-heading {
+    @apply font-netflix-display font-extrabold tracking-tight leading-tight;
+  }
+
+  .netflix-subheading {
+    @apply font-netflix-display font-bold tracking-tight leading-tight;
+  }
+
+  .netflix-body {
+    @apply font-netflix-font font-normal leading-relaxed;
+  }
+
+  .netflix-body-medium {
+    @apply font-netflix-font font-medium leading-normal;
+  }
+
+  .netflix-caption {
+    @apply font-netflix-font font-medium tracking-wider uppercase text-sm;
   }
 }
