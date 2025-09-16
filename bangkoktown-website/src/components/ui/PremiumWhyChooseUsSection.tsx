@@ -1,277 +1,153 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Globe, Feather, Heart, Award, Star, Users, Trophy } from "lucide-react";
 
-// Enhanced Premium Why Choose Us Section with Harvard UX Research best practices
+// Data for the section
+const features = [
+  {
+    icon: <Globe className="w-12 h-12 text-amber-300" />,
+    title: "Authentic Flavors",
+    description: "Experience the true taste of Thailand with recipes passed down through generations.",
+  },
+  {
+    icon: <Feather className="w-12 h-12 text-amber-300" />,
+    title: "Exquisite Ambiance",
+    description: "Our restaurant is designed to transport you to the heart of Bangkok.",
+  },
+  {
+    icon: <Heart className="w-12 h-12 text-amber-300" />,
+    title: "Warm Hospitality",
+    description: "We treat our guests like family, ensuring a memorable dining experience.",
+  },
+];
+
+const stats = [
+  {
+    icon: <Trophy className="w-10 h-10 text-amber-400" />,
+    value: "Best Thai Restaurant",
+    label: "UAE Food Awards 2024",
+  },
+  {
+    icon: <Star className="w-10 h-10 text-amber-400" />,
+    value: "4.8/5 Rating",
+    label: "2,500+ Google Reviews",
+  },
+  {
+    icon: <Users className="w-10 h-10 text-amber-400" />,
+    value: "50,000+",
+    label: "Happy Customers Annually",
+  },
+  {
+    icon: <Award className="w-10 h-10 text-amber-400" />,
+    value: "Hall of Fame",
+    label: "TripAdvisor Excellence",
+  },
+];
+
+// Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    transition: { staggerChildren: 0.2, delayChildren: 0.3 }
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { type: "spring", damping: 15, stiffness: 80 }
+  },
+};
+
 export const PremiumWhyChooseUsSection = () => {
   const ref = useRef(null);
-  const isVisible = useInView(ref, { once: true, margin: "-50px" });
-
-  const awards = [
-    {
-      icon: "🏆",
-      title: "Best Thai Restaurant",
-      subtitle: "UAE Food Awards 2024",
-      year: "2024",
-    },
-    {
-      icon: "⭐",
-      title: "4.8/5 Rating",
-      subtitle: "Google Reviews",
-      count: "2,500+",
-    },
-    {
-      icon: "👥",
-      title: "50,000+",
-      subtitle: "Happy Customers",
-      growth: "+15% YoY",
-    },
-    {
-      icon: "🌟",
-      title: "TripAdvisor",
-      subtitle: "Certificate of Excellence",
-      level: "Hall of Fame",
-    },
-  ];
-
-  const features = [
-    {
-      icon: "🌶️",
-      title: "100% Authentic",
-      desc: "Traditional recipes passed down through generations, using imported spices and authentic cooking techniques straight from Thailand's kitchens.",
-      highlight: "Generational Recipes",
-      metric: "Since 1985",
-    },
-    {
-      icon: "⭐",
-      title: "Premium Quality",
-      desc: "Only the freshest ingredients, carefully sourced and prepared daily. Our commitment to quality means no compromises, ever.",
-      highlight: "Fresh Daily",
-      metric: "Zero Compromises",
-    },
-    {
-      icon: "❤️",
-      title: "Thai Hospitality",
-      desc: "Experience the genuine warmth of Thai culture with our friendly service and welcoming family atmosphere that feels like home.",
-      highlight: "Family Warmth",
-      metric: "Like Home",
-    },
-  ];
-
-  // Staggered animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        damping: 25,
-        stiffness: 120,
-      },
-    },
-  };
+  const isInView = useInView(ref, { once: true, margin: "-150px" });
 
   return (
-    <section className="relative min-h-screen overflow-hidden" ref={ref}>
-      {/* Enhanced Background with Multiple Layers */}
-      <div className="absolute inset-0">
-        {/* Primary background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-105 transition-transform duration-[20s] ease-linear"
-          style={{
-            backgroundImage: `url(https://images.unsplash.com/photo-1559847844-d9b8b2413c8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)`,
-          }}
-        />
-
-        {/* Gradient overlays for depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/75 to-black/90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/60" />
-
-        {/* Subtle pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
+    <section ref={ref} className="relative py-24 sm:py-32 bg-black overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-gradient-to-br from-red-600/50 to-amber-600/50 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s' }}></div>
+        <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-gradient-to-tl from-amber-600/50 to-red-600/50 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '15s' }}></div>
       </div>
+      <div className="absolute inset-0 bg-black/70"></div>
 
-      {/* Content Container with Better Spacing */}
-      <div className="relative px-4 sm:px-6 lg:px-8 xl:px-12 py-16 sm:py-20 lg:py-24 xl:py-32">
-        <div className="max-w-7xl mx-auto">
-          {/* Enhanced Header Section */}
-          <motion.div
-            className="text-center mb-16 sm:mb-20 lg:mb-24"
-            initial={{ opacity: 0, y: -30 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            {/* Responsive Typography */}
-            <h2 className="netflix-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight">
-              Why choose Us?
-            </h2>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-16 sm:mb-20"
+          initial={{ opacity: 0, y: -40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="netflix-heading text-4xl sm:text-5xl lg:text-6xl text-white">
+            Why Bangkok Town?
+          </h2>
+          <p className="netflix-body text-gray-300 text-lg sm:text-xl max-w-3xl mx-auto mt-4">
+            We are more than just a restaurant; we are a gateway to the vibrant culture and rich flavors of Thailand.
+          </p>
+        </motion.div>
 
-            <p className="netflix-body text-white/80 text-base sm:text-lg md:text-xl lg:text-2xl max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto leading-relaxed font-light">
-              Discover what makes us the UAE's most beloved destination for
-              authentic Thai cuisine and exceptional dining experiences.
-            </p>
-          </motion.div>
-
-          {/* Awards & Recognition Section (Now First) */}
-          <motion.div
-            className="text-center mb-16 sm:mb-20 lg:mb-24"
-            initial={{ opacity: 0, y: 50 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <h3 className="netflix-heading text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-8 sm:mb-10 lg:mb-12">
-              Awards &{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-red-500">
-                Recognition
-              </span>
-            </h3>
-
+        {/* Main Content Grid */}
+        <motion.div 
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-stretch"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {/* Feature Cards */}
+          {features.map((feature, index) => (
             <motion.div
-              className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
-              variants={containerVariants}
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
+              key={index}
+              variants={itemVariants}
+              className="relative flex flex-col text-center p-8 bg-gray-900/70 backdrop-blur-md rounded-2xl border border-white/20 shadow-lg shadow-amber-500/10 hover:border-amber-300/50 transition-all duration-300"
             >
-              {awards.map((award, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  whileHover={{
-                    scale: 1.05,
-                    rotate: [-1, 1, -1, 0],
-                    transition: {
-                      rotate: { repeat: 1, duration: 0.3 },
-                      scale: { type: "spring", stiffness: 400 },
-                    },
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative"
-                >
-                  <div className="relative bg-black/30 backdrop-blur-sm p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl text-center border border-white/10 hover:border-amber-300/30 hover:bg-black/40 transition-all duration-500 overflow-hidden">
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-300/10 via-transparent to-red-500/10 rounded-xl sm:rounded-2xl blur-xl" />
-                    </div>
-
-                    <div className="relative">
-                      <div className="text-3xl sm:text-4xl lg:text-5xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-500 filter drop-shadow-lg">
-                        {award.icon}
-                      </div>
-
-                      <h3 className="netflix-subheading text-sm sm:text-lg lg:text-xl font-bold mb-2 sm:mb-3 text-white">
-                        {award.title}
-                      </h3>
-
-                      <p className="netflix-body text-xs sm:text-sm text-white/70 mb-2">
-                        {award.subtitle}
-                      </p>
-
-                      {/* Additional metric */}
-                      {(award.year ||
-                        award.count ||
-                        award.growth ||
-                        award.level) && (
-                        <div className="netflix-caption text-amber-300 text-xs font-medium">
-                          {award.year ||
-                            award.count ||
-                            award.growth ||
-                            award.level}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+              <div className="flex-grow">
+                <div className="mx-auto mb-6 bg-gradient-to-br from-red-600/20 to-amber-600/20 w-24 h-24 rounded-full flex items-center justify-center border border-white/10">
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
             </motion.div>
-          </motion.div>
+          ))}
+        </motion.div>
 
-          {/* Our Values Section (Now Second) */}
-          <motion.div
-            className="text-center mb-8 sm:mb-10"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <h3 className="netflix-heading text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-8 sm:mb-10 lg:mb-12">
-              Our{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-red-500">
-                Values
-              </span>
-            </h3>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-          >
-            {features.map((item, index) => (
+        {/* Stats Section */}
+        <motion.div 
+          className="mt-16 sm:mt-24"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
+            {stats.map((stat, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{
-                  scale: 1.02,
-                  y: -8,
-                  transition: { type: "spring", stiffness: 400 },
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="group relative"
+                className="relative text-center p-4 sm:p-6 bg-gray-800/60 backdrop-blur-sm rounded-xl border border-white/15"
               >
-                <div className="relative bg-black/30 backdrop-blur-xl p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl h-full border border-white/10 hover:border-white/25 transition-all duration-700 hover:bg-black/40 overflow-hidden">
-                  {/* Card shine effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-amber-300/5 rounded-2xl sm:rounded-3xl" />
-                  </div>
-
-                  <div className="relative text-center">
-                    {/* Enhanced Icon */}
-                    <div className="text-5xl sm:text-6xl lg:text-7xl mb-6 sm:mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 filter drop-shadow-lg">
-                      {item.icon}
-                    </div>
-
-                    {/* Metric Badge */}
-                    <div className="inline-block px-3 py-1 bg-gradient-to-r from-amber-400/20 to-red-500/20 rounded-full mb-4 sm:mb-6">
-                      <span className="text-amber-300 text-xs sm:text-sm font-semibold">
-                        {item.metric}
-                      </span>
-                    </div>
-
-                    <h3 className="netflix-subheading text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6">
-                      {item.title}
-                    </h3>
-
-                    <p className="netflix-body text-white/80 text-sm sm:text-base lg:text-lg leading-relaxed font-light mb-4">
-                      {item.desc}
-                    </p>
-
-                    {/* Highlight */}
-                    <div className="text-amber-300 text-xs sm:text-sm font-medium uppercase tracking-wide">
-                      {item.highlight}
-                    </div>
-                  </div>
+                <div className="flex justify-center items-center mb-3">
+                  {stat.icon}
                 </div>
+                <p className="text-xl sm:text-2xl font-bold text-white">
+                  {stat.value}
+                </p>
+                <p className="text-xs sm:text-sm text-gray-400">
+                  {stat.label}
+                </p>
               </motion.div>
             ))}
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -16,6 +16,7 @@
     "@types/react-router-hash-link": "^2.4.9",
     "effect": "^3.17.13",
     "framer-motion": "^11.18.2",
+    "lucide-react": "^0.544.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.54.2",
