@@ -43,7 +43,7 @@ export { Logo } from './Logo';
 export { ScrollArrows } from './ScrollArrows';
 export { PremiumLocationsSection } from './PremiumLocationsSection';
 export { PremiumAboutSection } from './PremiumAboutSection';
-export { PremiumWhyChooseUsSection } from './PremiumWhyChooseUsSection';
+
 
 
 export { FadingSection } from './FadingSection';

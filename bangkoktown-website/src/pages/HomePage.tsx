@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
-import { PremiumAboutSection, PremiumWhyChooseUsSection, PremiumLocationsSection, Container, Card } from "../components/ui";
+import { PremiumAboutSection, PremiumLocationsSection, Container, Card } from "../components/ui";
 
 
 import { getFeaturedItems } from "../data/menuData";
@@ -43,10 +43,9 @@ export const HomePage = () => {
   const heroRef = useRef(null);
   const featuredRef = useRef(null);
   const aboutRef = useRef(null);
-  const whyChooseUsRef = useRef(null);
   const locationsRef = useRef(null);
 
-  const sections = [heroRef, featuredRef, aboutRef, whyChooseUsRef, locationsRef];
+  const sections = [heroRef, featuredRef, aboutRef, locationsRef];
 
   const opacities = sections.map((sec, i) => {
     const start = i / sections.length;
@@ -148,9 +147,7 @@ export const HomePage = () => {
           
 
           
-            <motion.div ref={whyChooseUsRef} style={{ opacity: opacities[3] }}>
-            <PremiumWhyChooseUsSection />
-          </motion.div>
+            
           
 
           
@@ -332,7 +329,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
       {/* Video Background */}
       <video
         ref={videoRef}
-        className="fixed inset-0 w-full h-full object-cover -z-10"
+        className="fixed inset-0 w-full h-full object-cover -z-20"
         src={videoSrc}
         poster={posterSrc}
         autoPlay
@@ -344,7 +341,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
       {/* Fallback Background */}
       <div
         className={`
-          fixed inset-0 w-full h-full transition-opacity duration-1000 -z-10
+          fixed inset-0 w-full h-full transition-opacity duration-1000 -z-30
           ${!isVideoLoaded || hasVideoError ? "opacity-100" : "opacity-0"}
         `}
       >

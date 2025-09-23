@@ -57,7 +57,7 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
 
       {/* Active Filters Display */}
       {(activeCategory !== 'all' || isVegOnly || searchTerm) && (
-        <div className="flex flex-wrap justify-center gap-2 text-sm items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 max-w-md w-full shadow-lg">
+        <div className="flex flex-wrap justify-center gap-2 text-xs sm:text-sm items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-6 py-3 w-full shadow-lg overflow-x-auto">
           <span className="text-white/50 mr-3 netflix-caption">Active filters:</span>
           
           {activeCategory !== 'all' && (

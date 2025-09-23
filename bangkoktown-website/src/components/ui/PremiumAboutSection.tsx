@@ -1,69 +1,93 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-export const PremiumAboutSection = () => {
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+  },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const PremiumAboutSection = () => {
   const ref = useRef(null);
-  const isVisible = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about-us" className="py-32 bg-black relative overflow-hidden" ref={ref}>
-      <div className="container mx-auto px-4 relative z-10">
+    <section ref={ref} className="py-24 sm:py-32 bg-black">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={fadeInUp}
         >
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="flex flex-col">
-              <h2 className="netflix-heading text-5xl lg:text-7xl mb-8 bg-gradient-to-r from-amber-400 via-orange-400 to-red-400 bg-clip-text text-transparent text-center lg:text-left">
-                About Us
-              </h2>
-              <p className="netflix-body text-2xl text-gray-400 max-w-4xl mx-auto lg:mx-0 leading-relaxed font-light mb-8 text-center lg:text-left">
-                Where authentic Thai traditions meet modern culinary innovation
-              </p>
-              
-              {/* Image for mobile, hidden on desktop */}
-              <div className="lg:hidden my-8">
-                <motion.div
-                  className="relative overflow-hidden rounded-2xl shadow-2xl"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <img
-                    src="/images/thai-temple.jpg"
-                    alt="Thai heritage and tradition"
-                    className="w-full h-auto max-h-64 object-cover object-[center_20%] rounded-2xl"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                </motion.div>
-              </div>
+          <h2 className="netflix-heading text-5xl lg:text-6xl mb-8 text-white">
+            Why Bangkok Town?
+          </h2>
+          <p className="netflix-body text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light">
+            Excellence recognized. Tradition honored. Experience perfected.
+          </p>
+        </motion.div>
 
-              <p className="netflix-body mb-10 text-xl leading-relaxed text-gray-300 font-light text-center lg:text-left">
-                Rooted in centuries-old Thai culinary traditions, we bring you
-                the authentic tastes of Thailand. Our recipes have been passed
-                down through generations, preserving the essence of Thai
-                culture in every bite. We believe food is a universal language
-                that connects hearts and cultures. Every dish we create is a
-                bridge between Thailand's rich culinary heritage and the
-                vibrant multicultural spirit of the UAE.
-              </p>
-            </div>
-            
-            {/* Image for desktop, hidden on mobile */}
-            <div className="relative hidden lg:block">
-              <motion.div
-                className="relative overflow-hidden rounded-2xl shadow-2xl"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
+        {/* Main Container - Transparent */}
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={staggerContainer}
+        >
+          <div className="space-y-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div variants={fadeInUp} className="lg:order-1">
+                <h3 className="text-4xl font-bold text-white mb-6">
+                  Authentic Heritage
+                </h3>
+                <p className="text-gray-300 leading-relaxed text-lg font-light">
+                  Traditional recipes from Bangkok's finest kitchens, unchanged
+                  for generations. We bring the true taste of Thailand to your
+                  table, using only the freshest ingredients and time-honored
+                  techniques.
+                </p>
+              </motion.div>
+              <motion.div variants={fadeInUp} className="lg:order-2">
                 <img
                   src="/images/thai-temple.jpg"
-                  alt="Thai heritage and tradition"
-                  className="w-full h-full object-cover rounded-2xl"
+                  alt="Authentic Heritage"
+                  className="rounded-2xl shadow-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+              </motion.div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div variants={fadeInUp} className="lg:order-2">
+                <h3 className="text-4xl font-bold text-white mb-6">
+                  Genuine Hospitality
+                </h3>
+                <p className="text-gray-300 leading-relaxed text-lg font-light">
+                  Every guest is welcomed like family, creating connections that
+                  last. Our warm and attentive staff are dedicated to making your
+                  dining experience unforgettable, from the moment you step
+                  through our doors.
+                </p>
+              </motion.div>
+              <motion.div variants={fadeInUp} className="lg:order-1">
+                <img
+                  src="/images/thai-bowl.png"
+                  alt="Genuine Hospitality"
+                  className="rounded-2xl shadow-2xl"
+                />
               </motion.div>
             </div>
           </div>
@@ -72,3 +96,6 @@ export const PremiumAboutSection = () => {
     </section>
   );
 };
+
+export { PremiumAboutSection };
+export default PremiumAboutSection;
