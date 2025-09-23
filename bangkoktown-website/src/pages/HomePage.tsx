@@ -37,30 +37,8 @@ export const HomePage = () => {
     navigate("/reservations");
   };
 
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
-
-  const heroRef = useRef(null);
-  const featuredRef = useRef(null);
-  const aboutRef = useRef(null);
-  const locationsRef = useRef(null);
-
-  const sections = [heroRef, featuredRef, aboutRef, locationsRef];
-
-  const opacities = sections.map((sec, i) => {
-    const start = i / sections.length;
-    const end = (i + 1) / sections.length;
-
-    if (i === sections.length - 1) { // Last section
-      return useTransform(scrollYProgress, [start, end], [1, 1]); // Stays fully visible
-    } else {
-      const nextSectionStart = (i + 1) / sections.length;
-      return useTransform(scrollYProgress, [start, nextSectionStart - 0.1, nextSectionStart], [1, 1, 0]);
-    }
-  });
-
   return (
-    <div ref={containerRef} className="min-h-screen bg-black relative">
+    <div className="min-h-screen bg-black relative">
       
       
       {/* Subtle animated background patterns */}
@@ -79,7 +57,7 @@ export const HomePage = () => {
       <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none z-10"></div>
 
       
-        <motion.div ref={heroRef} style={{ opacity: opacities[0] }}>
+        <motion.div>
         <HeroVideoSection
           videoSrc="/videos/hero.mp4"
           posterSrc="/images/hero-fallback.jpg"
@@ -109,7 +87,7 @@ export const HomePage = () => {
       {/* Main Content Section */}
       <main className="relative bg-black z-30">
         <Container>
-          <motion.div ref={featuredRef} style={{ opacity: opacities[1] }}>
+          <motion.div>
             <section className="py-24">
               <div className="text-center mb-20">
                 
@@ -141,7 +119,7 @@ export const HomePage = () => {
           
 
           
-            <motion.div ref={aboutRef} style={{ opacity: opacities[2] }}>
+            <motion.div>
             <PremiumAboutSection />
           </motion.div>
           
@@ -151,7 +129,7 @@ export const HomePage = () => {
           
 
           
-            <motion.div ref={locationsRef} style={{ opacity: opacities[4] }}>
+            <motion.div>
             <PremiumLocationsSection />
           </motion.div>
           

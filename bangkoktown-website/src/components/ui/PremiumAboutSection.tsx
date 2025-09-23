@@ -1,5 +1,11 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useTypingEffect } from "../../hooks/useTypingEffect";
+
+const TypingParagraph = ({ text, className }) => {
+  const typedText = useTypingEffect(text, 20);
+  return <p className={className}>{typedText}</p>;
+};
 
 
 // Animation variants
@@ -54,12 +60,10 @@ const PremiumAboutSection = () => {
                 <h3 className="text-4xl font-bold text-white mb-6">
                   Authentic Heritage
                 </h3>
-                <p className="text-gray-300 leading-relaxed text-lg font-light">
-                  Traditional recipes from Bangkok's finest kitchens, unchanged
-                  for generations. We bring the true taste of Thailand to your
-                  table, using only the freshest ingredients and time-honored
-                  techniques.
-                </p>
+                <TypingParagraph
+                  text="Traditional recipes from Bangkok's finest kitchens, unchanged for generations. We bring the true taste of Thailand to your table, using only the freshest ingredients and time-honored techniques."
+                  className="text-gray-300 leading-relaxed text-lg font-light"
+                />
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-2">
                 <img
@@ -75,12 +79,10 @@ const PremiumAboutSection = () => {
                 <h3 className="text-4xl font-bold text-white mb-6">
                   Genuine Hospitality
                 </h3>
-                <p className="text-gray-300 leading-relaxed text-lg font-light">
-                  Every guest is welcomed like family, creating connections that
-                  last. Our warm and attentive staff are dedicated to making your
-                  dining experience unforgettable, from the moment you step
-                  through our doors.
-                </p>
+                <TypingParagraph
+                  text="Every guest is welcomed like family, creating connections that last. Our warm and attentive staff are dedicated to making your dining experience unforgettable, from the moment you step through our doors."
+                  className="text-gray-300 leading-relaxed text-lg font-light"
+                />
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-1">
                 <img
