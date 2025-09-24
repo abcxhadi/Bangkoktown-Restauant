@@ -1,12 +1,261 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useTypingEffect } from "../../hooks/useTypingEffect";
 
-const TypingParagraph = ({ text, className }) => {
-  const typedText = useTypingEffect(text, 20);
-  return <p className={className}>{typedText}</p>;
+// TypewriterEffect component (simplified version)
+const TypewriterEffect = ({
+  text,
+  className,
+  speed = 50,
+  animateOnInView = false,
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [displayText, setDisplayText] = React.useState("");
+
+  React.useEffect(() => {
+    if (!animateOnInView || isInView) {
+      let i = 0;
+      const timer = setInterval(() => {
+        if (i < text.length) {
+          setDisplayText(text.slice(0, i + 1));
+          i++;
+        } else {
+          clearInterval(timer);
+        }
+      }, speed);
+      return () => clearInterval(timer);
+    }
+  }, [text, speed, animateOnInView, isInView]);
+
+  return (
+    <div ref={ref} className={className}>
+      {displayText}
+    </div>
+  );
 };
 
+// Awards Slider Component
+const AwardsSlider = () => {
+  const awards = [
+    {
+      id: 1,
+      name: "Thai SELECT Certification",
+      logo: "/images/thai-select.png",
+      description: "Certified Authentic Thai Cuisine",
+    },
+    {
+      id: 2,
+      name: "Google 4.6 Stars",
+      logo: "/images/google.png",
+      description: "4.6/5 Rating",
+    },
+    {
+      id: 3,
+      name: "TripAdvisor Choice",
+      logo: "/images/trip_advisor.png",
+      description: "Travelers' Choice Award",
+    },
+    
+  ];
+
+  // Triple the awards for seamless loop
+  const extendedAwards = [...awards, ...awards, ...awards];
+
+  return (
+    <div className="awards-slider-wrapper">
+      <div className="awards-slider-container">
+        {/* Gradient overlays for fade effect */}
+        <div className="gradient-left"></div>
+        <div className="gradient-right"></div>
+
+        {/* Scrolling track */}
+        <div className="awards-track">
+          {extendedAwards.map((award, index) => (
+            <div key={`${award.id}-${index}`} className="award-item">
+              <div className="award-content">
+                <img src={award.logo} alt={award.name} className="award-logo" />
+                <div className="award-text">
+                  <span className="award-name">{award.name}</span>
+                  <span className="award-desc">{award.description}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        .awards-slider-wrapper {
+          margin: 4rem 0;
+          position: relative;
+          width: 100%;
+        }
+
+        .awards-slider-container {
+          height: 120px;
+          overflow: hidden;
+          position: relative;
+          width: 100%;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.02);
+          backdrop-filter: blur(10px);
+        }
+
+        .gradient-left,
+        .gradient-right {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: 150px;
+          z-index: 2;
+          pointer-events: none;
+        }
+
+        .gradient-left {
+          left: 0;
+          background: linear-gradient(
+            to right,
+            #000000 0%,
+            rgba(0, 0, 0, 0.8) 50%,
+            transparent 100%
+          );
+        }
+
+        .gradient-right {
+          right: 0;
+          background: linear-gradient(
+            to left,
+            #000000 0%,
+            rgba(0, 0, 0, 0.8) 50%,
+            transparent 100%
+          );
+        }
+
+        .awards-track {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          animation: scroll 40s linear infinite;
+          width: fit-content;
+        }
+
+        .awards-track:hover {
+          animation-play-state: paused;
+        }
+
+        .award-item {
+          flex-shrink: 0;
+          margin: 0 3rem;
+          opacity: 0.8;
+          transition: all 0.3s ease;
+        }
+
+        .award-item:hover {
+          opacity: 1;
+          transform: translateY(-5px);
+        }
+
+        .award-content {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1rem;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
+          min-width: 280px;
+        }
+
+        .award-content:hover {
+          background: rgba(255, 255, 255, 0.08);
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .award-logo {
+          width: 60px;
+          height: 60px;
+          object-fit: contain;
+          filter: brightness(0.9);
+        }
+
+        .award-text {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          flex: 1;
+        }
+
+        .award-name {
+          color: #ffffff;
+          font-weight: 600;
+          font-size: 1rem;
+          line-height: 1.2;
+        }
+
+        .award-desc {
+          color: #a1a1aa;
+          font-size: 0.875rem;
+          font-weight: 300;
+        }
+
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-100% / 3));
+          }
+        }
+
+        @media (max-width: 768px) {
+          .awards-slider-container {
+            height: 100px;
+          }
+
+          .award-content {
+            min-width: 240px;
+            padding: 0.75rem;
+          }
+
+          .award-logo {
+            width: 50px;
+            height: 50px;
+          }
+
+          .award-name {
+            font-size: 0.9rem;
+          }
+
+          .award-desc {
+            font-size: 0.8rem;
+          }
+
+          .gradient-left,
+          .gradient-right {
+            width: 100px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .awards-slider-container {
+            height: 90px;
+          }
+
+          .award-content {
+            min-width: 200px;
+            padding: 0.5rem;
+          }
+
+          .award-item {
+            margin: 0 1.5rem;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
 
 // Animation variants
 const fadeInUp = {
@@ -35,20 +284,26 @@ const PremiumAboutSection = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-8"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeInUp}
         >
-          <h2 className="netflix-heading text-5xl lg:text-6xl mb-8 text-white">
-            Why Bangkok Town?
-          </h2>
-          <p className="netflix-body text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light">
+          <TypewriterEffect
+            text="Why Bangkok Town?"
+            speed={50}
+            className="netflix-heading text-5xl lg:text-6xl mb-8 text-white font-bold"
+            animateOnInView={true}
+          />
+          <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light">
             Excellence recognized. Tradition honored. Experience perfected.
           </p>
         </motion.div>
 
-        {/* Main Container - Transparent */}
+        {/* Awards Slider */}
+        <AwardsSlider />
+
+        {/* Main Container */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -57,38 +312,48 @@ const PremiumAboutSection = () => {
           <div className="space-y-16">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInUp} className="lg:order-1">
-                <h3 className="text-4xl font-bold text-white mb-6">
-                  Authentic Heritage
-                </h3>
-                <TypingParagraph
+                <TypewriterEffect
+                  text="Authentic Heritage"
+                  speed={50}
+                  className="text-4xl font-bold text-white mb-6"
+                  animateOnInView={true}
+                />
+                <TypewriterEffect
                   text="Traditional recipes from Bangkok's finest kitchens, unchanged for generations. We bring the true taste of Thailand to your table, using only the freshest ingredients and time-honored techniques."
+                  speed={20}
                   className="text-gray-300 leading-relaxed text-lg font-light"
+                  animateOnInView={true}
                 />
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-2">
                 <img
-                  src="/images/thai-temple.jpg"
+                  src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop"
                   alt="Authentic Heritage"
-                  className="rounded-2xl shadow-2xl"
+                  className="rounded-2xl shadow-2xl w-full h-80 object-cover"
                 />
               </motion.div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInUp} className="lg:order-2">
-                <h3 className="text-4xl font-bold text-white mb-6">
-                  Genuine Hospitality
-                </h3>
-                <TypingParagraph
+                <TypewriterEffect
+                  text="Genuine Hospitality"
+                  speed={50}
+                  className="text-4xl font-bold text-white mb-6"
+                  animateOnInView={true}
+                />
+                <TypewriterEffect
                   text="Every guest is welcomed like family, creating connections that last. Our warm and attentive staff are dedicated to making your dining experience unforgettable, from the moment you step through our doors."
+                  speed={20}
                   className="text-gray-300 leading-relaxed text-lg font-light"
+                  animateOnInView={true}
                 />
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-1">
                 <img
-                  src="/images/thai-bowl.png"
+                  src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&h=400&fit=crop"
                   alt="Genuine Hospitality"
-                  className="rounded-2xl shadow-2xl"
+                  className="rounded-2xl shadow-2xl w-full h-80 object-cover"
                 />
               </motion.div>
             </div>
@@ -99,5 +364,4 @@ const PremiumAboutSection = () => {
   );
 };
 
-export { PremiumAboutSection };
 export default PremiumAboutSection;

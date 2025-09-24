@@ -8,10 +8,10 @@ export const PremiumLocationsSection = () => {
 
   const locations = [
     {
-      name: "Dubai",
-      tag: "Doha Street",
-      phone: "04 239 7242",
-      image: "/images/dubai.jpg",
+      name: "Zawaya Walk",
+      tag: "Zawaya Walk",
+      phone: "06 546 8383",
+      image: "/images/zawaya.jpg",
     },
     {
       name: "Majaz Qasba",
@@ -20,10 +20,10 @@ export const PremiumLocationsSection = () => {
       image: "/images/al_majaz_waterfront.jpg",
     },
     {
-      name: "Zawaya Walk",
-      tag: "Zawaya Walk",
-      phone: "06 546 8383",
-      image: "/images/zawaya.jpg",
+      name: "Dubai",
+      tag: "Doha Street",
+      phone: "04 239 7242",
+      image: "/images/dubai.jpg",
     },
   ];
 
@@ -50,7 +50,7 @@ export const PremiumLocationsSection = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 {/* Dark overlay for better text visibility */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40"></div>
               </div>
 
               {/* Content Overlay */}

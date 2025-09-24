@@ -1,6 +1,8 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
-import { PremiumAboutSection, PremiumLocationsSection, Container, Card } from "../components/ui";
+import { PremiumAboutSection, PremiumLocationsSection, Container, Card, TickerCarousel } from "../components/ui";
+import { fadeIn } from "../utils/animations";
+import { TypewriterEffect } from "../components/ui/TypewriterEffect";
 
 
 import { getFeaturedItems } from "../data/menuData";
@@ -8,12 +10,43 @@ import "../currency.css";
 import "../components/ui/Carousel.css";
 
 
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform, useAnimation, AnimatePresence } from "framer-motion";
 import { NetflixButton } from "../components/ui/NetflixButton";
 
 import { MenuItem } from "../types";
 
+// The AnimatedSection component is a reusable wrapper that applies a fade-in animation to its children.
+const AnimatedSection = ({ children }) => {
+  const controls = useAnimation();
+  const ref = useRef(null);
+  // The `useInView` hook triggers the animation when the component is in the viewport.
+  // `once: true` ensures the animation only runs once.
+  // `margin: "-100px"` triggers the animation when the component is 100px into the viewport.
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
+  useEffect(() => {
+    if (inView) {
+      // The `controls.start("visible")` function starts the animation.
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  return (
+    <motion.div
+      ref={ref}
+      animate={controls}
+      initial="hidden"
+      variants={fadeIn}
+      // The `transition` prop defines the animation's duration, easing, and stagger effect.
+      // `duration: 0.8` sets the animation duration to 800ms.
+      // `ease: "easeOut"` creates a professional and smooth motion.
+      // `staggerChildren: 0.1` adds a 100ms delay between each child's animation.
+      transition={{ duration: 0.8, ease: "easeOut", staggerChildren: 0.1 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export const HomePage = () => {
   const navigate = useNavigate();
@@ -61,7 +94,6 @@ export const HomePage = () => {
         <HeroVideoSection
           videoSrc="/videos/hero.mp4"
           posterSrc="/images/hero-fallback.jpg"
-          audioSrc="/videos/music.mp3"
           overlayText="Where Every Bite Tells a Thai Story"
           className="relative z-20 hero-banner"
           buttons={[
@@ -87,25 +119,31 @@ export const HomePage = () => {
       {/* Main Content Section */}
       <main className="relative bg-black z-30">
         <Container>
-          <motion.div>
+          <AnimatedSection>
             <section className="py-24">
               <div className="text-center mb-20">
                 
 
-                <h2 className="netflix-heading text-5xl lg:text-6xl mb-8 text-white">
-                  Taste the Authentic Flavors
-                </h2>
+                <TypewriterEffect
+                  text="Taste the Authentic Flavors"
+                  speed={50}
+                  className="netflix-heading text-5xl lg:text-6xl mb-8 text-white"
+                  animateOnInView={true}
+                />
 
-                <p className="netflix-body text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light">
-                  Discover our most beloved dishes, crafted with traditional
-                  recipes and the finest ingredients imported directly from
-                  Thailand.
-                </p>
+                <TypewriterEffect
+                  text="Discover our most beloved dishes, crafted with traditional recipes and the finest ingredients imported directly from Thailand."
+                  speed={20}
+                  className="netflix-body text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light"
+                  animateOnInView={true}
+                />
               </div>
 
-              <FeaturedDishesCarousel />
+              <motion.div variants={fadeIn}>
+                <TickerCarousel />
+              </motion.div>
 
-              <div className="mt-12 text-center">
+              <motion.div variants={fadeIn} className="mt-12 text-center">
                 <NetflixButton
                   onClick={handleViewMenu}
                   variant="primary"
@@ -113,15 +151,15 @@ export const HomePage = () => {
                 >
                   View Full Menu
                 </NetflixButton>
-              </div>
+              </motion.div>
             </section>
-          </motion.div>
+          </AnimatedSection>
           
 
           
-            <motion.div>
+            <AnimatedSection>
             <PremiumAboutSection />
-          </motion.div>
+          </AnimatedSection>
           
 
           
@@ -129,9 +167,9 @@ export const HomePage = () => {
           
 
           
-            <motion.div>
+            <AnimatedSection>
             <PremiumLocationsSection />
-          </motion.div>
+          </AnimatedSection>
           
         </Container>
       </main>
@@ -144,7 +182,6 @@ export const HomePage = () => {
 const FeaturedDishesCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const trackRef = useRef<HTMLDivElement>(null);
   const featuredItems = getFeaturedItems();
   const totalSlides = featuredItems.length;
 
@@ -162,43 +199,39 @@ const FeaturedDishesCarousel: React.FC = () => {
     return () => clearInterval(interval);
   }, [totalSlides, isPaused]);
 
-  useEffect(() => {
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-  }, [currentSlide]);
-
   return (
     <div>
       <div
-        className="carousel-container"
+        className="carousel-container relative"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        <div className="carousel-track" ref={trackRef}>
-          {featuredItems.map((item: MenuItem) => (
-            <div
-              key={item.id}
-              className="dish-card"
-              style={
-                { "--bg-image": `url(${item.image})` } as React.CSSProperties
-              }
-            >
-              <div className="dish-overlay">
-                <h3 className="dish-name">{item.name}</h3>
-                <p className="dish-description">{item.description}</p>
-                <div className="dish-price flex items-center">
-                  <img
-                    src="/images/dirhams.svg"
-                    alt="Dirhams"
-                    className="w-6 h-6 mr-1 dirhams-gold"
-                  />
-                  {item.price}
-                </div>
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={currentSlide}
+            className="dish-card absolute top-0 left-0"
+            style={{
+              backgroundImage: `url(${featuredItems[currentSlide].image})`,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="dish-overlay">
+              <h3 className="dish-name">{featuredItems[currentSlide].name}</h3>
+              <p className="dish-description">{featuredItems[currentSlide].description}</p>
+              <div className="dish-price flex items-center">
+                <img
+                  src="/images/dirhams.svg"
+                  alt="Dirhams"
+                  className="w-6 h-6 mr-1 dirhams-gold"
+                />
+                {featuredItems[currentSlide].price}
               </div>
             </div>
-          ))}
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <div className="carousel-indicators">

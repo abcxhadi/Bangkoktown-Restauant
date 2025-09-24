@@ -180,14 +180,7 @@ export const ReservationsPage = () => {
 
       <main className="relative z-10">
         <Container>
-          <section className="py-16 lg:py-24">
-            {/* Header */}
-            <div className="text-center mb-16">
-              <h1 className="netflix-heading text-4xl lg:text-6xl text-white mb-6">
-                Reservations
-              </h1>
-            </div>
-
+          <div className="pt-8">
             {/* Progress Steps */}
             <div className="max-w-2xl mx-auto mb-12">
               <ProgressBar 
@@ -529,7 +522,7 @@ export const ReservationsPage = () => {
                 </form>
               </div>
             </div>
-          </section>
+          </div>
 
           {/* Quick Contact Section */}
           <section className="py-16">

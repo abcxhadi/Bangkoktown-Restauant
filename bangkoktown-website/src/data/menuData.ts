@@ -32,6 +32,8 @@ export const menuItems: MenuItem[] = [
       "Succulent prawns marinated in Thai spices, grilled to perfection and served with spicy peanut sauce",
     spiceLevel: 2,
     image: "/images/itemImages/prawn_satay.jpg",
+    gradient: "from-orange-500 to-red-600",
+    bgColor: "from-orange-900/20 to-red-900/20"
   },
   {
     id: 2,
@@ -262,6 +264,8 @@ export const menuItems: MenuItem[] = [
       "Classic Thai hot and sour soup with mushrooms, tomatoes, and fragrant herbs",
     spiceLevel: 3,
     image: "/images/itemImages/tom_yum_soup.jpg",
+    gradient: "from-blue-500 to-purple-600",
+    bgColor: "from-blue-900/20 to-purple-900/20"
   },
   {
     id: 21,

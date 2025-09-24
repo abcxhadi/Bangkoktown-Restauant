@@ -42,10 +42,11 @@ export {
 export { Logo } from './Logo';
 export { ScrollArrows } from './ScrollArrows';
 export { PremiumLocationsSection } from './PremiumLocationsSection';
-export { PremiumAboutSection } from './PremiumAboutSection';
+export { default as PremiumAboutSection } from './PremiumAboutSection';
 
 
 
 export { FadingSection } from './FadingSection';
 export { ProgressBar } from './ProgressBar';
 export { StripePayment } from './StripePayment';
+export { default as TickerCarousel } from './TickerCarousel';
