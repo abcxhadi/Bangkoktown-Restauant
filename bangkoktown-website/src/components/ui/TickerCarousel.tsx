@@ -84,7 +84,7 @@ const TickerCarousel = () => {
       <div
         ref={carouselRef}
         className="relative w-full max-w-6xl mx-auto bg-black overflow-hidden shadow-2xl
-                   h-[450px] sm:h-[550px] md:h-[600px] lg:h-[650px] xl:h-[700px]
+                   h-[500px] sm:h-[600px] md:h-[650px] lg:h-[700px] xl:h-[750px]
                    rounded-xl sm:rounded-2xl lg:rounded-3xl"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -196,9 +196,9 @@ const TickerCarousel = () => {
         </div>
 
         {/* Main content area */}
-        <div className="relative z-10 h-full flex flex-col p-4 sm:p-6 lg:p-8">
+        <div className="relative z-10 h-full flex flex-col p-2 sm:p-4 lg:p-6">
           {/* Main card area */}
-          <div className="flex-1 flex items-center justify-center relative overflow-hidden">
+          <div className="flex-1 flex items-center justify-center relative overflow-visible py-4 sm:py-6">
             <div className="relative w-full h-full perspective-1000">
               {extendedItems.map((item: MenuItem, index: number) => {
                 let transform = "";
@@ -309,12 +309,12 @@ const TickerCarousel = () => {
                           : ""
                       }`}
                       style={{
-                        width: "min(calc(100vw - 120px), 340px)",
-                        height: "min(calc(100vh - 200px), 420px)",
+                        width: "min(calc(100vw - 120px), 350px)",
+                        height: "calc(100% - 40px)",
                         minWidth: "280px",
-                        minHeight: "360px",
+                        minHeight: "380px",
                         maxWidth: "380px",
-                        maxHeight: "480px",
+                        maxHeight: "500px",
                       }}
                     >
                       {/* Enhanced gradient border */}
@@ -393,7 +393,7 @@ const TickerCarousel = () => {
           </div>
 
           {/* Enhanced dots indicator */}
-          <div className="flex justify-center gap-2 mt-4 sm:mt-6">
+          <div className="flex justify-center gap-2 mt-2 sm:mt-4 pb-2">
             {featuredItems.map((_, index) => {
               const isActive = currentIndex % totalItems === index;
               return (
