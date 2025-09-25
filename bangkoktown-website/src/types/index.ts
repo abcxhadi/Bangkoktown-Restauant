@@ -15,6 +15,8 @@ export interface MenuItem {
   image?: string;
   spiceLevel?: 1 | 2 | 3;
   allergens?: string[];
+  gradient?: string;
+  bgColor?: string;
 }
 
 // Restaurant Types

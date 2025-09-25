@@ -91,7 +91,7 @@ const TickerCarousel = () => {
       onTouchEnd={handleTouchEnd}
     >
       {/* Custom CSS animations embedded in head */}
-      <style jsx>{`
+            <style jsx>{`
         @keyframes card-enter {
           0% {
             transform: translateX(100px) rotateY(-30deg) scale(0.9);

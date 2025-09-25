@@ -7,6 +7,11 @@ const TypewriterEffect = ({
   className,
   speed = 50,
   animateOnInView = false,
+}: {
+  text: string;
+  className: string;
+  speed?: number;
+  animateOnInView?: boolean;
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -84,7 +89,7 @@ const AwardsSlider = () => {
         </div>
       </div>
 
-      <style jsx>{`
+            <style jsx>{`
         .awards-slider-wrapper {
           margin: 4rem 0;
           position: relative;

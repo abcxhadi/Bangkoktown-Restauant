@@ -16,7 +16,7 @@ import { NetflixButton } from "../components/ui/NetflixButton";
 import { MenuItem } from "../types";
 
 // The AnimatedSection component is a reusable wrapper that applies a fade-in animation to its children.
-const AnimatedSection = ({ children }) => {
+const AnimatedSection = ({ children }: { children: React.ReactNode }) => {
   const controls = useAnimation();
   const ref = useRef(null);
   // The `useInView` hook triggers the animation when the component is in the viewport.
@@ -206,6 +206,7 @@ const FeaturedDishesCarousel: React.FC = () => {
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
+        {/* @ts-ignore */}
         <AnimatePresence initial={false}>
           <motion.div
             key={currentSlide}
