@@ -8,27 +8,30 @@ export const PremiumLocationsSection = () => {
 
   const locations = [
     {
-      name: "Zawaya Walk",
-      tag: "Zawaya Walk",
-      phone: "06 546 8383",
-      image: "/images/zawaya.jpg",
-    },
-    {
-      name: "Majaz Qasba",
+      name: "Bangkok Town Restaurant (Sharjah)",
       tag: "Qasba Street",
       phone: "06 556 8282",
       image: "/images/al_majaz_waterfront.jpg",
+      mapUrl: "https://maps.google.com/?cid=18060991473853659174"
     },
     {
-      name: "Dubai",
+      name: "Bangkok Town Restaurant (Dubai)",
       tag: "Doha Street",
       phone: "04 239 7242",
       image: "/images/dubai.jpg",
+      mapUrl: "https://maps.google.com/?cid=6000500049375453234"
     },
+    {
+      name: "BANGKOK TOWN Zawaya Walk (Sharjah)",
+      tag: "Zawaya Walk",
+      phone: "06 546 8383",
+      image: "/images/zawaya.jpg",
+      mapUrl: "https://maps.google.com/?cid=14419931823407026958"
+    }
   ];
 
   return (
-    <section className="py-24">
+    <section id="locations" className="py-24">
       <div className="text-center mb-20">
         <h2 className="netflix-heading text-5xl lg:text-6xl mb-8 text-white">
           Our Locations
@@ -67,7 +70,7 @@ export const PremiumLocationsSection = () => {
 
                   <NetflixButton
                     variant="outline"
-                    onClick={() => navigate("/contact")}
+                    onClick={() => window.open(location.mapUrl, "_blank")}
                     size="small"
                     className="bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white/20 hover:border-white/50 transition-all duration-300"
                   >
@@ -103,7 +106,12 @@ export const PremiumLocationsSection = () => {
               </NetflixButton>
               <NetflixButton
                 variant="outline"
-                onClick={() => navigate("/contact")}
+                onClick={() => {
+                  const element = document.getElementById('locations');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
                 icon="📍"
               >
                 Find Us
