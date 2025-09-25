@@ -83,13 +83,14 @@ const TickerCarousel = () => {
   const currentItem = extendedItems[currentIndex];
 
   return (
-    <div
-      ref={carouselRef}
-      className="relative w-full max-w-6xl mx-auto h-[650px] bg-black rounded-3xl overflow-hidden shadow-2xl"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
+    <>
+      <div
+        ref={carouselRef}
+        className="relative w-full max-w-6xl mx-auto h-[650px] bg-black rounded-3xl overflow-hidden shadow-2xl"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
       {/* Custom CSS animations embedded in head */}
             <style jsx>{`
         @keyframes card-enter {
@@ -174,35 +175,10 @@ const TickerCarousel = () => {
       {/* Main content area */}
       <div className="relative z-10 h-full p-8 flex flex-col">
         {/* Header with enhanced animations */}
-        <div className="flex justify-between items-center mb-8">
-          <div className="animate-fade-in">
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent animate-gradient">
-              Featured Dishes
-            </h2>
-            <p className="text-gray-400 mt-1 transition-colors duration-500 hover:text-gray-300">
-              Taste the best of Bangkok Town
-            </p>
-          </div>
+        <div className="flex justify-end items-center mb-8">
 
           {/* Enhanced controls */}
-          <div className="flex items-center gap-4">
-            <div className="flex gap-2">
-              <button
-                onClick={handlePrev}
-                disabled={isTransitioning}
-                className="group p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/15 hover:border-white/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
-              >
-                <ChevronLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
-              </button>
-              <button
-                onClick={handleNext}
-                disabled={isTransitioning}
-                className="group p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/15 hover:border-white/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
-              >
-                <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              </button>
-            </div>
-          </div>
+          
         </div>
 
         {/* Main card area with card-switching animation container */}
@@ -312,7 +288,7 @@ const TickerCarousel = () => {
                 >
                   {/* Card container with enhanced switching effects */}
                   <div
-                    className={`w-[340px] h-[420px] relative group ${
+                    className={`w-full sm:w-[340px] h-auto sm:h-[420px] relative group ${
                       isTransitioning && index === currentIndex
                         ? "animate-card-enter"
                         : ""
@@ -398,6 +374,23 @@ const TickerCarousel = () => {
         </div>
       </div>
     </div>
+    <div className="flex justify-center items-center gap-4 mt-8">
+      <button
+        onClick={handlePrev}
+        disabled={isTransitioning}
+        className="group p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/15 hover:border-white/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
+      >
+        <ChevronLeft className="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
+      </button>
+      <button
+        onClick={handleNext}
+        disabled={isTransitioning}
+        className="group p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/15 hover:border-white/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
+      >
+        <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+      </button>
+    </div>
+  </>
   );
 };
 
