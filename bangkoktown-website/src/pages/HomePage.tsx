@@ -77,7 +77,6 @@ export const HomePage = () => {
     navigate("/menu");
   };
 
-
   return (
     <div className="min-h-screen bg-black relative">
       {/* Netflix-style gradient overlay */}
@@ -88,7 +87,7 @@ export const HomePage = () => {
           videoSrc="/videos/hero.mp4"
           audioSrc="/videos/music.mp3"
           dramaticEntry={true}
-          overlayText="Where Every Bite Tells a Thai Story"
+          overlayText=""
           className="relative z-20 hero-banner"
           buttons={[
             <NetflixButton
@@ -197,14 +196,7 @@ const FeaturedDishesCarousel: React.FC = () => {
               <p className="dish-description">
                 {featuredItems[currentSlide].description}
               </p>
-              <div className="dish-price flex items-center">
-                <img
-                  src="/images/dirhams.svg"
-                  alt="Dirhams"
-                  className="w-6 h-6 mr-1 dirhams-gold"
-                />
-                {featuredItems[currentSlide].price}
-              </div>
+
             </div>
           </motion.div>
         </AnimatePresence>
@@ -376,7 +368,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
             <span className="block text-white drop-shadow-2xl">
               Bangkok Town
             </span>
-            <span className="block netflix-heading text-3xl md:text-4xl lg:text-5xl mt-2 text-white/90 uppercase tracking-widest">
+            <span className="block netflix-heading text-3xl md:text-4xl lg:text-5xl mt-2 text-white/90  tracking-widest">
               Thai Restaurant
             </span>
           </motion.h1>
@@ -431,4 +423,3 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
     </div>
   );
 };
-

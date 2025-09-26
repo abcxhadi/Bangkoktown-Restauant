@@ -332,7 +332,7 @@ const PremiumAboutSection = () => {
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-2">
                 <img
-                  src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop"
+                  src="/images/about.jpg"
                   alt="Authentic Heritage"
                   className="rounded-2xl shadow-2xl w-full h-80 object-cover"
                 />
@@ -356,7 +356,7 @@ const PremiumAboutSection = () => {
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-1">
                 <img
-                  src="/images/thai-bowl.png"
+                  src="/images/about1.jpg"
                   alt="Genuine Hospitality"
                   className="rounded-2xl shadow-2xl w-full h-80 object-cover"
                 />

@@ -8,35 +8,35 @@ export const PremiumLocationsSection = () => {
 
   const locations = [
     {
-      name: "Bangkok Town Restaurant (Sharjah)",
+      name: "Bangkok Town (Behind Amphitheatre, Majaz 3, sharjah)",
       tag: "Qasba Street",
       phone: "06 556 8282",
       image: "/images/al_majaz_waterfront.jpg",
       mapUrl: "https://maps.google.com/?cid=18060991473853659174"
     },
     {
-      name: "Bangkok Town Restaurant (Dubai)",
-      tag: "Doha Street",
-      phone: "04 239 7242",
-      image: "/images/dubai.jpg",
-      mapUrl: "https://maps.google.com/?cid=6000500049375453234"
-    },
-    {
-      name: "BANGKOK TOWN Zawaya Walk (Sharjah)",
+      name: "Bangkok Town (Zawaya Walk , Sharjah)",
       tag: "Zawaya Walk",
       phone: "06 546 8383",
       image: "/images/zawaya.jpg",
       mapUrl: "https://maps.google.com/?cid=14419931823407026958"
+    },
+    {
+      name: "Bangkok Town (Al Manar Hotel , Abu Hail ,Dubai)",
+      tag: "Doha Street",
+      phone: "04 239 7242",
+      image: "/images/dubai.jpg",
+      mapUrl: "https://maps.google.com/?cid=6000500049375453234"
     }
   ];
 
   return (
     <section id="locations" className="py-24">
       <div className="text-center mb-20">
-        <h2 className="netflix-heading text-5xl lg:text-6xl mb-8 text-white">
+        <h2 className="netflix-heading text-4xl lg:text-5xl mb-8 text-white">
           Our Locations
         </h2>
-        <p className="netflix-body text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light">
+        <p className="netflix-body text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed font-light">
           Find us in various locations across the UAE, each offering a unique ambiance and the same exceptional quality you love.
         </p>
       </div>
@@ -59,8 +59,11 @@ export const PremiumLocationsSection = () => {
               {/* Content Overlay */}
               <div className="relative z-10 h-full flex flex-col justify-end p-8">
                 <div className="text-center">
-                  <h3 className="netflix-subheading text-3xl text-white mb-2 drop-shadow-lg">
-                    {location.name}
+                  <h3 className="netflix-subheading text-2xl text-white mb-2 drop-shadow-lg">
+                    Bangkok Town
+                    <span className="block text-sm text-white/80">
+                      ({location.name.split('(')[1]}
+                    </span>
                   </h3>
 
                   <div className="text-white/80 text-sm mb-6 flex items-center justify-center gap-2">
@@ -89,10 +92,10 @@ export const PremiumLocationsSection = () => {
         <div className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-red-600/40 via-amber-600/40 to-red-600/40 rounded-3xl blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="relative bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl p-16 rounded-3xl border border-gray-700/50 text-center">
-            <h3 className="netflix-subheading text-3xl lg:text-4xl mb-6 text-white">
+            <h3 className="netflix-subheading text-2xl lg:text-3xl mb-6 text-white">
               Ready to Taste Authentic Thailand?
             </h3>
-            <p className="netflix-body text-gray-300 text-xl max-w-3xl mx-auto mb-12 font-light leading-relaxed">
+            <p className="netflix-body text-gray-300 text-lg max-w-3xl mx-auto mb-12 font-light leading-relaxed">
               Choose your preferred location and join thousands of satisfied
               customers who have made us their favorite Thai destination.
             </p>

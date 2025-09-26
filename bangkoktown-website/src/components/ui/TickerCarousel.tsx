@@ -238,18 +238,7 @@ const TickerCarousel = () => {
                             
                         </div>
 
-                        <div className="flex items-center gap-4 text-gray-300">
-                          <div className="flex items-center gap-1">
-                            <img
-                              src="/images/dirhams.svg"
-                              alt="Dirhams"
-                              className="w-5 h-5 dirhams-gold"
-                            />
-                            <span className="dirhams-gold font-semibold text-lg">
-                              {item.price}
-                            </span>
-                          </div>
-                        </div>
+
                       </div>
                     </div>
                   </div>
