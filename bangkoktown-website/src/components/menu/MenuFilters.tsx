@@ -34,7 +34,7 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
         <Button
           variant="outline"
           onClick={() => onCategoryChange('all')}
-          className={`${activeCategory === 'all' ? 'bg-red-500 text-white' : 'text-white'} hover:bg-white hover:text-black netflix-caption`}
+          className={`${activeCategory === 'all' ? 'bg-[#c799d9] text-white' : 'text-white'} hover:bg-white hover:text-black netflix-caption`}
         >
           <span className="text-lg">🍽️</span>
           <span className="hidden sm:inline">All Items</span>
@@ -46,7 +46,7 @@ export const MenuFilters: React.FC<MenuFiltersProps> = ({
             key={category}
             variant="outline"
             onClick={() => onCategoryChange(category)}
-            className={`${activeCategory === category ? 'bg-red-500 text-white' : 'text-white'} hover:bg-white hover:text-black netflix-caption`}
+            className={`${activeCategory === category ? 'bg-[#c799d9] text-white' : 'text-white'} hover:bg-white hover:text-black netflix-caption`}
           >
             <span className="text-lg">{getCategoryIcon(category)}</span>
             <span className="hidden sm:inline">{getCategoryName(category)}</span>
