@@ -102,14 +102,14 @@ export const HomePage = () => {
               variant="primary"
               size="large"
             >
-              Explore Menu
+              View Full Menu
             </NetflixButton>,
             <NetflixButton
               onClick={handleMakeReservation}
               variant="secondary"
               size="large"
             >
-              Make Reservation
+              Reservations
             </NetflixButton>,
           ]}
         />
@@ -146,7 +146,7 @@ export const HomePage = () => {
               <motion.div variants={fadeIn} className="mt-12 text-center">
                 <NetflixButton
                   onClick={handleViewMenu}
-                  variant="primary"
+                  variant="secondary"
                   size="large"
                 >
                   View Full Menu
