@@ -27,7 +27,9 @@ export const Logo = ({
     sm: 'text-lg',
     md: 'text-xl lg:text-2xl',
     lg: 'text-2xl lg:text-3xl',
-    xl: 'text-3xl lg:text-4xl'
+    xl: 'text-3xl lg:text-4xl',
+    xxl: 'text-4xl lg:text-5xl',
+    xxxl: 'text-5xl lg:text-6xl'
   };
 
   const LogoContent = () => (
