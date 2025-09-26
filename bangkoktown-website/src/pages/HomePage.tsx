@@ -351,7 +351,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
           className="max-w-4xl mx-auto"
         >
           <div className="flex justify-center mb-4">
-            <Logo size="xxxl" showText={false} />
+            <Logo size="xxxl" showText={false} noBorder={true} />
           </div>
 
           {/* Tagline */}

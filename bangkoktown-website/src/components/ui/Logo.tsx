@@ -1,59 +1,66 @@
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 interface LogoProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
+  size?: "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl";
   className?: string;
   showText?: boolean;
   linkTo?: string | null;
+  noBorder?: boolean;
+  withBackground?: boolean;
 }
 
-export const Logo = ({ 
-  size = 'md', 
-  className = '', 
+export const Logo = ({
+  size = "md",
+  className = "",
   showText = true,
-  linkTo = '/'
+  linkTo = "/",
+  noBorder = false,
+  withBackground = false,
 }: LogoProps) => {
   const sizeClasses = {
-    sm: 'w-8 h-8',
-    md: 'w-12 h-12',
-    lg: 'w-16 h-16',
-    xl: 'w-20 h-20',
-    xxl: 'w-24 h-24',
-    xxxl: 'w-72 h-72'
+    sm: "w-8 h-8",
+    md: "w-12 h-12",
+    lg: "w-16 h-16",
+    xl: "w-20 h-20",
+    xxl: "w-24 h-24",
+    xxxl: "w-[600px] h-[190px]",
   };
 
   const textSizeClasses = {
-    sm: 'text-lg',
-    md: 'text-xl lg:text-2xl',
-    lg: 'text-2xl lg:text-3xl',
-    xl: 'text-3xl lg:text-4xl',
-    xxl: 'text-4xl lg:text-5xl',
-    xxxl: 'text-5xl lg:text-6xl'
+    sm: "text-lg",
+    md: "text-xl lg:text-2xl",
+    lg: "text-2xl lg:text-3xl",
+    xl: "text-3xl lg:text-4xl",
+    xxl: "text-4xl lg:text-5xl",
+    xxxl: "text-5xl lg:text-6xl",
   };
+
+  const borderClasses = !noBorder
+    ? "border-2 border-thai-gold/50 ring-4 ring-thai-gold/30 group-hover:ring-thai-gold/60"
+    : "";
 
   const LogoContent = () => (
     <div className={`flex items-center space-x-3 group ${className}`}>
       {/* Logo Image with Curved Borders */}
-      <div className={`
+      <div
+        className={`
         ${sizeClasses[size]} 
         overflow-hidden 
-        border-2 border-thai-gold/50
-        ring-4 ring-thai-gold/30 
-        group-hover:ring-thai-gold/60 
+        ${borderClasses}
+        ${withBackground && "bg-gradient-to-br from-purple-300 to-purple-400"}
         transition-all duration-300 
         group-hover:scale-105
-        shadow-lg
-        bg-gradient-to-br from-purple-300 to-purple-400
-      `}>
+        
+      `}
+      >
         <img
-          src={'/images/logo.png'}
+          src={"/images/logo.png"}
           alt="Bangkok Town Thai Restaurant"
           className="w-full h-full object-cover"
           onError={(e) => {
             // Fallback to gradient background with initials if image fails to load
             const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
+            target.style.display = "none";
             const parent = target.parentElement;
             if (parent) {
               parent.innerHTML = `
@@ -69,13 +76,15 @@ export const Logo = ({
       {/* Restaurant Name */}
       {showText && (
         <div className="flex flex-col">
-          <span className={`
+          <span
+            className={`
             font-thai-serif ${textSizeClasses[size]} font-bold text-white 
             group-hover:text-thai-gold transition-colors duration-200
-          `}>
+          `}
+          >
             Bangkok Town
           </span>
-          {size !== 'sm' && (
+          {size !== "sm" && (
             <span className="text-xs text-white/80 font-thai-sans tracking-wider">
               THAI RESTAURANT
             </span>

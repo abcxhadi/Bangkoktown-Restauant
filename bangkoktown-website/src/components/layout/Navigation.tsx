@@ -63,7 +63,7 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
-            <Logo size="md" linkTo="/" />
+            <Logo size="md" linkTo="/" withBackground={true} />
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">

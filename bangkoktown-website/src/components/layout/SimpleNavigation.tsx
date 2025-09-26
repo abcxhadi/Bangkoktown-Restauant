@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { LanternIcon, ThaiPatternIcon } from '../ui';
+import { LanternIcon, ThaiPatternIcon, Logo } from '../ui';
 
 interface SimpleNavigationProps {
   className?: string;
@@ -42,19 +42,7 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
-            <a 
-              href="#home" 
-              className="flex items-center space-x-2 group"
-            >
-              <LanternIcon 
-                size={32} 
-                color="#FFD700" 
-                className="group-hover:animate-float transition-all duration-200" 
-              />
-              <span className="font-thai-serif text-xl lg:text-2xl font-bold text-white">
-                Bangkok Town
-              </span>
-            </a>
+            <Logo size="md" linkTo="#home" withBackground={true} />
 
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
@@ -121,7 +109,7 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
         {/* Mobile Menu */}
         <div 
           className={`
-            md:hidden fixed top-16 lg:top-20 left-0 right-0 bg-thai-red/95 backdrop-blur-md
+            md:hidden fixed top-16 lg:top-20 left-0 right-0 bg-gradient-to-br from-purple-300 to-purple-400 backdrop-blur-md
             border-t border-thai-gold/20 transition-all duration-300 ease-in-out
             ${isMobileMenuOpen 
               ? 'opacity-100 translate-y-0' 

@@ -23,7 +23,7 @@ export const NetflixButton: React.FC<NetflixButtonProps> = ({
 
   const variants = {
     primary:
-      "bg-gradient-to-r from-red-600 to-red-700 text-white hover:from-red-700 hover:to-red-800 hover:shadow-lg hover:shadow-red-500/50",
+      "bg-[#c799d9] text-white hover:bg-[#b388c5] hover:shadow-lg hover:shadow-[#c799d9]/50",
     secondary:
       "bg-black/50 text-white backdrop-blur-sm border border-white/20 hover:bg-white/10 hover:border-white/40",
     outline:
