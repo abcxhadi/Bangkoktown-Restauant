@@ -77,9 +77,6 @@ export const HomePage = () => {
     navigate("/menu");
   };
 
-  const handleMakeReservation = () => {
-    navigate("/reservations");
-  };
 
   return (
     <div className="min-h-screen bg-black relative">
@@ -100,13 +97,6 @@ export const HomePage = () => {
               size="large"
             >
               View Full Menu
-            </NetflixButton>,
-            <NetflixButton
-              onClick={handleMakeReservation}
-              variant="secondary"
-              size="large"
-            >
-              Reservations
             </NetflixButton>,
           ]}
         />

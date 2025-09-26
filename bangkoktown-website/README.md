@@ -25,7 +25,6 @@ src/
 │   ├── menu/            # Menu-related components
 │   ├── about/           # About section components
 │   ├── contact/         # Contact components
-│   └── reservation/     # Reservation components (future)
 ├── pages/               # Page components
 ├── data/                # Static data (menu items, restaurant info)
 ├── assets/              # Images, videos, icons
@@ -73,7 +72,6 @@ src/
 - [ ] Interactive menu system with filtering
 - [ ] About Us section with image gallery
 - [ ] Contact information for all locations
-- [ ] Table reservation system with payment integration
 - [ ] Responsive design with Thai aesthetics
 - [ ] Smooth animations and micro-interactions
 

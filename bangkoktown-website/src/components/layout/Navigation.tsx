@@ -165,7 +165,6 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
                   {item.name === 'Menu' && <ThaiPatternIcon size={20} />}
                   {item.name === 'About Us' && <LanternIcon size={20} />}
                   {item.name === 'Contact' && <ThaiPatternIcon size={20} />}
-                  {item.name === 'Reservations' && <LanternIcon size={20} />}
                   <span>{item.name}</span>
                 </div>
               </Link>

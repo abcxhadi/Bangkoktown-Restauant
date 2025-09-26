@@ -23,8 +23,7 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
     { name: 'Home', href: '#home' },
     { name: 'Menu', href: '#menu' },
     { name: 'About Us', href: '#about' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Reservations', href: '#reservations' }
+    { name: 'Contact', href: '#contact' }
   ];
 
   return (
@@ -146,7 +145,6 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
                   {item.name === 'Menu' && <ThaiPatternIcon size={20} />}
                   {item.name === 'About Us' && <LanternIcon size={20} />}
                   {item.name === 'Contact' && <ThaiPatternIcon size={20} />}
-                  {item.name === 'Reservations' && <LanternIcon size={20} />}
                   <span>{item.name}</span>
                 </div>
               </a>
@@ -188,10 +186,9 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
                   {item.name === 'Menu' && <ThaiPatternIcon size={24} />}
                   {item.name === 'About Us' && <LanternIcon size={24} />}
                   {item.name === 'Contact' && <ThaiPatternIcon size={24} />}
-                  {item.name === 'Reservations' && <LanternIcon size={24} />}
                 </div>
                 <span className="text-xs font-thai-sans font-medium truncate">
-                  {item.name === 'About Us' ? 'About' : item.name === 'Reservations' ? 'Reserve' : item.name}
+                  {item.name === 'About Us' ? 'About' : item.name}
                 </span>
               </a>
             ))}

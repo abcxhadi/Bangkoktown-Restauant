@@ -99,10 +99,10 @@ export const PremiumLocationsSection = () => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <NetflixButton
                 variant="primary"
-                onClick={() => navigate("/reservations")}
+                onClick={() => navigate("/menu")}
                 icon="🍽️"
               >
-                Book Your Experience
+                Menu
               </NetflixButton>
               <NetflixButton
                 variant="outline"
