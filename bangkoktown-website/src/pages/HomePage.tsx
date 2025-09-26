@@ -1,16 +1,27 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect, useRef } from "react";
-import { PremiumAboutSection, PremiumLocationsSection, Container, Card, TickerCarousel } from "../components/ui";
+import {
+  PremiumAboutSection,
+  PremiumLocationsSection,
+  Container,
+  Card,
+  TickerCarousel,
+} from "../components/ui";
 import { fadeIn } from "../utils/animations";
 import { TypewriterEffect } from "../components/ui/TypewriterEffect";
-
 
 import { getFeaturedItems } from "../data/menuData";
 import "../currency.css";
 import "../components/ui/Carousel.css";
 
-
-import { motion, useInView, useScroll, useTransform, useAnimation, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+  useAnimation,
+  AnimatePresence,
+} from "framer-motion";
 import { NetflixButton } from "../components/ui/NetflixButton";
 
 import { MenuItem } from "../types";
@@ -54,10 +65,10 @@ export const HomePage = () => {
 
   useEffect(() => {
     if (location.hash) {
-      const id = location.hash.replace('#', '');
+      const id = location.hash.replace("#", "");
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }
   }, [location]);
@@ -72,28 +83,12 @@ export const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-black relative">
-      
-      
-      {/* Subtle animated background patterns */}
-      <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-red-600 to-amber-600 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: "8s" }}
-        ></div>
-        <div
-          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-amber-600 to-red-600 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: "12s" }}
-        ></div>
-      </div>
-
       {/* Netflix-style gradient overlay */}
       <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none z-10"></div>
 
-      
-        <motion.div>
+      <motion.div>
         <HeroVideoSection
           videoSrc="/videos/hero.mp4"
-          posterSrc="/images/hero-fallback.jpg"
           audioSrc="/videos/music.mp3"
           dramaticEntry={true}
           overlayText="Where Every Bite Tells a Thai Story"
@@ -116,7 +111,6 @@ export const HomePage = () => {
           ]}
         />
       </motion.div>
-      
 
       {/* Main Content Section */}
       <main className="relative bg-black z-30">
@@ -124,8 +118,6 @@ export const HomePage = () => {
           <AnimatedSection>
             <section className="py-24">
               <div className="text-center mb-20">
-                
-
                 <TypewriterEffect
                   text="Taste the Authentic Flavors"
                   speed={50}
@@ -156,30 +148,19 @@ export const HomePage = () => {
               </motion.div>
             </section>
           </AnimatedSection>
-          
 
-          
-            <AnimatedSection>
+          <AnimatedSection>
             <PremiumAboutSection />
           </AnimatedSection>
-          
 
-          
-            
-          
-
-          
-            <AnimatedSection>
+          <AnimatedSection>
             <PremiumLocationsSection />
           </AnimatedSection>
-          
         </Container>
       </main>
     </div>
   );
 };
-
-
 
 const FeaturedDishesCarousel: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -223,7 +204,9 @@ const FeaturedDishesCarousel: React.FC = () => {
           >
             <div className="dish-overlay">
               <h3 className="dish-name">{featuredItems[currentSlide].name}</h3>
-              <p className="dish-description">{featuredItems[currentSlide].description}</p>
+              <p className="dish-description">
+                {featuredItems[currentSlide].description}
+              </p>
               <div className="dish-price flex items-center">
                 <img
                   src="/images/dirhams.svg"
@@ -312,8 +295,6 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
     }
   }, [dramaticEntry]);
 
-
-
   // Text animation variants
   const textVariants = {
     hidden: {
@@ -358,40 +339,6 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
         loop
         playsInline
       />
-
-      {/* Fallback Background */}
-      <div
-        className={`
-          fixed inset-0 w-full h-full transition-opacity duration-1000 -z-30
-          ${!isVideoLoaded || hasVideoError ? "opacity-100" : "opacity-0"}
-        `}
-      >
-        {/* Gradient Background as Ultimate Fallback */}
-        <div className="absolute inset-0 bg-gradient-to-br from-thai-red via-thai-red/90 to-thai-red/80" />
-
-        {/* Thai Pattern Overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="w-full h-full bg-repeat"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.3'%3E%3Cpath d='M50 50c0-16.569-13.431-30-30-30s-30 13.431-30 30 13.431 30 30 30 30-13.431 30-30zm0 0c0 16.569 13.431 30 30 30s30-13.431 30-30-13.431-30-30-30-30 13.431-30 30z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-              backgroundSize: "100px 100px",
-            }}
-          />
-        </div>
-
-        {/* Fallback Image (if available) */}
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-80"
-          style={{
-            backgroundImage: `url(${posterSrc})`,
-          }}
-          onError={(e) => {
-            // Hide the image if it fails to load
-            (e.target as HTMLElement).style.display = "none";
-          }}
-        />
-      </div>
 
       {/* Dark Overlay for Text Readability */}
       <motion.div
@@ -491,8 +438,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
           Your browser does not support the audio element.
         </audio>
       )}
-
-
     </div>
   );
 };
+
