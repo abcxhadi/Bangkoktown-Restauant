@@ -8,7 +8,6 @@ const navLinks = [
   { name: 'Menu', path: '/menu' },
   { name: 'About', path: '/#about-us' },
   
-  { name: 'Reservations', path: '/reservations' },
 ];
 
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (

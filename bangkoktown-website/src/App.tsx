@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ResponsiveNavigation } from './components/layout';
 import { 
   HomePage, 
-  MenuPage, 
-  ReservationsPage
+  MenuPage
 } from './pages';
 
 function App() {
@@ -17,9 +16,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/menu" element={<MenuPage />} />
-          
-          
-          <Route path="/reservations" element={<ReservationsPage />} />
         </Routes>
       </div>
     </Router>

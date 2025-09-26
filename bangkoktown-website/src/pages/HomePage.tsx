@@ -94,6 +94,8 @@ export const HomePage = () => {
         <HeroVideoSection
           videoSrc="/videos/hero.mp4"
           posterSrc="/images/hero-fallback.jpg"
+          audioSrc="/videos/music.mp3"
+          dramaticEntry={true}
           overlayText="Where Every Bite Tells a Thai Story"
           className="relative z-20 hero-banner"
           buttons={[
@@ -255,6 +257,7 @@ interface HeroVideoSectionProps {
   className?: string;
   overlayText: string;
   buttons?: React.ReactNode[];
+  dramaticEntry?: boolean;
 }
 
 const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
@@ -264,6 +267,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
   className,
   overlayText,
   buttons,
+  dramaticEntry = false,
 }) => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [hasVideoError, setHasVideoError] = useState(false);
@@ -293,17 +297,22 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
     };
   }, []);
 
-  const toggleMusic = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (isMusicPlaying) {
-      audio.pause();
-    } else {
+  useEffect(() => {
+    if (dramaticEntry && audioRef.current) {
+      const audio = audioRef.current;
       audio.play().catch((err) => console.error("Audio play failed:", err));
+      setIsMusicPlaying(true);
+
+      const timer = setTimeout(() => {
+        audio.pause();
+        setIsMusicPlaying(false);
+      }, 10000); // 10 seconds
+
+      return () => clearTimeout(timer);
     }
-    setIsMusicPlaying(!isMusicPlaying);
-  };
+  }, [dramaticEntry]);
+
+
 
   // Text animation variants
   const textVariants = {
@@ -430,14 +439,14 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
             <span className="block text-white drop-shadow-2xl">
               Bangkok Town
             </span>
-            <span className="block netflix-body-medium text-3xl md:text-4xl lg:text-5xl mt-2 text-white/90 uppercase tracking-widest">
+            <span className="block netflix-heading text-3xl md:text-4xl lg:text-5xl mt-2 text-white/90 uppercase tracking-widest">
               Thai Restaurant
             </span>
           </motion.h1>
 
           {/* Tagline */}
           <motion.p
-            className="netflix-body text-xl md:text-2xl lg:text-3xl text-white/95 mb-8 font-light"
+            className="netflix-heading text-xl md:text-2xl lg:text-3xl text-white/95 mb-8"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: {
@@ -483,47 +492,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
         </audio>
       )}
 
-      {/* Music Toggle Button */}
-      {audioSrc && (
-        <div className="absolute bottom-8 right-8 z-20">
-          <button
-            onClick={toggleMusic}
-            className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 hover:bg-white/30"
-          >
-            {isMusicPlaying ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M18.54 12.46a5 5 0 0 1-1.13 1.13l-4.34 2.5a3 3 0 0 1-4.13-4.13l2.5-4.34a5 5 0 0 1 1.13-1.13 5 5 0 0 1 5.96 5.97Z" />
-                <path d="M12 12v.01" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 12a5 5 0 0 1 5 5v0a5 5 0 0 1-5 5v0a5 5 0 0 1-5-5v0a5 5 0 0 1 5-5v0Z" />
-                <path d="M12 12V7a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v0" />
-              </svg>
-            )}
-          </button>
-        </div>
-      )}
+
     </div>
   );
 };

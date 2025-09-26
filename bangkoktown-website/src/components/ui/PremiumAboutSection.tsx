@@ -318,13 +318,13 @@ const PremiumAboutSection = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInUp} className="lg:order-1">
                 <TypewriterEffect
-                  text="Authentic Heritage"
+                  text="A Taste of Bangkok in the Heart of the UAE"
                   speed={50}
                   className="text-4xl font-bold text-white mb-6"
                   animateOnInView={true}
                 />
                 <TypewriterEffect
-                  text="Traditional recipes from Bangkok's finest kitchens, unchanged for generations. We bring the true taste of Thailand to your table, using only the freshest ingredients and time-honored techniques."
+                  text="Since 2001, Bangkok Town has been a cherished destination for authentic Thai cuisine. Our journey began with a simple mission: to bring the vibrant flavors of Thailand to the UAE. We are proud to have become a place where food lovers can experience the true essence of Thai culture."
                   speed={20}
                   className="text-gray-300 leading-relaxed text-lg font-light"
                   animateOnInView={true}
@@ -342,13 +342,13 @@ const PremiumAboutSection = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInUp} className="lg:order-2">
                 <TypewriterEffect
-                  text="Genuine Hospitality"
+                  text="Crafted with Passion, Served with Pride"
                   speed={50}
                   className="text-4xl font-bold text-white mb-6"
                   animateOnInView={true}
                 />
                 <TypewriterEffect
-                  text="Every guest is welcomed like family, creating connections that last. Our warm and attentive staff are dedicated to making your dining experience unforgettable, from the moment you step through our doors."
+                  text="Our expert Thai chefs, with their deep-rooted passion for their craft, use time-honored recipes and the freshest ingredients to create dishes that are both traditional and innovative. From the sizzle of the wok to the fragrant aroma of our curries, every meal is a testament to our commitment to quality and authenticity."
                   speed={20}
                   className="text-gray-300 leading-relaxed text-lg font-light"
                   animateOnInView={true}

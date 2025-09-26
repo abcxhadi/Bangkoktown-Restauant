@@ -48,5 +48,5 @@ export { default as PremiumAboutSection } from './PremiumAboutSection';
 
 export { FadingSection } from './FadingSection';
 export { ProgressBar } from './ProgressBar';
-export { StripePayment } from './StripePayment';
+
 export { default as TickerCarousel } from './TickerCarousel';

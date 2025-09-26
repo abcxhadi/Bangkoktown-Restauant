@@ -342,18 +342,6 @@ export const menuItems: MenuItem[] = [
     image: "/images/itemImages/papaya_salad.jpg",
   },
   {
-    id: 27,
-    name: "Tangy Shrimp Salad",
-    price: 39,
-    category: "salads",
-    isVeg: false,
-    hasVegOption: false,
-    description:
-      "Cooked shrimp tossed with onions, mint, cilantro, and spicy lime dressing",
-    spiceLevel: 3,
-    image: "/images/itemImages/tangy_shrimp_salad.jpg",
-  },
-  {
     id: 28,
     name: "Crispy Spinach Salad",
     price: "35-45",
@@ -376,18 +364,6 @@ export const menuItems: MenuItem[] = [
       "Mixed seafood salad with squid, shrimp, and fish, tossed in spicy Thai dressing",
     spiceLevel: 3,
     image: "/images/itemImages/seafood_salad.jpg",
-  },
-  {
-    id: 30,
-    name: "Vermicelli Salad",
-    price: "30-42",
-    category: "salads",
-    isVeg: false,
-    hasVegOption: true,
-    description:
-      "Glass noodle salad with fresh herbs, vegetables, and your choice of protein",
-    spiceLevel: 2,
-    image: "/images/itemImages/vermicelli_salad.jpg",
   },
 
   // Rice Dishes
@@ -437,18 +413,6 @@ export const menuItems: MenuItem[] = [
       "Fried rice with tom yum flavors, mushrooms, and aromatic herbs",
     spiceLevel: 3,
     image: "/images/itemImages/tom_yum_fried_rice.jpg",
-  },
-  {
-    id: 35,
-    name: "Garlic Fried Rice",
-    price: 30,
-    category: "rice",
-    isVeg: true,
-    hasVegOption: false,
-    description:
-      "Simple yet flavorful fried rice with garlic, soy sauce, and vegetables",
-    spiceLevel: 1,
-    image: "/images/itemImages/garlic_fried_rice.jpg",
   },
   {
     id: 36,
@@ -501,18 +465,6 @@ export const menuItems: MenuItem[] = [
     image: "/images/itemImages/rice_vermicelli_noodles.jpg",
   },
   {
-    id: 40,
-    name: "Sukiyaki Noodles",
-    price: "34-43",
-    category: "noodles",
-    isVeg: false,
-    hasVegOption: true,
-    description:
-      "Glass noodles cooked with vegetables and protein in sukiyaki sauce",
-    spiceLevel: 1,
-    image: "/images/itemImages/sukiyaki_noodles.jpg",
-  },
-  {
     id: 41,
     name: "Pad Thai",
     price: "31-43",
@@ -535,18 +487,6 @@ export const menuItems: MenuItem[] = [
       "Fresh yellow noodles stir-fried with vegetables and your choice of protein",
     spiceLevel: 1,
     image: "/images/itemImages/steam_yellow_noodle.jpg",
-  },
-  {
-    id: 43,
-    name: "Noodle and Beef",
-    price: 36,
-    category: "noodles",
-    isVeg: false,
-    hasVegOption: false,
-    description:
-      "Tender beef slices stir-fried with rice noodles in savory sauce",
-    spiceLevel: 1,
-    image: "/images/itemImages/noodle_and_beef.jpg",
   },
   {
     id: 44,
@@ -660,30 +600,6 @@ export const menuItems: MenuItem[] = [
     image: "/images/itemImages/sweet_and_sour.jpg",
   },
   {
-    id: 53,
-    name: "Stuffed Omelet",
-    price: "35-41",
-    category: "stirfried",
-    isVeg: false,
-    hasVegOption: true,
-    description:
-      "Fluffy Thai-style omelet stuffed with minced meat or vegetables",
-    spiceLevel: 1,
-    image: "/images/itemImages/stuffed_omelet.jpg",
-  },
-  {
-    id: 54,
-    name: "Thai Sukiyaki Stir-Fried",
-    price: "34-41",
-    category: "stirfried",
-    isVeg: false,
-    hasVegOption: true,
-    description:
-      "Glass noodles stir-fried with vegetables and protein in sukiyaki sauce",
-    spiceLevel: 1,
-    image: "/images/itemImages/thai_sukiyaki_stir_fried.jpg",
-  },
-  {
     id: 55,
     name: "Stir Fried Cashew Nut",
     price: "36-43",
@@ -744,17 +660,6 @@ export const menuItems: MenuItem[] = [
     image: "/images/itemImages/stir_fried_chilli_sauce.jpg",
   },
   {
-    id: 60,
-    name: "Stir Fried Oyster Sauce",
-    price: "34-38",
-    category: "stirfried",
-    isVeg: false,
-    hasVegOption: true,
-    description: "Classic stir-fry with rich oyster sauce and mixed vegetables",
-    spiceLevel: 1,
-    image: "/images/itemImages/stir_fried_oyster_sauce.jpg",
-  },
-  {
     id: 61,
     name: "Mix Veg & Seafood",
     price: 41,
@@ -776,17 +681,7 @@ export const menuItems: MenuItem[] = [
     spiceLevel: 1,
     image: "/images/itemImages/stir_fried_garlic_sauce.jpg",
   },
-  {
-    id: 63,
-    name: "Spicy Stir Fried",
-    price: "34-38",
-    category: "stirfried",
-    isVeg: false,
-    hasVegOption: true,
-    description: "Hot and spicy stir-fry with chili, garlic, and Thai herbs",
-    spiceLevel: 3,
-    image: "/images/itemImages/spicy_stir_fried.jpg",
-  },
+
   {
     id: 64,
     name: "Shrimp with Lemon Grass",
@@ -811,17 +706,6 @@ export const menuItems: MenuItem[] = [
     image: "/images/itemImages/pad_pet_je.jpg",
   },
   {
-    id: 86,
-    name: "Spicy Tofu",
-    price: 30,
-    category: "stirfried",
-    isVeg: true,
-    hasVegOption: false,
-    description: "Crispy tofu stir-fried with chili, basil, and garlic",
-    spiceLevel: 3,
-    image: "/images/itemImages/spicy_tofu.jpg",
-  },
-  {
     id: 87,
     name: "Stir Fried Morning Glory",
     price: 32,
@@ -832,18 +716,6 @@ export const menuItems: MenuItem[] = [
       "Fresh morning glory (water spinach) stir-fried with garlic and chili",
     spiceLevel: 2,
     image: "/images/itemImages/stir_fried_morning_glory.jpg",
-  },
-  {
-    id: 88,
-    name: "Stir Fried Beansprout",
-    price: 30,
-    category: "stirfried",
-    isVeg: true,
-    hasVegOption: false,
-    description:
-      "Crunchy bean sprouts stir-fried with soy sauce and spring onions",
-    spiceLevel: 1,
-    image: "/images/itemImages/stir_fried_beansprout.jpg",
   },
   {
     id: 89,
@@ -867,18 +739,6 @@ export const menuItems: MenuItem[] = [
       "Grilled tofu in rich panang curry sauce with peanuts and kaffir lime",
     spiceLevel: 2,
     image: "/images/itemImages/panang_grilled_tofu_curry.jpg",
-  },
-  {
-    id: 91,
-    name: "Stir Fried Tofu with Ginger",
-    price: 32,
-    category: "stirfried",
-    isVeg: true,
-    hasVegOption: false,
-    description:
-      "Silky tofu stir-fried with fresh ginger, mushrooms, and soy sauce",
-    spiceLevel: 1,
-    image: "/images/itemImages/stir_fried_tofu_with_ginger.jpg",
   },
   {
     id: 92,
@@ -932,18 +792,6 @@ export const menuItems: MenuItem[] = [
     image: "/images/itemImages/seafood_fried.jpg",
   },
   {
-    id: 74,
-    name: "Steam Fish",
-    price: 89,
-    category: "seafood",
-    isVeg: false,
-    hasVegOption: false,
-    description:
-      "Fresh whole fish steamed with ginger, soy sauce, and spring onions",
-    spiceLevel: 1,
-    image: "/images/itemImages/steam_fish.jpg",
-  },
-  {
     id: 75,
     name: "Lobster with Cheese",
     price: 129,
@@ -979,17 +827,6 @@ export const menuItems: MenuItem[] = [
     image: "/images/itemImages/lobster_thai_sauce.jpg",
   },
   {
-    id: 78,
-    name: "Crab Grilled",
-    price: 69,
-    category: "seafood",
-    isVeg: false,
-    hasVegOption: false,
-    description: "Fresh mud crab grilled with garlic, pepper, and coriander",
-    spiceLevel: 2,
-    image: "/images/itemImages/crab_grilled.jpg",
-  },
-  {
     id: 79,
     name: "Fried Hamour",
     price: 89,
@@ -1012,18 +849,6 @@ export const menuItems: MenuItem[] = [
       "Fresh mussels grilled with Thai herbs, garlic, and lime juice",
     spiceLevel: 2,
     image: "/images/itemImages/grilled_mussels.jpg",
-  },
-  {
-    id: 81,
-    name: "Grilled Squid",
-    price: 55,
-    category: "seafood",
-    isVeg: false,
-    hasVegOption: false,
-    description:
-      "Tender squid grilled with lemongrass and served with spicy dipping sauce",
-    spiceLevel: 2,
-    image: "/images/itemImages/grilled_squid.jpg",
   },
   {
     id: 82,
@@ -1063,18 +888,6 @@ export const menuItems: MenuItem[] = [
     image: "/images/itemImages/sticky_rice_koaw_niaw.jpg",
   },
   {
-    id: 68,
-    name: "Green Salad",
-    price: 15,
-    category: "sides",
-    isVeg: true,
-    hasVegOption: false,
-    description:
-      "Fresh mixed greens with cucumber, tomatoes, and Thai dressing",
-    spiceLevel: 1,
-    image: "/images/itemImages/green_salad.jpg",
-  },
-  {
     id: 69,
     name: "Steam Jasmine Rice",
     price: 12,
@@ -1095,17 +908,6 @@ export const menuItems: MenuItem[] = [
     description: "Fresh yellow egg noodles steamed and served plain",
     spiceLevel: 1,
     image: "/images/itemImages/steam_yellow_noodle.jpg",
-  },
-  {
-    id: 71,
-    name: "Steam Vegetable",
-    price: 15,
-    category: "sides",
-    isVeg: true,
-    hasVegOption: false,
-    description: "Seasonal mixed vegetables lightly steamed and seasoned",
-    spiceLevel: 1,
-    image: "/images/itemImages/steam_vegetable.jpg",
   },
   {
     id: 72,
@@ -1143,18 +945,7 @@ export const menuItems: MenuItem[] = [
     spiceLevel: 1,
     image: "/images/itemImages/seasonal_fresh_fruit_platter.jpg",
   },
-  {
-    id: 115,
-    name: "Deep Fried Banana Served with Ice-Cream",
-    price: 30,
-    category: "desserts",
-    isVeg: true,
-    hasVegOption: false,
-    description:
-      "Golden fried bananas served with vanilla ice cream and honey drizzle",
-    spiceLevel: 1,
-    image: "/images/itemImages/deep_fried_banana_served_with_ice_cream.jpg",
-  },
+  
   {
     id: 116,
     name: "Sweet Corn with Pandan Leaves",
@@ -1178,40 +969,6 @@ export const menuItems: MenuItem[] = [
       "Thai dessert with water chestnuts in coconut milk and crushed ice",
     spiceLevel: 1,
     image: "/images/itemImages/tam_tim_grob.jpg",
-  },
-  {
-    id: 118,
-    name: "Sticky Rice with Durian",
-    price: 39,
-    category: "desserts",
-    isVeg: true,
-    hasVegOption: false,
-    description: "Sweet sticky rice served with the king of fruits - durian",
-    spiceLevel: 1,
-    image: "/images/itemImages/sticky_rice_with_durian.jpg",
-  },
-  {
-    id: 119,
-    name: "Thai Coconut Ice Cream",
-    price: 30,
-    category: "desserts",
-    isVeg: true,
-    hasVegOption: false,
-    description:
-      "Creamy coconut ice cream with toasted coconut flakes and peanuts",
-    spiceLevel: 1,
-    image: "/images/itemImages/thai_coconut_ice_cream.jpg",
-  },
-  {
-    id: 120,
-    name: "Mochi (Choice of Flavour)",
-    price: 30,
-    category: "desserts",
-    isVeg: true,
-    hasVegOption: false,
-    description: "Japanese-style rice cake with various flavor fillings",
-    spiceLevel: 1,
-    image: "/images/itemImages/mochi_choice_of_flavour.jpg",
   },
 
   // Beverages

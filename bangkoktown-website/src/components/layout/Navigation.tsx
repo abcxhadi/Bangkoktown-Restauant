@@ -19,7 +19,6 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
     { name: 'Menu', path: '/menu' },
     { name: 'About Us', path: '/#about-us' },
     
-    { name: 'Reservations', path: '/reservations' }
   ];
 
   const isActive = (path: string) => {
