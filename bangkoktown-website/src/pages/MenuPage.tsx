@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
 } from "../components/ui";
@@ -52,6 +52,11 @@ const menuPageCss = `
 export const MenuPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isVegOnly, setIsVegOnly] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       <style>{menuPageCss}</style>

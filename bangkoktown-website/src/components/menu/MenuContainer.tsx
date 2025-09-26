@@ -82,6 +82,7 @@ export const MenuContainer: React.FC<MenuContainerProps & { searchTerm: string; 
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
+    window.scrollTo(0, 0);
   };
 
   
