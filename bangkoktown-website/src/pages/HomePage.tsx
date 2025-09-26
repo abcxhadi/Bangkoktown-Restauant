@@ -225,7 +225,7 @@ const FeaturedDishesCarousel: React.FC = () => {
 
 interface HeroVideoSectionProps {
   videoSrc: string;
-  posterSrc: string;
+  posterSrc?: string;
   audioSrc?: string;
   className?: string;
   overlayText: string;
