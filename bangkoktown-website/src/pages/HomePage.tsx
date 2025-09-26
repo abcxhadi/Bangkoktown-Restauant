@@ -6,6 +6,7 @@ import {
   Container,
   Card,
   TickerCarousel,
+  Logo,
 } from "../components/ui";
 import { fadeIn } from "../utils/animations";
 import { TypewriterEffect } from "../components/ui/TypewriterEffect";
@@ -349,29 +350,9 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
           animate="visible"
           className="max-w-4xl mx-auto"
         >
-          {/* Main Heading */}
-          <motion.h1
-            className="netflix-heading text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight text-center"
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 1,
-                  ease: "easeOut",
-                  delay: 0.3,
-                },
-              },
-            }}
-          >
-            <span className="block text-white drop-shadow-2xl">
-              Bangkok Town
-            </span>
-            <span className="block netflix-heading text-3xl md:text-4xl lg:text-5xl mt-2 text-white/90  tracking-widest">
-              Thai Restaurant
-            </span>
-          </motion.h1>
+          <div className="flex justify-center mb-4">
+            <Logo size="xxxl" showText={false} />
+          </div>
 
           {/* Tagline */}
           <motion.p

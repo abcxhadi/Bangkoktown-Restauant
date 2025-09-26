@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 
 interface LogoProps {
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
   className?: string;
   showText?: boolean;
   linkTo?: string | null;
@@ -18,7 +18,9 @@ export const Logo = ({
     sm: 'w-8 h-8',
     md: 'w-12 h-12',
     lg: 'w-16 h-16',
-    xl: 'w-20 h-20'
+    xl: 'w-20 h-20',
+    xxl: 'w-24 h-24',
+    xxxl: 'w-72 h-72'
   };
 
   const textSizeClasses = {
@@ -33,7 +35,7 @@ export const Logo = ({
       {/* Logo Image with Curved Borders */}
       <div className={`
         ${sizeClasses[size]} 
-        rounded-full overflow-hidden 
+        overflow-hidden 
         border-2 border-thai-gold/50
         ring-4 ring-thai-gold/30 
         group-hover:ring-thai-gold/60 
