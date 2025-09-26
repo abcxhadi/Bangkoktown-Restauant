@@ -356,7 +356,7 @@ const PremiumAboutSection = () => {
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-1">
                 <img
-                  src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600&h=400&fit=crop"
+                  src="/images/thai-bowl.png"
                   alt="Genuine Hospitality"
                   className="rounded-2xl shadow-2xl w-full h-80 object-cover"
                 />

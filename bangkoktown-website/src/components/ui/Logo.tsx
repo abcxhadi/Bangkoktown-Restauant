@@ -43,7 +43,7 @@ export const Logo = ({
         bg-gradient-to-br from-purple-300 to-purple-400
       `}>
         <img
-          src={'/logo.png'}
+          src={'/images/logo.png'}
           alt="Bangkok Town Thai Restaurant"
           className="w-full h-full object-cover"
           onError={(e) => {
