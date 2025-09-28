@@ -39,10 +39,10 @@ export const Footer = () => {
           <div className="flex flex-col items-center md:items-start col-span-1">
             <Logo size="lg" />
             <div className="flex space-x-4 mt-4">
-              <a href="https://www.facebook.com/gazeborestaurant/" target="_blank" rel="noopener noreferrer" className="text-company-secondary/70 hover:text-thai-gold transition-colors">
+              <a href="https://www.facebook.com/bangkoktownuae/" target="_blank" rel="noopener noreferrer" className="text-company-secondary/70 hover:text-thai-gold transition-colors">
                 <FacebookIcon size={28} />
               </a>
-              <a href="https://www.instagram.com/gazeborestaurant/" target="_blank" rel="noopener noreferrer" className="text-company-secondary/70 hover:text-thai-gold transition-colors">
+              <a href="https://www.instagram.com/bangkoktownuae/" target="_blank" rel="noopener noreferrer" className="text-company-secondary/70 hover:text-thai-gold transition-colors">
                 <InstagramIcon size={28} />
               </a>
             </div>
