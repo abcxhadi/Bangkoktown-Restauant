@@ -77,6 +77,16 @@ export const MobileNavigation = () => {
     setIsOpen(false);
   };
 
+  const isLinkActive = (path: string) => {
+    if (path === '/') {
+      return location.pathname === '/' && location.hash === '';
+    } else if (path.startsWith('/#')) {
+      return location.pathname === '/' && location.hash === path.substring(1);
+    } else {
+      return location.pathname === path;
+    }
+  };
+
   return (
     <>
       <div className={`fixed top-4 left-4 z-50 transition-transform duration-300 ${scrollDirection === 'down' ? '-translate-y-20' : 'translate-y-0'}`}>
@@ -108,10 +118,14 @@ export const MobileNavigation = () => {
                 <NavLink
                   key={link.name}
                   to={link.path}
-                  onClick={(e) => handleLinkClick(e, link.path)}
-                  className={({ isActive }) =>
-                    `text-2xl font-semibold transition-colors py-2 block 
-                    ${isActive ? 'text-thai-gold' : 'text-white/80 hover:text-white'}`
+                  onClick={(e) => {
+                    handleLinkClick(e, link.path);
+                    setIsOpen(false);
+                  }}
+                  className={
+                    isLinkActive(link.path)
+                      ? 'text-2xl font-semibold transition-colors py-2 block text-thai-gold'
+                      : 'text-2xl font-semibold transition-colors py-2 block text-white/80 hover:text-white'
                   }
                 >
                   {link.name}
@@ -123,4 +137,5 @@ export const MobileNavigation = () => {
       )}
     </>
   );
+
 };

@@ -23,7 +23,13 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
   ];
 
   const isActive = (path: string) => {
-    return location.pathname === path;
+    if (path === '/') {
+      return location.pathname === '/' && location.hash === '';
+    } else if (path.startsWith('/#')) {
+      return location.pathname === '/' && location.hash === path.substring(1);
+    } else {
+      return location.pathname === path;
+    }
   };
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {

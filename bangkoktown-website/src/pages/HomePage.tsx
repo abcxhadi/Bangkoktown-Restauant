@@ -96,13 +96,12 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
           overlayText=""
           className="relative hero-banner"
           buttons={[
-            <NetflixButton
+            <a
               onClick={handleViewMenu}
-              variant="primary"
-              size="large"
+              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-company-primary to-company-accent text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
             >
-              View Full Menu
-            </NetflixButton>,
+              <span>View Menu</span>
+            </a>,
           ]}
         />
       </motion.div>

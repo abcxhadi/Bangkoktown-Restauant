@@ -93,17 +93,16 @@ export const MenuPage = () => {
       {/* Main Content */}
       <main className="relative bg-company-neutral z-30">
         <Container>
-          <Card variant="transparent" className="bg-company-neutral/50 border-none">
-            <div className="text-center text-company-secondary/80 text-sm p-4">
-              <div className="flex justify-center items-center mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-company-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <p>Call us now to order or check if delivery is available at your location: <a href="tel:065568282" className="hover:text-company-primary">06 556 8282</a></p>
-              </div>
-              <p className="text-xs text-company-secondary/60 mb-2">Please note that we do not offer delivery through the website.</p>
-            </div>
-          </Card>
+          <div className="text-center py-8">
+            <a
+              href="tel:065568282"
+              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-company-primary to-company-accent text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              <span>Call to Order</span>
+
+            </a>
+            <p className="text-xs text-company-secondary/60 mt-4">Please note that we do not offer delivery through the website.</p>
+          </div>
           <SearchBar 
             searchTerm={searchTerm} 
             isVegOnly={isVegOnly} 
