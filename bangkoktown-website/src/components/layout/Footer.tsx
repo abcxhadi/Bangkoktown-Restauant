@@ -6,20 +6,7 @@ export const Footer = () => {
     document.body.scrollIntoView({ behavior: "smooth" });
   };
 
-  const locations = [
-    {
-      name: "Bangkok Town (Behind Amphitheatre, Majaz 3, sharjah)",
-      phone: "06 556 8282",
-    },
-    {
-      name: "Bangkok Town (Zawaya Walk , Sharjah)",
-      phone: "06 546 8383",
-    },
-    {
-      name: "Bangkok Town (Al Manar Hotel , Abu Hail ,Dubai)",
-      phone: "04 239 7242",
-    },
-  ];
+
 
   return (
     <footer className="bg-gradient-to-br from-company-neutral via-gray-800 to-company-neutral text-company-secondary relative overflow-hidden">
@@ -82,41 +69,10 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Locations Section */}
-          <div className="lg:col-span-6">
-            <div className="mb-6">
-              <h3 className="netflix-subheading text-xl mb-2 bg-gradient-to-r from-company-accent to-company-primary bg-clip-text text-transparent">
-                Our Locations
-              </h3>
-              <div className="w-16 h-0.5 bg-gradient-to-r from-company-accent to-company-primary rounded-full"></div>
-            </div>
 
-            <div className="grid gap-3">
-              {locations.map((location, index) => (
-                <div
-                  key={index}
-                  className="group p-3 bg-company-secondary/5 backdrop-blur-sm rounded-lg border border-company-secondary/10 hover:border-company-accent/30 transition-all duration-300 hover:transform hover:scale-[1.01] hover:shadow-lg hover:shadow-black/10"
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
-                    <div className="flex-1 min-w-0 mb-1 sm:mb-0">
-                      <h4 className="font-medium text-sm text-company-secondary group-hover:text-company-accent transition-colors duration-300 leading-tight">
-                        {location.name}
-                      </h4>
-                    </div>
-                    <div className="flex items-center space-x-2 text-company-secondary/70 sm:ml-3">
-                      <div className="w-1 h-1 bg-company-accent rounded-full animate-pulse"></div>
-                      <span className="font-mono text-xs group-hover:text-company-accent transition-colors duration-300 whitespace-nowrap">
-                        {location.phone}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Opening Times Section */}
-          <div className="lg:col-span-2 flex flex-col items-center lg:items-end">
+          <div className="lg:col-span-8 flex flex-col items-center lg:items-end">
             <div className="text-center lg:text-right w-full">
               <h3 className="netflix-subheading text-xl mb-4 bg-gradient-to-r from-company-accent to-company-primary bg-clip-text text-transparent">
                 Opening Times
