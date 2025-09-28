@@ -107,7 +107,7 @@ export const HomePage = () => {
         <Container>
           <AnimatedSection>
             <section className="py-24">
-              <div className="text-center mb-20">
+              <div className="text-center mb-10">
                 <TypewriterEffect
                   text="Taste the Authentic Flavors"
                   speed={50}
@@ -125,7 +125,7 @@ export const HomePage = () => {
             </section>
           </AnimatedSection>
         </Container>
-        <motion.div variants={fadeIn} className="mt-[-5rem]">
+        <motion.div variants={fadeIn} className="mt-[-2rem]">
           <TickerCarousel />
         </motion.div>
         <div className="text-center mt-12">
