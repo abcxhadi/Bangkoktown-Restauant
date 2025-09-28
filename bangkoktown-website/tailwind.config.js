@@ -15,6 +15,12 @@ module.exports = {
           lightGreen: '#A8D8B9',
           cream: '#000000',
           warmGray: '#8B7355'
+        },
+        company: {
+          primary: '#c799d9',
+          secondary: '#fdfeff',
+          accent: '#f3b742',
+          neutral: '#353535'
         }
       },
       fontFamily: {

@@ -8,7 +8,7 @@ import '../../currency.css';
 export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
   const renderPrice = () => {
     return (
-      <span className="netflix-subheading text-white text-lg flex items-center">
+      <span className="netflix-subheading text-company-secondary text-lg flex items-center">
         <img src="/images/dirhams.svg" alt="Dirhams" className="w-5 h-5 mr-1 dirhams-gold" />
         {item.price}
       </span>
@@ -44,7 +44,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
   
 
   return (
-    <Card variant="transparent" className="relative group h-full flex flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-thai-gold/5 to-thai-orange/5 p-1 hover:shadow-2xl transition-all duration-500">
+    <Card variant="transparent" className="relative group h-full flex flex-col overflow-hidden rounded-3xl bg-gradient-to-br from-company-accent/5 to-company-primary/5 p-1 hover:shadow-2xl transition-all duration-500">
       <div className="relative overflow-hidden rounded-3xl h-full">
         {item.image && (
           <img
@@ -53,14 +53,14 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
             className="absolute top-0 left-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent"></div>
-        <div className="relative z-10 flex flex-col h-full p-6 text-white">
+        <div className="absolute inset-0 bg-gradient-to-t from-company-neutral/95 via-company-neutral/60 to-transparent"></div>
+        <div className="relative z-10 flex flex-col h-full p-6 text-company-secondary">
           <div className="flex-grow">
             <h3 className="netflix-subheading text-2xl mb-2 text-thai-gold transition-colors duration-300">
               {item.name}
             </h3>
             {item.description && (
-              <p className="netflix-body text-white/90 text-sm leading-relaxed mb-4">
+              <p className="netflix-body text-company-secondary/90 text-sm leading-relaxed mb-4">
                 {item.description}
               </p>
             )}

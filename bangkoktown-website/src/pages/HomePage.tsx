@@ -79,9 +79,9 @@ export const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black relative">
+    <div className="min-h-screen bg-company-neutral relative">
       {/* Netflix-style gradient overlay */}
-      <div className="fixed inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none z-10"></div>
+      <div className="fixed inset-0 bg-gradient-to-b from-company-neutral/60 via-transparent to-company-neutral/80 pointer-events-none z-10"></div>
 
       <motion.div>
         <HeroVideoSection
@@ -103,7 +103,7 @@ export const HomePage = () => {
       </motion.div>
 
       {/* Main Content Section */}
-      <main className="relative bg-black z-30">
+      <main className="relative bg-company-neutral z-30">
         <Container>
           <AnimatedSection>
             <section className="py-24">
@@ -111,34 +111,33 @@ export const HomePage = () => {
                 <TypewriterEffect
                   text="Taste the Authentic Flavors"
                   speed={50}
-                  className="netflix-heading text-5xl lg:text-6xl mb-8 text-white"
+                  className="netflix-heading text-5xl lg:text-6xl mb-8 text-company-secondary"
                   animateOnInView={true}
                 />
 
                 <TypewriterEffect
                   text="Discover our most beloved dishes, crafted with traditional recipes and the finest ingredients imported directly from Thailand."
                   speed={20}
-                  className="netflix-body text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light"
+                  className="netflix-body text-company-secondary/80 text-xl max-w-3xl mx-auto leading-relaxed font-light"
                   animateOnInView={true}
                 />
               </div>
-
-              <motion.div variants={fadeIn}>
-                <TickerCarousel />
-              </motion.div>
-
-              <motion.div variants={fadeIn} className="mt-12 text-center">
-                <NetflixButton
-                  onClick={handleViewMenu}
-                  variant="secondary"
-                  size="large"
-                >
-                  View Full Menu
-                </NetflixButton>
-              </motion.div>
             </section>
           </AnimatedSection>
-
+        </Container>
+        <motion.div variants={fadeIn} className="mt-[-5rem]">
+          <TickerCarousel />
+        </motion.div>
+        <div className="text-center mt-12">
+          <NetflixButton
+            onClick={handleViewMenu}
+            variant="secondary"
+            size="large"
+          >
+            View Full Menu
+          </NetflixButton>
+        </div>
+        <Container>
           <AnimatedSection>
             <PremiumAboutSection />
           </AnimatedSection>
@@ -325,7 +324,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
 
       {/* Dark Overlay for Text Readability */}
       <motion.div
-        className="fixed inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50 -z-10"
+        className="fixed inset-0 bg-gradient-to-b from-company-neutral/30 via-company-neutral/20 to-company-neutral/50 -z-10"
         variants={overlayVariants}
         initial="hidden"
         animate="visible"
@@ -336,7 +335,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
         <div
           className="w-full h-full bg-repeat opacity-30"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFD700' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23f3b742' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             backgroundSize: "60px 60px",
           }}
         />
@@ -356,7 +355,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
 
           {/* Tagline */}
           <motion.p
-            className="netflix-heading text-xl md:text-2xl lg:text-3xl text-white/95 mb-8"
+            className="netflix-heading text-xl md:text-2xl lg:text-3xl text-company-secondary/95 mb-8"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: {

@@ -141,7 +141,7 @@ export const MenuContainer: React.FC<MenuContainerProps & { searchTerm: string; 
 
       {/* Results Count */}
       <div className="text-center">
-        <BodyText className="text-thai-warmGray">
+        <BodyText className="text-company-secondary/80">
           Showing {filteredItems.length} dish
           {filteredItems.length !== 1 ? "es" : ""}
           {activeCategory !== "all" && (
@@ -165,17 +165,17 @@ export const MenuContainer: React.FC<MenuContainerProps & { searchTerm: string; 
       ) : (
         <Card
           variant="transparent"
-          className="text-center p-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl"
+          className="text-center p-12 bg-company-secondary/10 backdrop-blur-md border border-company-secondary/20 rounded-3xl"
         >
           <LanternIcon
             size={64}
-            color="white"
+            color="#fdfeff"
             className="mx-auto mb-4 opacity-50"
           />
-          <Heading2 className="text-xl mb-4 text-white">
+          <Heading2 className="text-xl mb-4 text-company-secondary">
             No dishes found
           </Heading2>
-          <BodyText className="text-white/70 mb-6">
+          <BodyText className="text-company-secondary/70 mb-6">
             Try adjusting your filters or search terms to find what you're
             looking for.
           </BodyText>

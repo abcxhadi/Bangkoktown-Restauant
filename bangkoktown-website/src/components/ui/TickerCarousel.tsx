@@ -97,34 +97,18 @@ const TickerCarousel = () => {
   return (
     <div
       ref={carouselRef}
-      className="relative w-full max-w-6xl mx-auto h-[750px] sm:h-[650px] bg-black rounded-3xl overflow-hidden shadow-2xl"
+      className="relative w-full max-w-6xl mx-auto h-[750px] sm:h-[650px] overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Enhanced animated background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/20 to-black/20 transition-all duration-1000 ease-out">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/40 to-black"></div>
-        {/* Subtle animated particles effect */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-20 w-2 h-2 bg-white rounded-full animate-pulse"></div>
-          <div
-            className="absolute top-40 right-32 w-1 h-1 bg-red-400 rounded-full animate-pulse"
-            style={{ animationDelay: "1s" }}
-          ></div>
-          <div
-            className="absolute bottom-32 left-40 w-1 h-1 bg-amber-400 rounded-full animate-pulse"
-            style={{ animationDelay: "2s" }}
-          ></div>
-        </div>
-      </div>
 
       {/* Main content area */}
       <div className="relative z-10 h-full p-4 sm:p-8 flex flex-col">
         {/* Main card area with responsive height */}
         <div className="flex-1 flex items-center justify-center relative">
           {/* Cards container */}
-          <div className="relative w-full max-w-5xl h-[580px] sm:h-[480px]">
+          <div className="relative w-full max-w-7xl h-[620px] sm:h-[620px]">
             {extendedItems.map((item: MenuItem, index: number) => {
               const position =
                 (index - currentIndex + extendedItems.length) %
@@ -149,7 +133,7 @@ const TickerCarousel = () => {
                 (currentIndex === extendedItems.length - 1 && index === 0)
               ) {
                 // Next card - responsive positioning
-                const translateX = isMobile ? "140px" : "220px";
+                const translateX = isMobile ? "100px" : "320px";
                 transform = `translateX(${translateX}) translateZ(-100px)`;
                 opacity = isMobile ? 0.5 : 0.7;
                 scale = isMobile ? 0.85 : 0.92;
@@ -161,7 +145,7 @@ const TickerCarousel = () => {
                 (currentIndex === 0 && index === extendedItems.length - 1)
               ) {
                 // Previous card - responsive positioning
-                const translateX = isMobile ? "-140px" : "-220px";
+                const translateX = isMobile ? "-100px" : "-320px";
                 transform = `translateX(${translateX}) translateZ(-100px)`;
                 opacity = isMobile ? 0.5 : 0.7;
                 scale = isMobile ? 0.85 : 0.92;
@@ -174,7 +158,7 @@ const TickerCarousel = () => {
                 (currentIndex === extendedItems.length - 1 && index === 1)
               ) {
                 // Far next card
-                const translateX = isMobile ? "240px" : "360px";
+                const translateX = isMobile ? "200px" : "640px";
                 transform = `translateX(${translateX}) translateZ(-200px)`;
                 opacity = 0.35;
                 scale = 0.8;
@@ -187,7 +171,7 @@ const TickerCarousel = () => {
                 (currentIndex === 0 && index === extendedItems.length - 2)
               ) {
                 // Far previous card
-                const translateX = isMobile ? "-240px" : "-360px";
+                const translateX = isMobile ? "-200px" : "-640px";
                 transform = `translateX(${translateX}) translateZ(-200px)`;
                 opacity = 0.35;
                 scale = 0.8;
@@ -210,12 +194,12 @@ const TickerCarousel = () => {
                   onClick={() => goToSlide(index)}
                 >
                   {/* Responsive card container */}
-                  <div className="w-[280px] sm:w-[340px] h-[480px] sm:h-[420px] relative group perspective-1000">
+                  <div className="w-[320px] sm:w-[480px] h-[520px] sm:h-[520px] relative group perspective-1000">
                     {/* Enhanced gradient border with animation */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-red-500 via-amber-500 to-red-500 rounded-2xl opacity-60 group-hover:opacity-90 transition-all duration-500 animate-pulse"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-company-primary via-company-accent to-company-primary rounded-2xl opacity-60 group-hover:opacity-90 transition-all duration-500 animate-pulse"></div>
 
                     {/* Main card with enhanced styling */}
-                    <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden h-full border border-gray-700 group-hover:border-gray-600 transition-all duration-500 shadow-2xl">
+                    <div className="relative bg-gradient-to-br from-company-neutral to-company-neutral rounded-2xl overflow-hidden h-full border border-company-secondary/20 group-hover:border-company-secondary/30 transition-all duration-500 shadow-2xl">
                       {/* Dish image with responsive layout */}
                       <div className="relative h-full overflow-hidden">
                         <img
@@ -227,12 +211,12 @@ const TickerCarousel = () => {
                       </div>
 
                       {/* Content section - separate on mobile, overlay on desktop */}
-                      <div className="absolute bottom-0 left-0 right-0 h-auto p-4 sm:p-6 space-y-2 sm:space-y-4 bg-gradient-to-t from-gray-900/90 to-transparent">
+                      <div className="absolute bottom-0 left-0 right-0 h-auto p-4 sm:p-6 space-y-2 sm:space-y-4 bg-gradient-to-t from-company-neutral/90 to-transparent">
                         <div className="space-y-1 sm:space-y-2">
-                          <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-gray-100 group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-500">
+                          <h3 className="text-lg sm:text-xl font-bold text-company-secondary group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-company-secondary group-hover:via-gray-100 group-hover:to-gray-300 group-hover:bg-clip-text transition-all duration-500">
                             {item.name}
                           </h3>
-                            <p className="text-gray-300 text-xs leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                            <p className="text-company-secondary/80 text-xs leading-relaxed group-hover:text-company-secondary/90 transition-colors duration-300">
                               {item.description}
                             </p>
                             
@@ -255,14 +239,14 @@ const TickerCarousel = () => {
             <button
               onClick={handlePrev}
               disabled={isTransitioning}
-              className="group p-2 sm:p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/15 hover:border-white/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group p-2 sm:p-3 rounded-full bg-company-secondary/5 backdrop-blur-sm border border-company-secondary/10 text-company-secondary hover:bg-company-secondary/15 hover:border-company-secondary/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
             </button>
             <button
               onClick={handleNext}
               disabled={isTransitioning}
-              className="group p-2 sm:p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-white/15 hover:border-white/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group p-2 sm:p-3 rounded-full bg-company-secondary/5 backdrop-blur-sm border border-company-secondary/10 text-company-secondary hover:bg-company-secondary/15 hover:border-company-secondary/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
             >
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
             </button>
@@ -278,8 +262,8 @@ const TickerCarousel = () => {
                   onClick={() => goToSlide(totalItems + index)}
                   className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-500 ${
                     isActive
-                      ? "bg-gradient-to-r from-red-500 to-amber-500 w-6 sm:w-8 shadow-lg shadow-current/50"
-                      : "bg-white/30 hover:bg-white/50"
+                      ? "bg-gradient-to-r from-company-primary to-company-accent w-6 sm:w-8 shadow-lg shadow-current/50"
+                      : "bg-company-secondary/30 hover:bg-company-secondary/50"
                   }`}
                 />
               );

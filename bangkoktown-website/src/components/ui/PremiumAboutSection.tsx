@@ -101,9 +101,9 @@ const AwardsSlider = () => {
           overflow: hidden;
           position: relative;
           width: 100%;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(255, 255, 255, 0.02);
+          border-top: 1px solid rgba(253, 254, 255, 0.1);
+          border-bottom: 1px solid rgba(253, 254, 255, 0.1);
+          background: rgba(253, 254, 255, 0.02);
           backdrop-filter: blur(10px);
         }
 
@@ -121,8 +121,8 @@ const AwardsSlider = () => {
           left: 0;
           background: linear-gradient(
             to right,
-            #000000 0%,
-            rgba(0, 0, 0, 0.8) 50%,
+            #353535 0%,
+            rgba(53, 53, 53, 0.8) 50%,
             transparent 100%
           );
         }
@@ -131,8 +131,8 @@ const AwardsSlider = () => {
           right: 0;
           background: linear-gradient(
             to left,
-            #000000 0%,
-            rgba(0, 0, 0, 0.8) 50%,
+            #353535 0%,
+            rgba(53, 53, 53, 0.8) 50%,
             transparent 100%
           );
         }
@@ -167,15 +167,15 @@ const AwardsSlider = () => {
           gap: 1rem;
           padding: 1rem;
           border-radius: 12px;
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(253, 254, 255, 0.05);
+          border: 1px solid rgba(253, 254, 255, 0.1);
           transition: all 0.3s ease;
           min-width: 280px;
         }
 
         .award-content:hover {
-          background: rgba(255, 255, 255, 0.08);
-          border-color: rgba(255, 255, 255, 0.2);
+          background: rgba(253, 254, 255, 0.08);
+          border-color: rgba(253, 254, 255, 0.2);
         }
 
         .award-logo {
@@ -193,14 +193,14 @@ const AwardsSlider = () => {
         }
 
         .award-name {
-          color: #ffffff;
+          color: #fdfeff;
           font-weight: 600;
           font-size: 1rem;
           line-height: 1.2;
         }
 
         .award-desc {
-          color: #a1a1aa;
+          color: rgba(253, 254, 255, 0.7);
           font-size: 0.875rem;
           font-weight: 300;
         }
@@ -285,7 +285,7 @@ const PremiumAboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="py-24 sm:py-32 bg-black">
+    <section ref={ref} className="py-24 sm:py-32 bg-company-neutral">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <motion.div
@@ -297,10 +297,10 @@ const PremiumAboutSection = () => {
           <TypewriterEffect
             text="Why Bangkok Town?"
             speed={50}
-            className="netflix-heading text-5xl lg:text-6xl mb-8 text-white font-bold"
+            className="netflix-heading text-5xl lg:text-6xl mb-8 text-company-secondary font-bold"
             animateOnInView={true}
           />
-          <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-company-secondary/80 text-xl max-w-3xl mx-auto leading-relaxed font-light">
             Excellence recognized. Tradition honored. Experience perfected.
           </p>
         </motion.div>
@@ -320,13 +320,13 @@ const PremiumAboutSection = () => {
                 <TypewriterEffect
                   text="A Taste of Bangkok in the Heart of the UAE"
                   speed={50}
-                  className="text-4xl font-bold text-white mb-6"
+                  className="text-4xl font-bold text-company-secondary mb-6"
                   animateOnInView={true}
                 />
                 <TypewriterEffect
-                  text="Since 2001, Bangkok Town has been a cherished destination for authentic Thai cuisine. Our journey began with a simple mission: to bring the vibrant flavors of Thailand to the UAE. We are proud to have become a place where food lovers can experience the true essence of Thai culture."
+                  text="Since 2001, Bangkok Town has been a premier destination for authentic Thai cuisine in the UAE. We are proud to be recognized for our traditional flavors, a dedication that has earned us the prestigious Thai SELECT certification from the Royal Thai Government."
                   speed={20}
-                  className="text-gray-300 leading-relaxed text-lg font-light"
+                  className="text-company-secondary/80 leading-relaxed text-lg font-light"
                   animateOnInView={true}
                 />
               </motion.div>
@@ -344,13 +344,13 @@ const PremiumAboutSection = () => {
                 <TypewriterEffect
                   text="Crafted with Passion, Served with Pride"
                   speed={50}
-                  className="text-4xl font-bold text-white mb-6"
+                  className="text-4xl font-bold text-company-secondary mb-6"
                   animateOnInView={true}
                 />
                 <TypewriterEffect
-                  text="Our expert Thai chefs, with their deep-rooted passion for their craft, use time-honored recipes and the freshest ingredients to create dishes that are both traditional and innovative. From the sizzle of the wok to the fragrant aroma of our curries, every meal is a testament to our commitment to quality and authenticity."
+                  text="Our commitment to culinary excellence is reflected in our consistently high ratings, including 4.6 stars on both Google Reviews and TripAdvisor. Join us for a truly authentic taste of Thailand, crafted by our expert chefs and beloved by the community for over two decades."
                   speed={20}
-                  className="text-gray-300 leading-relaxed text-lg font-light"
+                  className="text-company-secondary/80 leading-relaxed text-lg font-light"
                   animateOnInView={true}
                 />
               </motion.div>

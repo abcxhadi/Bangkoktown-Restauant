@@ -23,7 +23,7 @@ export const Logo = ({
     lg: "w-16 h-16",
     xl: "w-20 h-20",
     xxl: "w-24 h-24",
-    xxxl: "w-[600px] h-[190px]",
+    xxxl: "w-[300px] h-[95px] sm:w-[400px] sm:h-[127px] md:w-[600px] md:h-[190px]",
   };
 
   const textSizeClasses = {
