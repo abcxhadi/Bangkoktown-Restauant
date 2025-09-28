@@ -1,9 +1,17 @@
-import { useState, useRef, useEffect } from "react";
+import * as React from "react";
+import { useRef, useEffect, useState } from "react";
+import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute, FaTimes } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
-export const VideoPlayer = ({ src, onClose }) => {
+interface VideoPlayerProps {
+  src: string;
+  onClose: () => void;
+}
+
+export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showControls, setShowControls] = useState(false);
-  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -11,10 +19,7 @@ export const VideoPlayer = ({ src, onClose }) => {
 
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
-    const handleEnded = () => {
-      setIsPlaying(false);
-      setShowControls(true);
-    };
+    const handleEnded = () => setIsPlaying(false);
 
     video.addEventListener("play", handlePlay);
     video.addEventListener("pause", handlePause);
@@ -27,99 +32,69 @@ export const VideoPlayer = ({ src, onClose }) => {
     };
   }, []);
 
-  const togglePlayPause = () => {
+  const togglePlay = () => {
     const video = videoRef.current;
-    if (!video) return;
-
-    if (isPlaying) {
-      video.pause();
-      setShowControls(true);
-    } else {
-      video.play();
-      setShowControls(false);
+    if (video) {
+      if (isPlaying) {
+        video.pause();
+      } else {
+        video.play();
+      }
+      setIsPlaying(!isPlaying);
     }
   };
 
-  const handleVideoClick = (e) => {
-    e.preventDefault();
-    togglePlayPause();
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const handleVideoClick = (e: React.MouseEvent<HTMLVideoElement>) => {
+    // Prevent clicks on controls from closing the player
+    if (e.target instanceof HTMLVideoElement) {
+      togglePlay();
+    }
   };
 
   return (
-    <div className="relative w-full aspect-[9/16] bg-black rounded-lg overflow-hidden shadow-2xl">
-      {/* Close button */}
-      {onClose && (
-        <button
-          onClick={onClose}
-          className="absolute top-4 left-4 z-20 bg-black/60 hover:bg-black/80 text-white rounded-full p-2 transition-all duration-200 hover:scale-110"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
+    <div className="video-player-container relative w-full h-full max-w-full max-h-full flex flex-col items-center justify-center bg-black overflow-hidden">
+      <button onClick={onClose} className="close-button absolute top-4 right-4 text-white text-2xl z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors duration-200">
+        <IconContext.Provider value={{ className: "react-icons" }}>
+          <FaTimes />
+        </IconContext.Provider>
+      </button>
+      <video ref={videoRef} src={src} onClick={togglePlay} className="w-full h-full object-contain aspect-video" />
+      <div className="controls absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 bg-black/50 p-3 rounded-full">
+        <button onClick={togglePlay} className="control-button text-white text-xl">
+          <IconContext.Provider value={{ className: "react-icons" }}>
+            {isPlaying ? <FaPause /> : <FaPlay />}
+          </IconContext.Provider>
         </button>
-      )}
-
-      <video
-        ref={videoRef}
-        src={src}
-        className="w-full h-full object-cover"
-        onClick={handleVideoClick}
-        playsInline
-        preload="metadata"
-        style={{ cursor: "pointer" }}
-      />
-
-      {/* Overlay with play/pause button */}
-      <div
-        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
-          showControls || !isPlaying ? "opacity-100" : "opacity-0"
-        }`}
-        onClick={handleVideoClick}
-        style={{ cursor: "pointer" }}
-      >
-        <div className="bg-black/60 rounded-full p-4 transform transition-all duration-200 hover:scale-110 hover:bg-black/70">
-          {isPlaying ? (
-            // Pause icon
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="white"
-            >
-              <rect x="6" y="4" width="4" height="16" />
-              <rect x="14" y="4" width="4" height="16" />
-            </svg>
-          ) : (
-            // Play icon
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="white"
-            >
-              <polygon points="5 3 19 12 5 21 5 3" />
-            </svg>
-          )}
-        </div>
+        <button onClick={toggleMute} className="control-button text-white text-xl">
+          <IconContext.Provider value={{ className: "react-icons" }}>
+            {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+          </IconContext.Provider>
+        </button>
       </div>
     </div>
   );
 };
 
 // Updated InstagramFeed component
-export const InstagramFeed = () => {
-  const [selectedReel, setSelectedReel] = useState(null);
+interface InstagramFeedProps {
+  setIsPlayerOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
+  const [selectedReel, setSelectedReel] = useState<{
+    id: number;
+    videoSrc: string;
+    imgSrc: string;
+    postUrl: string;
+  } | null>(null);
 
   const reels = [
     {
@@ -152,6 +127,10 @@ export const InstagramFeed = () => {
     },
   ];
 
+  useEffect(() => {
+    setIsPlayerOpen(selectedReel !== null);
+  }, [selectedReel, setIsPlayerOpen]);
+
   return (
     <section id="gallery" className="py-24 bg-company-neutral">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -160,8 +139,8 @@ export const InstagramFeed = () => {
             Gallery
           </h2>
           <p className="netflix-body text-company-secondary/80 text-lg max-w-3xl mx-auto leading-relaxed font-light">
-            capturing the chaotic fun and delicious chaos of restaurant life
-            with endless laughs!
+            When fun meets food, chaos turns into flavor, and laughter never
+            leaves the table.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -217,10 +196,13 @@ export const InstagramFeed = () => {
       {/* Modal Component */}
       {selectedReel && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-8 bg-black/80 backdrop-blur-sm">
-          <div className="relative max-w-md w-full max-h-[90vh] flex flex-col">
+          <div className="relative w-full max-h-[90vh] flex flex-col">
             <VideoPlayer
               src={selectedReel.videoSrc}
-              onClose={() => setSelectedReel(null)}
+              onClose={() => {
+                setSelectedReel(null);
+                setIsPlayerOpen(false); // Ensure nav bar reappears
+              }}
             />
           </div>
         </div>

@@ -2,7 +2,7 @@
 export { Button } from './Button';
 export * from './Card';
 export * from './Modal';
-export * from './VideoPlayer';
+export { VideoPlayer } from './VideoPlayer';
 export * from './InstagramFeed';
 export { Container } from './Container';
 export * from './NetflixButton';

@@ -7,6 +7,7 @@ import { ResponsiveNavigation, Footer } from './components/layout';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [isPlayerOpen, setIsPlayerOpen] = useState(false); // New state for player visibility
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,9 +21,9 @@ function App() {
     <Router>
       {loading && <LoadingScreen />}
       <div className={`transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-        <ResponsiveNavigation />
+        {!isPlayerOpen && <ResponsiveNavigation />} {/* Conditionally render */}
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage setIsPlayerOpen={setIsPlayerOpen} />} /> {/* Pass setter */}
           <Route path="/menu" element={<MenuPage />} />
         </Routes>
         <Footer />

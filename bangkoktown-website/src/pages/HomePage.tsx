@@ -61,7 +61,11 @@ const AnimatedSection = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const HomePage = () => {
+interface HomePageProps {
+  setIsPlayerOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -144,7 +148,7 @@ export const HomePage = () => {
           </AnimatedSection>
 
           <AnimatedSection>
-            <InstagramFeed />
+            <InstagramFeed setIsPlayerOpen={setIsPlayerOpen} />
           </AnimatedSection>
 
           <AnimatedSection>
@@ -403,7 +407,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
 
       {/* Music Player */}
       {audioSrc && (
-        <audio ref={audioRef} loop>
+        <audio ref={audioRef} loop muted>
           <source src={audioSrc} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
