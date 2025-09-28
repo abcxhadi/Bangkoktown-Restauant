@@ -39,13 +39,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         <SearchIcon className="text-company-secondary/50 mr-3" size={20} />
         <input
           type="text"
-          placeholder="Search our delicious menu..."
-          className="bg-transparent flex-1 text-company-secondary placeholder-company-secondary/50 focus:outline-none netflix-body"
+          className="bg-transparent flex-1 text-company-secondary placeholder-company-secondary/50 focus:outline-none netflix-body pr-20"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
         />
         
-        <div className="flex items-center ml-3 pl-3 border-l border-company-secondary/20">
+        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center">
           <label className="flex items-center cursor-pointer group">
             <div className="relative">
               <input
