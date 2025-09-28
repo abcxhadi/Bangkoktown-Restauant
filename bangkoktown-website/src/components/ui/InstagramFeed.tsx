@@ -198,7 +198,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:scale-110">
+                                  <div className="text-white opacity-100 transition-opacity duration-300 transform group-hover:scale-110">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="48"
