@@ -12,6 +12,22 @@ export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [showControls, setShowControls] = useState(true); // New state for controls visibility
+  const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const hideControls = () => {
+    controlsTimeoutRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 3000); // Hide after 3 seconds of inactivity
+  };
+
+  const showAndResetControls = () => {
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+    setShowControls(true);
+    hideControls();
+  };
 
   useEffect(() => {
     const video = videoRef.current;
@@ -25,10 +41,16 @@ export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
     video.addEventListener("pause", handlePause);
     video.addEventListener("ended", handleEnded);
 
+    // Initial hide after a delay
+    hideControls();
+
     return () => {
       video.removeEventListener("play", handlePlay);
       video.removeEventListener("pause", handlePause);
       video.removeEventListener("ended", handleEnded);
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -41,6 +63,7 @@ export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
         video.play();
       }
       setIsPlaying(!isPlaying);
+      showAndResetControls(); // Show controls on play/pause
     }
   };
 
@@ -49,6 +72,7 @@ export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
     if (video) {
       video.muted = !isMuted;
       setIsMuted(!isMuted);
+      showAndResetControls(); // Show controls on mute/unmute
     }
   };
 
@@ -57,17 +81,34 @@ export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
     if (e.target instanceof HTMLVideoElement) {
       togglePlay();
     }
+    showAndResetControls(); // Show controls on video click
   };
 
   return (
-    <div className="video-player-container relative w-full h-full max-w-full max-h-full flex flex-col items-center justify-center bg-black overflow-hidden">
-      <button onClick={onClose} className="close-button absolute top-4 right-4 text-white text-2xl z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-colors duration-200">
+    <div
+      className="video-player-container relative w-full h-full max-w-full max-h-full flex flex-col items-center justify-center bg-black overflow-hidden"
+      onMouseEnter={showAndResetControls}
+      onMouseLeave={() => {
+        if (isPlaying) hideControls(); // Hide controls only if playing
+      }}
+      onClick={showAndResetControls} // For mobile touch events
+    >
+      <button
+        onClick={onClose}
+        className={`close-button absolute top-4 right-4 text-white text-2xl z-10 p-2 rounded-full bg-black/50 hover:bg-black/75 transition-opacity duration-300 ${
+          showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
         <IconContext.Provider value={{ className: "react-icons" }}>
           <FaTimes />
         </IconContext.Provider>
       </button>
-      <video ref={videoRef} src={src} onClick={togglePlay} className="w-full h-full object-contain aspect-video" />
-      <div className="controls absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 bg-black/50 p-3 rounded-full">
+      <video ref={videoRef} src={src} onClick={togglePlay} className="w-full h-full object-cover" />
+      <div
+        className={`controls absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 bg-black/50 p-3 rounded-full transition-opacity duration-300 ${
+          showControls ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
         <button onClick={togglePlay} className="control-button text-white text-xl">
           <IconContext.Provider value={{ className: "react-icons" }}>
             {isPlaying ? <FaPause /> : <FaPlay />}
@@ -195,7 +236,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
 
       {/* Modal Component */}
       {selectedReel && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-8 bg-black/80 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-8 bg-black/80 backdrop-blur-sm">
           <div className="relative w-full max-h-[90vh] flex flex-col">
             <VideoPlayer
               src={selectedReel.videoSrc}
