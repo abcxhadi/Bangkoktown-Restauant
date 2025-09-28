@@ -285,7 +285,7 @@ const PremiumAboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="py-24 sm:py-32 bg-company-neutral">
+    <section id="about-us" ref={ref} className="py-24 sm:py-32 bg-company-neutral">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <motion.div

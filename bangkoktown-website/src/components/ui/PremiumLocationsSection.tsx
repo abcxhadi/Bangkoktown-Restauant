@@ -110,14 +110,11 @@ export const PremiumLocationsSection = () => {
               <NetflixButton
                 variant="outline"
                 onClick={() => {
-                  const element = document.getElementById('locations');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
+                  window.location.href = 'tel:06 556 8282';
                 }}
-                icon="📍"
+                icon="📞"
               >
-                Find Us
+                Call Us
               </NetflixButton>
             </div>
           </div>

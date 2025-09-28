@@ -18,6 +18,7 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
     { name: 'Home', path: '/' },
     { name: 'Menu', path: '/menu' },
     { name: 'About Us', path: '/#about-us' },
+    { name: 'Gallery', path: '/#gallery' },
     
   ];
 
@@ -54,7 +55,7 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
           fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out
           ${scrollDirection === 'top'
             ? '!bg-transparent'
-            : 'bg-black/80 backdrop-blur-md shadow-thai'
+            : 'bg-company-neutral/80 backdrop-blur-md shadow-thai'
           }
           ${scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'}
           ${className}

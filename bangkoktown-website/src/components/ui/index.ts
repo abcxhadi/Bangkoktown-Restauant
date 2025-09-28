@@ -1,7 +1,12 @@
 // Base Components
 export { Button } from './Button';
-export { Card } from './Card';
+export * from './Card';
+export * from './Modal';
+export * from './VideoPlayer';
+export * from './InstagramFeed';
 export { Container } from './Container';
+export * from './NetflixButton';
+export * from './TypewriterEffect';
 
 // Typography
 export { 

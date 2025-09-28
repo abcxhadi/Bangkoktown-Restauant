@@ -7,6 +7,7 @@ import {
   Card,
   TickerCarousel,
   Logo,
+  InstagramFeed,
 } from "../components/ui";
 import { fadeIn } from "../utils/animations";
 import { TypewriterEffect } from "../components/ui/TypewriterEffect";
@@ -89,7 +90,7 @@ export const HomePage = () => {
           audioSrc="/videos/music.mp3"
           dramaticEntry={true}
           overlayText=""
-          className="relative z-20 hero-banner"
+          className="relative hero-banner"
           buttons={[
             <NetflixButton
               onClick={handleViewMenu}
@@ -106,7 +107,7 @@ export const HomePage = () => {
       <main className="relative bg-company-neutral z-30">
         <Container>
           <AnimatedSection>
-            <section className="py-24">
+            <section className="pt-24 pb-0">
               <div className="text-center mb-10">
                 <TypewriterEffect
                   text="Taste the Authentic Flavors"
@@ -140,6 +141,10 @@ export const HomePage = () => {
         <Container>
           <AnimatedSection>
             <PremiumAboutSection />
+          </AnimatedSection>
+
+          <AnimatedSection>
+            <InstagramFeed />
           </AnimatedSection>
 
           <AnimatedSection>
@@ -263,17 +268,20 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
   }, []);
 
   useEffect(() => {
-    if (dramaticEntry && audioRef.current) {
-      const audio = audioRef.current;
+    const audio = audioRef.current;
+    if (dramaticEntry && audio) {
       audio.play().catch((err) => console.error("Audio play failed:", err));
       setIsMusicPlaying(true);
 
-      const timer = setTimeout(() => {
+      const handleBeforeUnload = () => {
         audio.pause();
-        setIsMusicPlaying(false);
-      }, 10000); // 10 seconds
+      };
 
-      return () => clearTimeout(timer);
+      window.addEventListener('beforeunload', handleBeforeUnload);
+
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
     }
   }, [dramaticEntry]);
 
@@ -313,7 +321,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
       {/* Video Background */}
       <video
         ref={videoRef}
-        className="fixed inset-0 w-full h-full object-cover -z-20"
+        className="absolute top-0 left-0 w-full h-screen object-cover"
         src={videoSrc}
         poster={posterSrc}
         autoPlay
@@ -324,14 +332,14 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
 
       {/* Dark Overlay for Text Readability */}
       <motion.div
-        className="fixed inset-0 bg-gradient-to-b from-company-neutral/30 via-company-neutral/20 to-company-neutral/50 -z-10"
+        className="absolute inset-0 bg-gradient-to-b from-company-neutral/30 via-company-neutral/20 to-company-neutral/50 -z-10"
         variants={overlayVariants}
         initial="hidden"
         animate="visible"
       />
 
       {/* Thai Pattern Overlay */}
-      <div className="fixed inset-0 opacity-10 -z-10">
+      <div className="absolute inset-0 opacity-10 -z-10">
         <div
           className="w-full h-full bg-repeat opacity-30"
           style={{
