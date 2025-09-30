@@ -261,8 +261,7 @@ const PremiumAboutSection = () => {
         >
           <TypewriterEffect
             text="Why Bangkok Town?"
-            speed={50}
-            className="netflix-heading text-5xl lg:text-6xl mb-8 text-company-secondary font-bold"
+            className="netflix-heading text-4xl lg:text-5xl mb-8 text-company-secondary font-bold"
             animateOnInView={true}
           />
           <p className="text-company-secondary/80 text-xl max-w-3xl mx-auto leading-relaxed font-light">
@@ -284,8 +283,7 @@ const PremiumAboutSection = () => {
               <motion.div variants={fadeInUp} className="lg:order-1">
                 <TypewriterEffect
                   text="A Taste of Bangkok in the Heart of the UAE"
-                  speed={50}
-                  className="text-4xl font-bold text-company-secondary mb-6"
+                  className="text-2xl font-bold text-company-secondary mb-6"
                   animateOnInView={true}
                 />
                 <p className="text-company-secondary/80 leading-relaxed text-lg font-light">
@@ -309,8 +307,7 @@ const PremiumAboutSection = () => {
               <motion.div variants={fadeInUp} className="lg:order-2">
                 <TypewriterEffect
                   text="Crafted with Passion, Served with Pride"
-                  speed={50}
-                  className="text-4xl font-bold text-company-secondary mb-6"
+                  className="text-2xl font-bold text-company-secondary mb-6"
                   animateOnInView={true}
                 />
                 <p className="text-company-secondary/80 leading-relaxed text-lg font-light">

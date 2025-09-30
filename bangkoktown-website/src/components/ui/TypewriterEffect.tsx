@@ -8,7 +8,7 @@ interface TypewriterEffectProps {
   animateOnInView?: boolean;
 }
 
-export const TypewriterEffect: FC<TypewriterEffectProps> = ({ text, speed = 50, className, animateOnInView = false }) => {
+export const TypewriterEffect: FC<TypewriterEffectProps> = ({ text, speed = 10, className, animateOnInView = false }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 

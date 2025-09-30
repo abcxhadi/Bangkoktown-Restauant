@@ -97,6 +97,7 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
           className="relative hero-banner"
           buttons={[
             <a
+              key="view-menu-button"
               onClick={handleViewMenu}
               className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-company-primary to-company-accent text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
             >
@@ -114,14 +115,12 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
               <div className="text-center mb-10">
                 <TypewriterEffect
                   text="Taste the Authentic Flavors"
-                  speed={50}
-                  className="netflix-heading text-5xl lg:text-6xl mb-8 text-company-secondary"
+                  className="netflix-heading text-4xl lg:text-5xl mb-8 text-company-secondary"
                   animateOnInView={true}
                 />
 
                 <TypewriterEffect
                   text="Discover our most beloved dishes, crafted with traditional recipes and the finest ingredients imported directly from Thailand."
-                  speed={20}
                   className="netflix-body text-company-secondary/80 text-xl max-w-3xl mx-auto leading-relaxed font-light"
                   animateOnInView={true}
                 />
@@ -147,26 +146,11 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
           </AnimatedSection>
 
           <AnimatedSection>
-            <div className="text-center mb-10">
-              <TypewriterEffect
-                text="Our Gallery"
-                speed={50}
-                className="netflix-heading text-5xl lg:text-6xl mb-8 text-company-secondary"
-                animateOnInView={true}
-              />
-            </div>
+
             <InstagramFeed setIsPlayerOpen={setIsPlayerOpen} />
           </AnimatedSection>
 
           <AnimatedSection>
-            <div className="text-center mb-10">
-              <TypewriterEffect
-                text="Our Locations"
-                speed={50}
-                className="netflix-heading text-5xl lg:text-6xl mb-8 text-company-secondary"
-                animateOnInView={true}
-              />
-            </div>
             <PremiumLocationsSection />
           </AnimatedSection>
         </Container>

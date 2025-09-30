@@ -103,7 +103,7 @@ export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
           <FaTimes />
         </IconContext.Provider>
       </button>
-      <video ref={videoRef} src={src} onClick={togglePlay} className="w-full h-full object-cover" />
+      <video ref={videoRef} src={src} onClick={togglePlay} className="w-full h-full md:object-contain object-cover" />
       <div
         className={`controls absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 bg-black/50 p-3 rounded-full transition-opacity duration-300 ${
           showControls ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -176,7 +176,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
     <section id="gallery" className="py-24 bg-company-neutral">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="netflix-heading text-5xl lg:text-6xl mb-4 text-company-secondary font-bold">
+          <h2 className="netflix-heading text-4xl lg:text-5xl mb-4 text-company-secondary font-bold">
             Gallery
           </h2>
           <p className="netflix-body text-company-secondary/80 text-lg max-w-3xl mx-auto leading-relaxed font-light">
@@ -184,6 +184,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
             leaves the table.
           </p>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {reels.map((reel) => (
             <div

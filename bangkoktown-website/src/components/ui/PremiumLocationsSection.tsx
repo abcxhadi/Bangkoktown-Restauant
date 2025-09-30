@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { TypewriterEffect } from "./TypewriterEffect";
 import { Heading2, Heading3, BodyText } from ".";
 import { NetflixButton } from "./NetflixButton";
 
@@ -33,9 +34,11 @@ export const PremiumLocationsSection = () => {
   return (
     <section id="locations" className="py-24">
       <div className="text-center mb-20">
-        <h2 className="netflix-heading text-4xl lg:text-5xl mb-8 text-company-secondary">
-          Our Locations
-        </h2>
+        <TypewriterEffect
+          text="Our Locations"
+          className="netflix-heading text-4xl lg:text-5xl mb-8 text-company-secondary"
+          animateOnInView={true}
+        />
         <p className="netflix-body text-company-secondary/80 text-lg max-w-3xl mx-auto leading-relaxed font-light">
           Find us in various locations across the UAE, each offering a unique ambiance and the same exceptional quality you love.
         </p>
