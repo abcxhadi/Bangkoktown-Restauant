@@ -1,43 +1,8 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { TypewriterEffect } from "./TypewriterEffect";
 
-// TypewriterEffect component (simplified version)
-const TypewriterEffect = ({
-  text,
-  className,
-  speed = 50,
-  animateOnInView = false,
-}: {
-  text: string;
-  className: string;
-  speed?: number;
-  animateOnInView?: boolean;
-}) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const [displayText, setDisplayText] = React.useState("");
 
-  React.useEffect(() => {
-    if (!animateOnInView || isInView) {
-      let i = 0;
-      const timer = setInterval(() => {
-        if (i < text.length) {
-          setDisplayText(text.slice(0, i + 1));
-          i++;
-        } else {
-          clearInterval(timer);
-        }
-      }, speed);
-      return () => clearInterval(timer);
-    }
-  }, [text, speed, animateOnInView, isInView]);
-
-  return (
-    <div ref={ref} className={className}>
-      {displayText}
-    </div>
-  );
-};
 
 // Awards Slider Component
 const AwardsSlider = () => {
@@ -323,12 +288,13 @@ const PremiumAboutSection = () => {
                   className="text-4xl font-bold text-company-secondary mb-6"
                   animateOnInView={true}
                 />
-                <TypewriterEffect
-                  text="Since 2001, Bangkok Town has been a premier destination for authentic Thai cuisine in the UAE. We are proud to be recognized for our traditional flavors, a dedication that has earned us the prestigious Thai SELECT certification from the Royal Thai Government."
-                  speed={20}
-                  className="text-company-secondary/80 leading-relaxed text-lg font-light"
-                  animateOnInView={true}
-                />
+                <p className="text-company-secondary/80 leading-relaxed text-lg font-light">
+                  Since 2001, Bangkok Town has been a premier destination for
+                  authentic Thai cuisine in the UAE. We are proud to be
+                  recognized for our traditional flavors, a dedication that has
+                  earned us the prestigious Thai SELECT certification from the
+                  Royal Thai Government.
+                </p>
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-2">
                 <img
@@ -347,12 +313,13 @@ const PremiumAboutSection = () => {
                   className="text-4xl font-bold text-company-secondary mb-6"
                   animateOnInView={true}
                 />
-                <TypewriterEffect
-                  text="Our commitment to culinary excellence is reflected in our consistently high ratings, including 4.6 stars on both Google Reviews and TripAdvisor. Join us for a truly authentic taste of Thailand, crafted by our expert chefs and beloved by the community for over two decades."
-                  speed={20}
-                  className="text-company-secondary/80 leading-relaxed text-lg font-light"
-                  animateOnInView={true}
-                />
+                <p className="text-company-secondary/80 leading-relaxed text-lg font-light">
+                  Our commitment to culinary excellence is reflected in our
+                  consistently high ratings, including 4.6 stars on both Google
+                  Reviews and TripAdvisor. Join us for a truly authentic taste
+                  of Thailand, crafted by our expert chefs and beloved by the
+                  community for over two decades.
+                </p>
               </motion.div>
               <motion.div variants={fadeInUp} className="lg:order-1">
                 <img

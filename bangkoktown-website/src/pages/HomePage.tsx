@@ -147,10 +147,26 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
           </AnimatedSection>
 
           <AnimatedSection>
+            <div className="text-center mb-10">
+              <TypewriterEffect
+                text="Our Gallery"
+                speed={50}
+                className="netflix-heading text-5xl lg:text-6xl mb-8 text-company-secondary"
+                animateOnInView={true}
+              />
+            </div>
             <InstagramFeed setIsPlayerOpen={setIsPlayerOpen} />
           </AnimatedSection>
 
           <AnimatedSection>
+            <div className="text-center mb-10">
+              <TypewriterEffect
+                text="Our Locations"
+                speed={50}
+                className="netflix-heading text-5xl lg:text-6xl mb-8 text-company-secondary"
+                animateOnInView={true}
+              />
+            </div>
             <PremiumLocationsSection />
           </AnimatedSection>
         </Container>
