@@ -5,10 +5,11 @@ import { IconContext } from "react-icons";
 
 interface VideoPlayerProps {
   src: string;
+  poster?: string;
   onClose: () => void;
 }
 
-export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
+export const VideoPlayer = ({ src, poster, onClose }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -76,14 +77,6 @@ export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
     }
   };
 
-  const handleVideoClick = (e: React.MouseEvent<HTMLVideoElement>) => {
-    // Prevent clicks on controls from closing the player
-    if (e.target instanceof HTMLVideoElement) {
-      togglePlay();
-    }
-    showAndResetControls(); // Show controls on video click
-  };
-
   return (
     <div
       className="video-player-container relative w-full h-full max-w-full max-h-full flex flex-col items-center justify-center bg-black overflow-hidden"
@@ -103,7 +96,15 @@ export const VideoPlayer = ({ src, onClose }: VideoPlayerProps) => {
           <FaTimes />
         </IconContext.Provider>
       </button>
-      <video ref={videoRef} src={src} onClick={togglePlay} className="w-full h-full md:object-contain object-cover" />
+      <video
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        onClick={togglePlay}
+        className="w-full h-full md:object-contain object-cover"
+        playsInline
+        preload="metadata"
+      />
       <div
         className={`controls absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 bg-black/50 p-3 rounded-full transition-opacity duration-300 ${
           showControls ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -129,15 +130,83 @@ interface InstagramFeedProps {
   setIsPlayerOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
-  const [selectedReel, setSelectedReel] = useState<{
-    id: number;
-    videoSrc: string;
-    imgSrc: string;
-    postUrl: string;
-  } | null>(null);
+type Reel = {
+  id: number;
+  videoSrc: string;
+  imgSrc: string;
+  postUrl: string;
+};
 
-  const reels = [
+const captureVideoPoster = (videoSrc: string) =>
+  new Promise<string>((resolve, reject) => {
+    const video = document.createElement("video");
+    video.src = videoSrc;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "auto";
+
+    const cleanup = () => {
+      video.removeEventListener("loadeddata", handleLoadedData);
+      video.removeEventListener("seeked", handleSeeked);
+      video.removeEventListener("error", handleError);
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    };
+
+    const handleSeeked = () => {
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        const context = canvas.getContext("2d");
+        if (!context) {
+          throw new Error("Unable to get canvas context");
+        }
+
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const posterDataUrl = canvas.toDataURL("image/jpeg", 0.8);
+        cleanup();
+        resolve(posterDataUrl);
+      } catch (error) {
+        cleanup();
+        reject(error instanceof Error ? error : new Error("Poster capture failed"));
+      }
+    };
+
+    const handleLoadedData = () => {
+      if (video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+        return;
+      }
+
+      if (video.currentTime > 0) {
+        handleSeeked();
+        return;
+      }
+
+      try {
+        video.currentTime = Math.min(0.1, video.duration || 0.1);
+      } catch (error) {
+        cleanup();
+        reject(error instanceof Error ? error : new Error("Poster seek failed"));
+      }
+    };
+
+    const handleError = () => {
+      cleanup();
+      reject(new Error(`Failed to load video poster: ${videoSrc}`));
+    };
+
+    video.addEventListener("loadeddata", handleLoadedData);
+    video.addEventListener("seeked", handleSeeked);
+    video.addEventListener("error", handleError);
+  });
+
+export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
+  const [selectedReel, setSelectedReel] = useState<Reel | null>(null);
+  const [posters, setPosters] = useState<Record<number, string>>({});
+
+  const reels: Reel[] = [
     {
       id: 1,
       videoSrc: "/videos/instagram/video1.mp4",
@@ -172,6 +241,33 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
     setIsPlayerOpen(selectedReel !== null);
   }, [selectedReel, setIsPlayerOpen]);
 
+  useEffect(() => {
+    let isCancelled = false;
+
+    const loadPosters = async () => {
+      const posterEntries = await Promise.all(
+        reels.map(async (reel) => {
+          try {
+            const poster = await captureVideoPoster(reel.videoSrc);
+            return [reel.id, poster] as const;
+          } catch {
+            return [reel.id, reel.imgSrc] as const;
+          }
+        })
+      );
+
+      if (!isCancelled) {
+        setPosters(Object.fromEntries(posterEntries));
+      }
+    };
+
+    loadPosters();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
+
   return (
     <section id="gallery" className="py-24 bg-company-neutral">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -194,8 +290,10 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
             >
               <video
                 src={reel.videoSrc}
+                poster={posters[reel.id]}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                preload="metadata"
+                preload="none"
+                playsInline
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center">
@@ -241,6 +339,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
           <div className="relative w-full max-h-[90vh] flex flex-col">
             <VideoPlayer
               src={selectedReel.videoSrc}
+              poster={posters[selectedReel.id] ?? selectedReel.imgSrc}
               onClose={() => {
                 setSelectedReel(null);
                 setIsPlayerOpen(false); // Ensure nav bar reappears
