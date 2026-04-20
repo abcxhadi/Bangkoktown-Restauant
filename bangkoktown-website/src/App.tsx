@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HomePage, MenuPage } from './pages';
+import { HomePage, MenuPage, OffersPage } from './pages';
 import { LoadingScreen } from './components/ui/LoadingScreen';
 import { ResponsiveNavigation, Footer } from './components/layout';
 
@@ -25,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage setIsPlayerOpen={setIsPlayerOpen} />} /> {/* Pass setter */}
           <Route path="/menu" element={<MenuPage />} />
+          <Route path="/offers" element={<OffersPage />} />
         </Routes>
         <Footer />
       </div>

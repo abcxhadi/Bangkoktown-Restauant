@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { LanternIcon, ThaiPatternIcon, Logo } from '../ui';
+import { LanternIcon, ThaiPatternIcon } from '../ui';
 
 interface SimpleNavigationProps {
   className?: string;
@@ -22,7 +22,9 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
   const navigationItems = [
     { name: 'Home', href: '#home' },
     { name: 'Menu', href: '#menu' },
+    { name: 'Offers', href: '/offers' },
     { name: 'About Us', href: '#about' },
+    { name: 'Gallery', href: '#gallery' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -40,10 +42,7 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
         `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-20">
-            {/* Logo */}
-            <Logo size="md" linkTo="#home" withBackground={true} />
-
+          <div className="flex justify-end items-center h-16 lg:h-20">
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               {navigationItems.map((item) => (
@@ -131,6 +130,7 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
                 <div className="flex items-center space-x-3">
                   {item.name === 'Home' && <LanternIcon size={20} />}
                   {item.name === 'Menu' && <ThaiPatternIcon size={20} />}
+                  {item.name === 'Offers' && <LanternIcon size={20} />}
                   {item.name === 'About Us' && <LanternIcon size={20} />}
                   {item.name === 'Contact' && <ThaiPatternIcon size={20} />}
                   <span>{item.name}</span>
@@ -172,6 +172,7 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
                 <div className="transition-all duration-200">
                   {item.name === 'Home' && <LanternIcon size={24} />}
                   {item.name === 'Menu' && <ThaiPatternIcon size={24} />}
+                  {item.name === 'Offers' && <ThaiPatternIcon size={24} />}
                   {item.name === 'About Us' && <LanternIcon size={24} />}
                   {item.name === 'Contact' && <ThaiPatternIcon size={24} />}
                 </div>

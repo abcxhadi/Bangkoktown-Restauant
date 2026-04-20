@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LanternIcon, ThaiPatternIcon, Logo } from '../ui';
+import { LanternIcon, ThaiPatternIcon } from '../ui';
 import { useScrollDirection } from '../../hooks/useScrollDirection';
 
 interface NavigationProps {
@@ -17,6 +17,7 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
   const navigationItems = [
     { name: 'Home', path: '/' },
     { name: 'Menu', path: '/menu' },
+    { name: 'Offers', path: '/offers' },
     { name: 'About Us', path: '/#about-us' },
     { name: 'Gallery', path: '/#gallery' },
     
@@ -68,10 +69,7 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
         `}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-20">
-            {/* Logo */}
-            <Logo size="md" linkTo="/" withBackground={true} />
-
+          <div className="flex justify-end items-center h-16 lg:h-20">
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8">
               {navigationItems.map((item) => (
@@ -170,6 +168,7 @@ export const Navigation = ({ className = '', showSpacer = true }: NavigationProp
                 <div className="flex items-center space-x-3">
                   {item.name === 'Home' && <LanternIcon size={20} />}
                   {item.name === 'Menu' && <ThaiPatternIcon size={20} />}
+                  {item.name === 'Offers' && <LanternIcon size={20} />}
                   {item.name === 'About Us' && <LanternIcon size={20} />}
                   {item.name === 'Contact' && <ThaiPatternIcon size={20} />}
                   <span>{item.name}</span>

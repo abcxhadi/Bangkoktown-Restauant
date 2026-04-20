@@ -63,11 +63,11 @@ export const MenuPage = () => {
       {/* Subtle animated background patterns matching homepage */}
       <div className="fixed inset-0 opacity-5 pointer-events-none">
         <div
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-company-primary to-company-accent rounded-full blur-3xl animate-pulse"
+          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-purple-900 to-purple-700 rounded-full blur-3xl animate-pulse"
           style={{ animationDuration: "8s" }}
         ></div>
         <div
-          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-company-accent to-company-primary rounded-full blur-3xl animate-pulse"
+          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-tl from-purple-800 to-purple-900 rounded-full blur-3xl animate-pulse"
           style={{ animationDuration: "12s" }}
         ></div>
       </div>
@@ -96,7 +96,7 @@ export const MenuPage = () => {
           <div className="text-center py-8">
             <a
               href="tel:065568282"
-              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-company-primary to-company-accent text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-purple-500/30"
             >
               <span>Call to Order</span>
 

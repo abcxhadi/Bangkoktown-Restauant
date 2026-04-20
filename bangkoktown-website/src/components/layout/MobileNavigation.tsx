@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Logo } from '../ui';
 import { useScrollDirection } from '../../hooks/useScrollDirection';
 
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Menu', path: '/menu' },
+  { name: 'Offers', path: '/offers' },
   { name: 'About', path: '/#about-us' },
   { name: 'Gallery', path: '/#gallery' },
   
@@ -107,8 +107,7 @@ export const MobileNavigation = () => {
           <div
             className={`fixed top-0 left-0 h-full w-3/4 max-w-sm bg-company-neutral/70 backdrop-blur-md shadow-2xl z-50 p-8 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
           >
-            <div className="flex justify-between items-center mb-12">
-              <Logo />
+            <div className="flex justify-end items-center mb-12">
               <button onClick={() => setIsOpen(false)} className="p-2">
                 <HamburgerIcon isOpen={isOpen} />
               </button>

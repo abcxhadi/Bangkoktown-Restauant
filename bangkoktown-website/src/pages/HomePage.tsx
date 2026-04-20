@@ -99,7 +99,7 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
             <a
               key="view-menu-button"
               onClick={handleViewMenu}
-              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-company-primary to-company-accent text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
+              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-purple-500/30"
             >
               <span>View Menu</span>
             </a>,
@@ -134,7 +134,7 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
         <div className="text-center mt-12">
           <NetflixButton
             onClick={handleViewMenu}
-            variant="secondary"
+            variant="primary"
             size="large"
           >
             View Full Menu
