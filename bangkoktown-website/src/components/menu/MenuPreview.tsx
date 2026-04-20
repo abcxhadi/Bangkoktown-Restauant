@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MenuItem } from './MenuItem';
 import {
@@ -30,8 +30,7 @@ export const MenuPreview: React.FC<MenuPreviewProps> = ({
   showCategoryPreviews = false
 }) => {
   const navigate = useNavigate();
-  const [isHovered, setIsHovered] = useState(false);
-  const { scrollRef, stopScrolling, scrollLeft, scrollRight } = useAutoScroll(isHovered);
+  const { scrollRef, scrollLeft, scrollRight } = useAutoScroll();
 
   const featuredItems = getFeaturedItems(maxItems);
 
@@ -141,8 +140,6 @@ export const MenuPreview: React.FC<MenuPreviewProps> = ({
 
         <div 
           className="relative"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
         >
           <div 
             ref={scrollRef} 

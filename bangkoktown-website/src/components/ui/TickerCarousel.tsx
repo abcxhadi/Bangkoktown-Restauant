@@ -6,11 +6,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const TickerCarousel = () => {
   const featuredItems = getFeaturedItems();
   const totalItems = featuredItems.length;
-  const extendedItems = [...featuredItems, ...featuredItems, ...featuredItems]; // Triple for seamless loop
-  const [currentIndex, setCurrentIndex] = useState(totalItems); // Start in the middle section
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  if (totalItems === 0) return null;
+
+  const middleIndex = Math.floor(totalItems / 2);
+  const [currentIndex, setCurrentIndex] = useState(middleIndex);
   const [isMobile, setIsMobile] = useState(false);
-  const carouselRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
 
   // Check for mobile screen size
@@ -24,49 +24,23 @@ const TickerCarousel = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Auto-scrolling effect
   useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 4000); // Slightly longer for better UX
-
-    return () => clearInterval(interval);
-  }, [currentIndex, isTransitioning]);
-
-  // Loop correction effect with smoother transitions
-  useEffect(() => {
-    if (!isTransitioning) {
-      if (currentIndex >= totalItems * 2) {
-        setTimeout(() => {
-          setCurrentIndex(totalItems + (currentIndex % totalItems));
-        }, 50);
-      } else if (currentIndex < totalItems) {
-        setTimeout(() => {
-          setCurrentIndex(totalItems + (currentIndex % totalItems));
-        }, 50);
-      }
+    if (currentIndex >= totalItems) {
+      setCurrentIndex(Math.max(totalItems - 1, 0));
     }
-  }, [currentIndex, isTransitioning, totalItems]);
+  }, [currentIndex, totalItems]);
 
   const handleNext = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
-    setTimeout(() => setIsTransitioning(false), 800); // Longer for smoother effect
+    setCurrentIndex((prev) => Math.min(prev + 1, totalItems - 1));
   };
 
   const handlePrev = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
-    setTimeout(() => setIsTransitioning(false), 800);
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
   const goToSlide = (index: number) => {
-    if (isTransitioning || index === currentIndex) return;
-    setIsTransitioning(true);
+    if (index === currentIndex) return;
     setCurrentIndex(index);
-    setTimeout(() => setIsTransitioning(false), 800);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -92,11 +66,8 @@ const TickerCarousel = () => {
     touchStartX.current = 0;
   };
 
-  const currentItem = extendedItems[currentIndex];
-
   return (
     <div
-      ref={carouselRef}
       className="relative w-full max-w-6xl mx-auto h-[750px] sm:h-[650px] overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -109,10 +80,8 @@ const TickerCarousel = () => {
         <div className="flex-1 flex items-center justify-center relative">
           {/* Cards container */}
           <div className="relative w-full max-w-7xl h-[620px] sm:h-[620px]">
-            {extendedItems.map((item: MenuItem, index: number) => {
-              const position =
-                (index - currentIndex + extendedItems.length) %
-                extendedItems.length;
+            {featuredItems.map((item: MenuItem, index: number) => {
+              const position = index - currentIndex;
               let transform = "";
               let opacity = 0;
               let scale = 0.75;
@@ -120,7 +89,7 @@ const TickerCarousel = () => {
               let blur = "blur(6px)";
               let rotateY = 0;
 
-              if (index === currentIndex) {
+              if (position === 0) {
                 // Current card - enhanced presence with responsive sizing
                 transform = "translateX(0px) translateZ(0px)";
                 opacity = 1;
@@ -128,10 +97,7 @@ const TickerCarousel = () => {
                 zIndex = 30;
                 blur = "blur(0px)";
                 rotateY = 0;
-              } else if (
-                index === currentIndex + 1 ||
-                (currentIndex === extendedItems.length - 1 && index === 0)
-              ) {
+              } else if (position === 1) {
                 // Next card - responsive positioning
                 const translateX = isMobile ? "100px" : "320px";
                 transform = `translateX(${translateX}) translateZ(-100px)`;
@@ -140,10 +106,7 @@ const TickerCarousel = () => {
                 zIndex = 20;
                 blur = "blur(1px)";
                 rotateY = isMobile ? -10 : -15;
-              } else if (
-                index === currentIndex - 1 ||
-                (currentIndex === 0 && index === extendedItems.length - 1)
-              ) {
+              } else if (position === -1) {
                 // Previous card - responsive positioning
                 const translateX = isMobile ? "-100px" : "-320px";
                 transform = `translateX(${translateX}) translateZ(-100px)`;
@@ -152,11 +115,7 @@ const TickerCarousel = () => {
                 zIndex = 20;
                 blur = "blur(1px)";
                 rotateY = isMobile ? 10 : 15;
-              } else if (
-                index === currentIndex + 2 ||
-                (currentIndex === extendedItems.length - 2 && index === 0) ||
-                (currentIndex === extendedItems.length - 1 && index === 1)
-              ) {
+              } else if (position === 2) {
                 // Far next card
                 const translateX = isMobile ? "200px" : "640px";
                 transform = `translateX(${translateX}) translateZ(-200px)`;
@@ -165,11 +124,7 @@ const TickerCarousel = () => {
                 zIndex = 10;
                 blur = "blur(3px)";
                 rotateY = isMobile ? -20 : -25;
-              } else if (
-                index === currentIndex - 2 ||
-                (currentIndex === 1 && index === extendedItems.length - 1) ||
-                (currentIndex === 0 && index === extendedItems.length - 2)
-              ) {
+              } else if (position === -2) {
                 // Far previous card
                 const translateX = isMobile ? "-200px" : "-640px";
                 transform = `translateX(${translateX}) translateZ(-200px)`;
@@ -189,6 +144,7 @@ const TickerCarousel = () => {
                     opacity,
                     zIndex,
                     filter: blur,
+                    pointerEvents: opacity > 0 ? "auto" : "none",
                     transformStyle: "preserve-3d",
                   }}
                   onClick={() => goToSlide(index)}
@@ -238,14 +194,14 @@ const TickerCarousel = () => {
           <div className="flex gap-2">
             <button
               onClick={handlePrev}
-              disabled={isTransitioning}
+              disabled={currentIndex === 0}
               className="group p-2 sm:p-3 rounded-full bg-company-secondary/5 backdrop-blur-sm border border-company-secondary/10 text-company-secondary hover:bg-company-secondary/15 hover:border-company-secondary/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
             >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:-translate-x-0.5" />
             </button>
             <button
               onClick={handleNext}
-              disabled={isTransitioning}
+              disabled={currentIndex === totalItems - 1}
               className="group p-2 sm:p-3 rounded-full bg-company-secondary/5 backdrop-blur-sm border border-company-secondary/10 text-company-secondary hover:bg-company-secondary/15 hover:border-company-secondary/20 disabled:opacity-50 transition-all duration-300 hover:scale-110 active:scale-95"
             >
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -255,11 +211,11 @@ const TickerCarousel = () => {
           {/* Enhanced dots indicator */}
           <div className="flex gap-1 sm:gap-2">
             {featuredItems.map((_, index) => {
-              const isActive = currentIndex % totalItems === index;
+              const isActive = currentIndex === index;
               return (
                 <button
                   key={index}
-                  onClick={() => goToSlide(totalItems + index)}
+                  onClick={() => goToSlide(index)}
                   className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-500 ${
                     isActive
                       ? "bg-gradient-to-r from-purple-900 to-purple-700 w-6 sm:w-8 shadow-lg shadow-purple-900/50"
