@@ -197,25 +197,61 @@ const PDFJS_URL =
 const WORKER_URL =
   "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-function loadScript(src) {
-  return new Promise((resolve, reject) => {
+type PdfViewport = {
+  width: number;
+  height: number;
+};
+
+type PdfPage = {
+  getViewport: ({ scale }: { scale: number }) => PdfViewport;
+  render: ({
+    canvasContext,
+    viewport,
+  }: {
+    canvasContext: CanvasRenderingContext2D;
+    viewport: PdfViewport;
+  }) => { promise: Promise<void> };
+};
+
+type PdfDocument = {
+  numPages: number;
+  getPage: (pageNumber: number) => Promise<PdfPage>;
+};
+
+type PdfJsLib = {
+  GlobalWorkerOptions: {
+    workerSrc: string;
+  };
+  getDocument: (src: string) => { promise: Promise<PdfDocument> };
+};
+
+declare global {
+  interface Window {
+    pdfjsLib?: PdfJsLib;
+  }
+}
+
+function loadScript(src: string): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
     if (document.querySelector(`script[src="${src}"]`)) {
       resolve();
       return;
     }
     const s = document.createElement("script");
     s.src = src;
-    s.onload = resolve;
-    s.onerror = reject;
+    s.addEventListener("load", () => resolve());
+    s.addEventListener("error", () =>
+      reject(new Error(`Failed to load script: ${src}`))
+    );
     document.head.appendChild(s);
   });
 }
 
 export const MenuPage = () => {
-  const trackRef = useRef(null);
-  const loadingRef = useRef(null);
-  const errorRef = useRef(null);
-  const counterRef = useRef(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const loadingRef = useRef<HTMLDivElement | null>(null);
+  const errorRef = useRef<HTMLDivElement | null>(null);
+  const counterRef = useRef<HTMLDivElement | null>(null);
   const initialized = useRef(false); // prevents React strict-mode double-fire
   const drag = useRef({ active: false, startX: 0, scrollStart: 0 });
   const pageState = useRef({ current: 1, total: 0 });
@@ -225,12 +261,12 @@ export const MenuPage = () => {
       counterRef.current.textContent = `${pageState.current.current} / ${pageState.current.total}`;
   }
 
-  function stepPage(dir) {
+  function stepPage(dir: number) {
     const { current, total } = pageState.current;
     const next = Math.max(1, Math.min(total, current + dir));
     if (next === current) return;
     pageState.current.current = next;
-    const slot = trackRef.current?.children[next - 1];
+    const slot = trackRef.current?.children.item(next - 1);
     if (slot)
       slot.scrollIntoView({
         behavior: "smooth",
@@ -243,7 +279,7 @@ export const MenuPage = () => {
   function handleScroll() {
     const track = trackRef.current;
     if (!track) return;
-    const slots = track.querySelectorAll(".menu-pdf-page");
+    const slots = track.querySelectorAll<HTMLDivElement>(".menu-pdf-page");
     const center = track.scrollLeft + track.clientWidth / 2;
     let closest = 1,
       minDist = Infinity;
@@ -272,6 +308,9 @@ export const MenuPage = () => {
         await loadScript(PDFJS_URL);
 
         const pdfjsLib = window.pdfjsLib;
+        if (!pdfjsLib) {
+          throw new Error("pdf.js failed to initialize");
+        }
         pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER_URL;
 
         const pdf = await pdfjsLib.getDocument("/menu.pdf").promise;
@@ -279,6 +318,7 @@ export const MenuPage = () => {
         pageState.current.total = total;
 
         const track = trackRef.current;
+        if (!track) return;
         const viewerH = track.clientHeight;
 
         // Wipe any stale content before we start
@@ -294,10 +334,14 @@ export const MenuPage = () => {
           const canvas = document.createElement("canvas");
           canvas.width = vp.width;
           canvas.height = vp.height;
+          const context = canvas.getContext("2d");
+          if (!context) {
+            throw new Error("Unable to get 2D canvas context");
+          }
 
           // Wait for this page to fully render before touching the next
           await page.render({
-            canvasContext: canvas.getContext("2d"),
+            canvasContext: context,
             viewport: vp,
           }).promise;
 
@@ -321,7 +365,7 @@ export const MenuPage = () => {
 
     init();
 
-    const onKey = (e) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") stepPage(1);
       if (e.key === "ArrowLeft") stepPage(-1);
     };
@@ -329,19 +373,23 @@ export const MenuPage = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  function onMouseDown(e) {
+  function onMouseDown(e: React.MouseEvent<HTMLDivElement>) {
+    const track = trackRef.current;
+    if (!track) return;
     drag.current = {
       active: true,
       startX: e.pageX,
-      scrollStart: trackRef.current.scrollLeft,
+      scrollStart: track.scrollLeft,
     };
   }
-  function onMouseMove(e) {
-    if (!drag.current.active) return;
-    trackRef.current.scrollLeft =
+  function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const track = trackRef.current;
+    if (!track || !drag.current.active) return;
+    track.scrollLeft =
       drag.current.scrollStart - (e.pageX - drag.current.startX);
   }
   function onMouseUp() {
+    if (!drag.current.active) return;
     drag.current.active = false;
   }
 
@@ -469,4 +517,3 @@ export const MenuPage = () => {
     </div>
   );
 };
-

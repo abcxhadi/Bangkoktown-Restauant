@@ -23,7 +23,13 @@ const offersPageCss = `
 }
 `;
 
-const offers = [
+type Offer = {
+  id: number;
+  title: string;
+  image: string;
+};
+
+const offers: Offer[] = [
   { id: 1, title: "Lunch Special", image: "/images/offer1.jpeg" },
   { id: 2, title: "Family Feast", image: "/images/offer2.jpeg" },
 
@@ -31,7 +37,7 @@ const offers = [
 ];
 
 export const OffersPage = () => {
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<Offer | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
