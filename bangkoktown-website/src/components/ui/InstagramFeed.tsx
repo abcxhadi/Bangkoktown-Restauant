@@ -288,12 +288,11 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
               onClick={() => setSelectedReel(reel)}
               className="group relative block w-full h-96 overflow-hidden rounded-2xl shadow-lg cursor-pointer"
             >
-              <video
-                src={reel.videoSrc}
-                poster={posters[reel.id]}
+              <img
+                src={posters[reel.id] ?? reel.imgSrc}
+                alt={`Gallery preview ${reel.id}`}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                preload="none"
-                playsInline
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center">

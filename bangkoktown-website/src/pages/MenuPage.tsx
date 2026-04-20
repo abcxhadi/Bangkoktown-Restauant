@@ -44,17 +44,6 @@ const menuPageCss = `
   width: auto;
 }
 
-.menu-pdf-fade-left,
-.menu-pdf-fade-right {
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 80px;
-  pointer-events: none;
-  z-index: 4;
-}
-.menu-pdf-fade-left  { left: 0;  background: linear-gradient(to right, rgba(11,10,7,0.85), transparent); }
-.menu-pdf-fade-right { right: 0; background: linear-gradient(to left,  rgba(11,10,7,0.85), transparent); }
-
 .menu-pdf-arrow {
   position: absolute;
   top: 50%;
@@ -448,9 +437,6 @@ export const MenuPage = () => {
               <h3>Menu unavailable</h3>
               <p>Place menu.pdf in your /public folder.</p>
             </div>
-
-            <div className="menu-pdf-fade-left" />
-            <div className="menu-pdf-fade-right" />
 
             <button
               className="menu-pdf-arrow left"
