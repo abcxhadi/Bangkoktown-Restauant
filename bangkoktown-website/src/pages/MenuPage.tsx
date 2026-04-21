@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { BranchSelectionModal } from "../components/ui";
 
 declare global {
   interface Window {
@@ -173,119 +174,6 @@ const menuPageCss = `
 .menu-arrow:hover { background: rgba(201,169,110,0.1); border-color: rgba(201,169,110,0.45); }
 .menu-arrow.left  { left: 1rem; }
 .menu-arrow.right { right: 1rem; }
-
-/* ── BRANCH OVERLAY ── */
-.branch-backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: 40;
-  background: rgba(6,5,3,0.75);
-  backdrop-filter: blur(6px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: backdrop-in 0.25s ease;
-}
-@keyframes backdrop-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.branch-card {
-  background: #16140F;
-  border: 1px solid rgba(201,169,110,0.18);
-  padding: 2.4rem 2.8rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  animation: card-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  min-width: 300px;
-}
-@keyframes card-in {
-  from { opacity: 0; transform: translateY(16px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.branch-eyebrow {
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: 0.5rem;
-  letter-spacing: 0.45em;
-  text-transform: uppercase;
-  color: #6B6456;
-  margin-bottom: 0.6rem;
-}
-
-.branch-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,169,110,0.15), transparent);
-  margin: 0.8rem 0;
-}
-
-.branch-btn {
-  width: 100%;
-  background: none;
-  border: 1px solid rgba(201,169,110,0.14);
-  padding: 1.1rem 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-decoration: none;
-  color: inherit;
-}
-.branch-btn:hover {
-  background: rgba(201,169,110,0.05);
-  border-color: rgba(201,169,110,0.35);
-}
-
-.branch-btn-left { text-align: left; }
-
-.branch-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: #F0E6D0;
-  display: block;
-  margin-bottom: 0.2rem;
-}
-
-.branch-number {
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  color: #C9A96E;
-  display: block;
-}
-
-.branch-icon {
-  font-size: 1.4rem;
-  flex-shrink: 0;
-  opacity: 0.7;
-  transition: opacity 0.3s, transform 0.3s;
-}
-.branch-btn:hover .branch-icon { opacity: 1; transform: scale(1.1); }
-
-.branch-close {
-  margin-top: 1rem;
-  background: none;
-  border: none;
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  font-size: 0.52rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #4a4438;
-  cursor: pointer;
-  transition: color 0.3s;
-  padding: 0.4rem 1rem;
-}
-.branch-close:hover { color: #6B6456; }
 
 /* ── LOADING ── */
 .menu-loading {
@@ -578,44 +466,10 @@ export const MenuPage: React.FC = () => {
           <span className="menu-hint-text">Arrow keys to navigate</span>
         </div>
 
-        {/* Branch selection overlay */}
-        {showBranches && (
-          <div
-            className="branch-backdrop"
-            onClick={(e: React.MouseEvent<HTMLDivElement>) => {
-              if (e.target === e.currentTarget) setShowBranches(false);
-            }}
-          >
-            <div className="branch-card">
-              <p className="branch-eyebrow">Choose a branch</p>
-
-              <a href="tel:065568282" className="branch-btn">
-                <div className="branch-btn-left">
-                  <span className="branch-name">Al Majaz 3, Sharjah</span>
-                  <span className="branch-number">📞 06 556 8282</span>
-                </div>
-                <span className="branch-icon">→</span>
-              </a>
-
-              <div className="branch-divider" />
-
-              <a href="tel:065468383" className="branch-btn">
-                <div className="branch-btn-left">
-                  <span className="branch-name">Zawaya Walk, Sharjah</span>
-                  <span className="branch-number">📞 06 546 8383</span>
-                </div>
-                <span className="branch-icon">→</span>
-              </a>
-
-              <button
-                className="branch-close"
-                onClick={() => setShowBranches(false)}
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
+        <BranchSelectionModal
+          isOpen={showBranches}
+          onClose={() => setShowBranches(false)}
+        />
       </div>
     </>
   );

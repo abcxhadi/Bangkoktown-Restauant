@@ -8,6 +8,8 @@ import {
   TickerCarousel,
   Logo,
   InstagramFeed,
+  DeliveryBanner,
+  BranchSelectionModal,
 } from "../components/ui";
 import { fadeIn } from "../utils/animations";
 import { TypewriterEffect } from "../components/ui/TypewriterEffect";
@@ -68,6 +70,7 @@ interface HomePageProps {
 export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isBranchModalOpen, setIsBranchModalOpen] = useState(false);
 
   useEffect(() => {
     if (location.hash) {
@@ -103,9 +106,18 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
             >
               <span>View Menu</span>
             </a>,
+            <a
+              key="call-to-order-button"
+              onClick={() => setIsBranchModalOpen(true)}
+              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-company-neutral text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-company-secondary/30"
+            >
+              <span>📞 Call for Enquiry</span>
+            </a>,
           ]}
         />
       </motion.div>
+
+      <DeliveryBanner />
 
       {/* Main Content Section */}
       <main className="relative bg-company-neutral z-30">
@@ -155,6 +167,10 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
           </AnimatedSection>
         </Container>
       </main>
+      <BranchSelectionModal 
+        isOpen={isBranchModalOpen} 
+        onClose={() => setIsBranchModalOpen(false)} 
+      />
     </div>
   );
 };

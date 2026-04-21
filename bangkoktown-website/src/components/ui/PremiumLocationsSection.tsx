@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { TypewriterEffect } from "./TypewriterEffect";
-import { Heading2, Heading3, BodyText } from ".";
+import { Heading2, Heading3, BodyText, BranchSelectionModal } from ".";
 import { NetflixButton } from "./NetflixButton";
 
 // Premium Locations Section
 export const PremiumLocationsSection = () => {
   const navigate = useNavigate();
+  const [isBranchModalOpen, setIsBranchModalOpen] = useState(false);
 
   const locations = [
     {
@@ -106,17 +108,19 @@ export const PremiumLocationsSection = () => {
               </NetflixButton>
               <NetflixButton
                 variant="outline"
-                onClick={() => {
-                  window.location.href = "tel:06 556 8282";
-                }}
+                onClick={() => setIsBranchModalOpen(true)}
                 icon="📞"
               >
-                Call Us
+                Call to Order
               </NetflixButton>
             </div>
           </div>
         </div>
       </div>
+      <BranchSelectionModal 
+        isOpen={isBranchModalOpen} 
+        onClose={() => setIsBranchModalOpen(false)} 
+      />
     </section>
   );
 };
