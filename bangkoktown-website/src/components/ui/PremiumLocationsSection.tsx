@@ -13,22 +13,15 @@ export const PremiumLocationsSection = () => {
       tag: "Qasba Street",
       phone: "06 556 8282",
       image: "/images/al_majaz_waterfront.jpg",
-      mapUrl: "https://maps.google.com/?cid=18060991473853659174"
+      mapUrl: "https://maps.google.com/?cid=18060991473853659174",
     },
     {
       name: "Bangkok Town (Zawaya Walk , Sharjah)",
       tag: "Zawaya Walk",
       phone: "06 546 8383",
       image: "/images/zawaya.jpg",
-      mapUrl: "https://maps.google.com/?cid=14419931823407026958"
+      mapUrl: "https://maps.google.com/?cid=14419931823407026958",
     },
-    {
-      name: "Bangkok Town (Al Manar Hotel , Abu Hail ,Dubai)",
-      tag: "Doha Street",
-      phone: "04 239 7242",
-      image: "/images/dubai.jpg",
-      mapUrl: "https://maps.google.com/?cid=6000500049375453234"
-    }
   ];
 
   return (
@@ -40,7 +33,8 @@ export const PremiumLocationsSection = () => {
           animateOnInView={true}
         />
         <p className="netflix-body text-company-secondary/80 text-lg max-w-3xl mx-auto leading-relaxed font-light">
-          Find us in various locations across the UAE, each offering a unique ambiance and the same exceptional quality you love.
+          Find us in various locations across the UAE, each offering a unique
+          ambiance and the same exceptional quality you love.
         </p>
       </div>
 
@@ -65,7 +59,7 @@ export const PremiumLocationsSection = () => {
                   <h3 className="netflix-subheading text-2xl text-company-secondary mb-2 drop-shadow-lg">
                     Bangkok Town
                     <span className="block text-sm text-company-secondary/80">
-                      ({location.name.split('(')[1]}
+                      ({location.name.split("(")[1]}
                     </span>
                   </h3>
 
@@ -113,7 +107,7 @@ export const PremiumLocationsSection = () => {
               <NetflixButton
                 variant="outline"
                 onClick={() => {
-                  window.location.href = 'tel:06 556 8282';
+                  window.location.href = "tel:06 556 8282";
                 }}
                 icon="📞"
               >
@@ -126,3 +120,4 @@ export const PremiumLocationsSection = () => {
     </section>
   );
 };
+
