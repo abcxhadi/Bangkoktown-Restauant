@@ -102,14 +102,14 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
             <a
               key="view-menu-button"
               onClick={handleViewMenu}
-              className="inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-purple-500/30 whitespace-nowrap"
+              className="w-full sm:w-auto inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-purple-500/30 whitespace-nowrap"
             >
               <span>View Menu</span>
             </a>,
             <a
               key="call-to-order-button"
               onClick={() => setIsBranchModalOpen(true)}
-              className="inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-company-neutral text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-company-secondary/30 whitespace-nowrap"
+              className="w-full sm:w-auto inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-company-neutral text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-company-secondary/30 whitespace-nowrap"
             >
               <span>📞 Call for Enquiry</span>
             </a>,
@@ -401,7 +401,7 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
 
           {/* Call to Action Buttons */}
           <motion.div
-            className="flex flex-row gap-4 justify-center items-center mb-8"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 w-full max-w-xs sm:max-w-none mx-auto"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: {
