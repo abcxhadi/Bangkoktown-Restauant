@@ -387,13 +387,32 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
                   transition: {
                     duration: 1,
                     ease: "easeOut",
+                    delay: 1.0,
+                  },
+                },
+              }}
+              initial="hidden"
+              animate="visible"
+              className="text-white font-netflix-display font-black text-lg md:text-xl lg:text-2xl tracking-[0.4em] uppercase mt-1 mb-2"
+            >
+              Thai Restaurant
+            </motion.p>
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 1,
+                    ease: "easeOut",
                     delay: 1.2,
                   },
                 },
               }}
               initial="hidden"
               animate="visible"
-              className="text-thai-gold font-netflix-display font-bold text-xs md:text-sm tracking-[0.5em] uppercase mt-4 border-t-2 border-thai-gold/40 pt-4 px-8"
+              className="text-thai-gold font-netflix-display font-bold text-base md:text-lg lg:text-xl tracking-[0.5em] uppercase border-t-2 border-thai-gold/60 pt-4 px-12"
             >
               Est. Since 2001
             </motion.p>
