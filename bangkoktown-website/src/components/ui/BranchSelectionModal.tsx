@@ -28,9 +28,9 @@ export const BranchSelectionModal: React.FC<BranchSelectionModalProps> = ({ isOp
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="bg-[#16140F] border border-[#C9A96E]/20 p-8 sm:p-12 flex flex-col items-center gap-2 max-w-lg w-full shadow-2xl animate-in fade-in zoom-in duration-300">
-        <p className="font-['Jost'] font-light text-[0.65rem] sm:text-[0.75rem] tracking-[0.45em] uppercase text-[#6B6456] mb-4">Choose a branch</p>
-        
+      <div className="bg-[#16140F] border border-[#C9A96E]/30 p-8 sm:p-12 flex flex-col items-center gap-2 max-w-lg w-full animate-in fade-in zoom-in duration-300">
+        <p className="font-['Jost'] font-bold text-[0.85rem] sm:text-[1rem] tracking-[0.4em] uppercase text-[#C9A96E] mb-6">Choose a branch</p>
+
         <div className="w-full flex flex-col gap-4">
           {branches.map((branch, index) => (
             <React.Fragment key={branch.tel}>

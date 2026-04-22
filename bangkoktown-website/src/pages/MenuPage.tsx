@@ -136,7 +136,7 @@ const menuPageCss = `
   justify-content: center;
   gap: 1.5rem;
   padding: 1rem 2rem;
-  background: linear-gradient(to top, rgba(11,10,7,0.7) 0%, transparent 100%);
+  background: transparent;
   pointer-events: none;
 }
 .menu-hint-text {
@@ -443,7 +443,7 @@ export const MenuPage: React.FC = () => {
               className="menu-call-btn"
               onClick={() => setShowBranches(true)}
             >
-              📞 Call to Order
+              📞 Call
             </button>
             <a href="/menu.pdf" download className="menu-download-btn">
               Download ↓
