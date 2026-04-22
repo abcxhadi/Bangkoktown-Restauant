@@ -376,8 +376,27 @@ const HeroVideoSection: React.FC<HeroVideoSectionProps> = ({
           animate="visible"
           className="max-w-4xl mx-auto"
         >
-          <div className="flex justify-center mb-4">
+          <div className="flex flex-col items-center justify-center mb-4">
             <Logo size="xxxl" showText={false} noBorder={true} />
+            <motion.p
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 1,
+                    ease: "easeOut",
+                    delay: 1.2,
+                  },
+                },
+              }}
+              initial="hidden"
+              animate="visible"
+              className="text-thai-gold font-netflix-display font-bold text-xs md:text-sm tracking-[0.5em] uppercase mt-4 border-t-2 border-thai-gold/40 pt-4 px-8"
+            >
+              Est. Since 2001
+            </motion.p>
           </div>
 
           {/* Tagline */}
