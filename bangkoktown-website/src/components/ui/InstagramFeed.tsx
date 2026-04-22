@@ -222,13 +222,6 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
         "https://www.instagram.com/reel/DL9lgYxxbxX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
     },
     {
-      id: 3,
-      videoSrc: "/videos/instagram/video3.mp4",
-      imgSrc: "/images/itemImages/mango_sticky_rice.jpg",
-      postUrl:
-        "https://www.instagram.com/reel/DL44oHJRkoo/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-    },
-    {
       id: 4,
       videoSrc: "/videos/instagram/video4.mp4",
       imgSrc: "/images/itemImages/tom_yum_soup.jpg",

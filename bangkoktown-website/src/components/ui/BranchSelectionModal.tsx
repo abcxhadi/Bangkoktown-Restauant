@@ -23,29 +23,32 @@ export const BranchSelectionModal: React.FC<BranchSelectionModalProps> = ({ isOp
 
   return (
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#060503]/75 backdrop-blur-md transition-all duration-300"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#060503]/85 backdrop-blur-md transition-all duration-300"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="bg-[#16140F] border border-[#C9A96E]/30 p-8 sm:p-12 flex flex-col items-center gap-2 max-w-lg w-full animate-in fade-in zoom-in duration-300">
-        <p className="font-['Jost'] font-bold text-[0.85rem] sm:text-[1rem] tracking-[0.4em] uppercase text-[#C9A96E] mb-6">Choose a branch</p>
+      <div className="bg-[#16140F] border border-[#C9A96E]/30 p-8 sm:p-12 flex flex-col items-center gap-2 max-w-lg w-full animate-in fade-in zoom-in duration-300 rounded-3xl">
+        <p className="font-netflix-display font-bold text-sm sm:text-base tracking-[0.3em] uppercase text-[#C9A96E] mb-6">Choose a branch</p>
 
         <div className="w-full flex flex-col gap-4">
           {branches.map((branch, index) => (
             <React.Fragment key={branch.tel}>
               <a 
                 href={`tel:${branch.tel}`}
-                className="w-full bg-transparent border border-[#C9A96E]/15 p-6 sm:p-8 flex items-center justify-between gap-8 cursor-pointer transition-all duration-300 hover:bg-[#C9A96E]/5 hover:border-[#C9A96E]/35 group no-underline"
+                className="w-full bg-white/5 border border-white/10 p-6 sm:p-8 flex items-center justify-between gap-8 cursor-pointer transition-all duration-300 hover:bg-[#C9A96E]/5 hover:border-[#C9A96E]/35 group no-underline rounded-2xl"
               >
                 <div className="text-left">
-                  <span className="font-['Cormorant_Garamond'] text-2xl sm:text-3xl font-normal text-[#F0E6D0] block mb-2 leading-tight group-hover:text-white transition-colors">{branch.name}</span>
-                  <span className="font-['Jost'] font-light text-[0.85rem] sm:text-[1rem] tracking-[0.12em] text-[#C9A96E] block uppercase">📞 {branch.phone}</span>
+                  <span className="font-netflix-display text-xl sm:text-2xl font-bold text-[#F0E6D0] block mb-2 leading-tight group-hover:text-[#C9A96E] transition-colors">{branch.name}</span>
+                  <span className="font-netflix-font font-medium text-lg sm:text-xl tracking-tight text-[#C9A96E] block uppercase">
+                    <span className="mr-2">📞</span>
+                    {branch.phone}
+                  </span>
                 </div>
                 <span className="text-3xl text-[#C9A96E]/70 group-hover:opacity-100 group-hover:translate-x-2 transition-all">→</span>
               </a>
               {index === 0 && (
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-[#C9A96E]/15 to-transparent my-2" />
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-2" />
               )}
             </React.Fragment>
           ))}
@@ -53,11 +56,10 @@ export const BranchSelectionModal: React.FC<BranchSelectionModalProps> = ({ isOp
 
         <button
           onClick={onClose}
-          className="mt-8 font-['Jost'] font-bold text-[0.75rem] sm:text-[0.85rem] tracking-[0.25em] uppercase text-[#C9A96E]/60 hover:text-[#C9A96E] transition-colors cursor-pointer py-2 px-6 border border-[#C9A96E]/20 hover:border-[#C9A96E]/50 rounded-lg"
+          className="mt-8 font-netflix-display font-bold text-xs sm:text-sm tracking-[0.2em] uppercase text-[#C9A96E]/60 hover:text-[#C9A96E] transition-colors cursor-pointer py-3 px-8 border border-[#C9A96E]/20 hover:border-[#C9A96E]/50 rounded-full"
         >
           Cancel
         </button>
       </div>
-    </div>
-  );
+    </div>  );
 };
