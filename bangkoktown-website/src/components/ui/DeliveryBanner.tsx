@@ -7,28 +7,28 @@ const deliveryServices = [
   {
     name: 'Talabat',
     logo: '/images/talabat.png',
-    url: 'https://www.talabat.com',
+    url: 'https://www.talabat.com/uae/restaurant/22506/bangkok-town-al-majaz-3?aid=1587',
     glowColor: 'rgba(255, 90, 0, 0.4)',
     extraClass: '',
   },
   {
     name: 'Noon Food',
     logo: '/images/noon.png',
-    url: 'https://food.noon.com',
+    url: 'https://food.noon.com/en-ae/outlet/BNGKKTIAOO',
     glowColor: 'rgba(254, 238, 0, 0.4)',
     extraClass: '',
   },
   {
     name: 'Keeta',
     logo: '/images/keeta.png',
-    url: 'https://www.keeta.global',
+    url: 'https://url-eu.mykeeta.com/ofrxlogz',
     glowColor: 'rgba(255, 210, 0, 0.4)',
     extraClass: 'scale-125', // Zoom Keeta more
   },
   {
     name: 'Smiles',
     logo: '/images/smiles.png',
-    url: 'https://www.smilesuae.ae',
+    url: 'https://smilesuae.go.link/restaurant?restaurantId=25956&orderType=DELIVERY&adj_t=1o3q4d6q_1opvc7d0/',
     glowColor: 'rgba(0, 118, 182, 0.4)',
     extraClass: 'scale-90', // Zoom out Smiles slightly
   }
