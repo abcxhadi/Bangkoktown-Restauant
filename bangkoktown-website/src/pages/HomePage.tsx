@@ -102,14 +102,14 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
             <a
               key="view-menu-button"
               onClick={handleViewMenu}
-              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-purple-500/30"
+              className="inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-purple-900 via-purple-800 to-purple-900 text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-purple-500/30 whitespace-nowrap"
             >
               <span>View Menu</span>
             </a>,
             <a
               key="call-to-order-button"
               onClick={() => setIsBranchModalOpen(true)}
-              className="inline-flex flex-col items-center justify-center px-8 py-4 rounded-full bg-company-neutral text-white font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-company-secondary/30"
+              className="inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-company-neutral text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-company-secondary/30 whitespace-nowrap"
             >
               <span>📞 Call for Enquiry</span>
             </a>,
