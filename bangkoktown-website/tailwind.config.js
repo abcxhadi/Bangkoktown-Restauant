@@ -17,10 +17,11 @@ module.exports = {
           warmGray: '#8B7355'
         },
         company: {
-          primary: '#c799d9',
+          primary: '#bf00fe',
           secondary: '#fdfeff',
           accent: '#f3b742',
-          neutral: '#353535'
+          neutral: '#353535',
+          violet: '#bf00fe'
         }
       },
       fontFamily: {

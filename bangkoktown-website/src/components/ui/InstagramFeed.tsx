@@ -216,17 +216,33 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
     },
     {
       id: 2,
-      videoSrc: "/videos/instagram/video2.mp4",
+      videoSrc: "/videos/instagram/video2.mp4", // Placeholder
       imgSrc: "/images/itemImages/green_curry.jpg",
-      postUrl:
-        "https://www.instagram.com/reel/DL9lgYxxbxX/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      postUrl: "https://www.instagram.com/reel/DWqwMj5DHhz/?igsh=NmZ3NTZlYWhvM3U1",
+    },
+    {
+      id: 3,
+      videoSrc: "/videos/instagram/video3.mp4", // Placeholder
+      imgSrc: "/images/itemImages/prawn_satay.jpg",
+      postUrl: "https://www.instagram.com/reel/DMHy35jzdka/?igsh=MWdjZG10eGxjbzY5",
     },
     {
       id: 4,
-      videoSrc: "/videos/instagram/video4.mp4",
+      videoSrc: "/videos/instagram/video4.mp4", // Placeholder
       imgSrc: "/images/itemImages/tom_yum_soup.jpg",
-      postUrl:
-        "https://www.instagram.com/reel/DH0PRlGRCn4/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      postUrl: "https://www.instagram.com/reel/DIydCKvv5cC/?igsh=cTFhNWs3cDN5Z3J5",
+    },
+    {
+      id: 5,
+      videoSrc: "/videos/instagram/video2.mp4", // Placeholder
+      imgSrc: "/images/itemImages/satay_combo.jpg",
+      postUrl: "https://www.instagram.com/reel/DGxPtKvvDeL/?igsh=bGdpcW15ZGRiNTIw",
+    },
+    {
+      id: 6,
+      videoSrc: "/videos/instagram/video3.mp4", // Placeholder
+      imgSrc: "/images/itemImages/sticky_rice_with_mango.jpg",
+      postUrl: "https://www.instagram.com/reel/C6MfIpbBWgv/?igsh=ZjI0NHR4NHl5NDJi",
     },
   ];
 
@@ -309,7 +325,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
             href="https://www.instagram.com/bangkoktownuae/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full px-8 py-3 transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2 mx-auto w-fit"
+            className="bg-gradient-to-r from-[#bf00fe] to-[#7a00a3] hover:from-[#7a00a3] hover:to-[#bf00fe] text-white rounded-full px-8 py-3 transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2 mx-auto w-fit shadow-lg shadow-[#bf00fe]/20"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -187,7 +187,7 @@ const menuPageCss = `
 
 .menu-loading-logo {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.2rem; font-weight: 300;
+  font-size: 2.2rem; font-weight: 700;
   letter-spacing: 0.25em; color: #C9A96E;
   animation: logo-breathe 2.5s ease-in-out infinite;
 }
@@ -234,10 +234,14 @@ const menuPageCss = `
 
 const PDFJS_URL =
   "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+const PDFJS_FALLBACK_URL =
+  "https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.min.js";
 const WORKER_URL =
   "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+const WORKER_FALLBACK_URL =
+  "https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
 
-function loadScript(src: string): Promise<void> {
+function loadScript(src: string, fallback?: string): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     if (document.querySelector(`script[src="${src}"]`)) {
       resolve();
@@ -245,8 +249,29 @@ function loadScript(src: string): Promise<void> {
     }
     const s = document.createElement("script");
     s.src = src;
-    s.onload = () => resolve();
-    s.onerror = reject;
+    const timeout = setTimeout(() => {
+      if (fallback) {
+        console.warn(`Script load timeout for ${src}, trying fallback...`);
+        s.remove();
+        loadScript(fallback).then(resolve).catch(reject);
+      } else {
+        reject(new Error(`Timeout loading script: ${src}`));
+      }
+    }, 8000);
+
+    s.onload = () => {
+      clearTimeout(timeout);
+      resolve();
+    };
+    s.onerror = () => {
+      clearTimeout(timeout);
+      if (fallback) {
+        console.warn(`Script load error for ${src}, trying fallback...`);
+        loadScript(fallback).then(resolve).catch(reject);
+      } else {
+        reject(new Error(`Error loading script: ${src}`));
+      }
+    };
     document.head.appendChild(s);
   });
 }
@@ -321,22 +346,44 @@ export const MenuPage: React.FC = () => {
 
     async function init(): Promise<void> {
       try {
-        await loadScript(PDFJS_URL);
+        await loadScript(PDFJS_URL, PDFJS_FALLBACK_URL);
         const pdfjsLib = window.pdfjsLib;
+        // Try cdnjs worker first, if it fails PDF.js usually has its own internal fallback logic 
+        // but we can be explicit if we want. For now let's use cdnjs and hope fallback script 
+        // handles the main lib.
         pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER_URL;
 
-        const pdf = await pdfjsLib.getDocument("/menu.pdf").promise;
+        const pdf = await pdfjsLib.getDocument("/menu.pdf").promise.catch(async (err: any) => {
+          // If cdnjs worker fails, try fallback worker
+          console.warn("Primary worker failed, trying fallback worker...");
+          pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER_FALLBACK_URL;
+          return await pdfjsLib.getDocument("/menu.pdf").promise;
+        });
         const total: number = pdf.numPages;
         pageState.current.total = total;
 
         const track = trackRef.current;
         if (!track) return;
 
-        const viewerH = track.clientHeight;
+        const viewerH = track.clientHeight || window.innerHeight;
         track.innerHTML = "";
 
+        // Create all slots immediately so scroll works
+        const slots: HTMLDivElement[] = [];
         for (let i = 1; i <= total; i++) {
-          const page = await pdf.getPage(i);
+          const slot = document.createElement("div");
+          slot.className = "menu-pdf-page";
+          slot.id = `page-slot-${i}`;
+          slot.innerHTML = `<div style="color: rgba(201,169,110,0.2); font-family: 'Jost', sans-serif; font-size: 0.6rem; letter-spacing: 0.2em;">LOADING PAGE ${i}...</div>`;
+          track.appendChild(slot);
+          slots.push(slot);
+        }
+
+        updateCounter();
+
+        // 2. Function to render a specific page
+        const renderPage = async (pageNum: number) => {
+          const page = await pdf.getPage(pageNum);
           const base = page.getViewport({ scale: 1 });
           const scale = viewerH / base.height;
           const vp = page.getViewport({ scale });
@@ -344,23 +391,46 @@ export const MenuPage: React.FC = () => {
           const canvas = document.createElement("canvas");
           canvas.width = vp.width;
           canvas.height = vp.height;
+          canvas.style.maxWidth = "100%";
+          canvas.style.height = "auto";
 
           await page.render({
             canvasContext: canvas.getContext("2d"),
             viewport: vp,
           }).promise;
 
-          const slot = document.createElement("div");
-          slot.className = "menu-pdf-page";
-          slot.style.width = vp.width + "px";
-          slot.appendChild(canvas);
-          track.appendChild(slot);
+          const slot = slots[pageNum - 1];
+          if (slot) {
+            slot.innerHTML = "";
+            slot.style.width = vp.width + "px";
+            slot.appendChild(canvas);
+          }
+          return vp.width;
+        };
+
+        // 3. Render first page IMMEDIATELY
+        await renderPage(1);
+        
+        // Hide loading screen as soon as Page 1 is ready!
+        loadingRef.current?.classList.add("hidden");
+
+        // 4. Render subsequent pages in background
+        // We do this sequentially to not overwhelm the CPU, but it doesn't block the UI
+        for (let i = 2; i <= total; i++) {
+          // Small delay between pages to keep UI responsive
+          await new Promise(r => setTimeout(r, 100));
+          renderPage(i).catch(err => console.error(`Error rendering page ${i}:`, err));
         }
 
-        loadingRef.current?.classList.add("hidden");
-        updateCounter();
       } catch (err) {
         console.error("PDF error:", err);
+        // Check if it's a 404
+        const msg = (err as any)?.message || "";
+        if (msg.includes("404") || msg.includes("Missing")) {
+          if (errorRef.current) {
+            errorRef.current.innerHTML = `<h3>Menu not found</h3><p>Please ensure menu.pdf is in the public folder.</p>`;
+          }
+        }
         loadingRef.current?.classList.add("hidden");
         errorRef.current?.classList.add("show");
       }
@@ -414,7 +484,7 @@ export const MenuPage: React.FC = () => {
         {/* Error */}
         <div ref={errorRef} className="menu-error">
           <h3>Menu unavailable</h3>
-          <p>Place menu.pdf in your /public folder.</p>
+          <p>Please check your connection or try refreshing the page.</p>
         </div>
 
         {/* PDF strip */}
