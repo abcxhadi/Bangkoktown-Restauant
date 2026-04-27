@@ -264,8 +264,8 @@ export const menuItems: MenuItem[] = [
       "Classic Thai hot and sour soup with mushrooms, tomatoes, and fragrant herbs",
     spiceLevel: 3,
     image: "/images/itemImages/tom_yum_soup.jpg",
-    gradient: "from-[#b8a2c1] to-[#9a80a4]",
-    bgColor: "from-[#7c6386]/20 to-[#9a80a4]/20"
+    gradient: "from-[#eab0ff] to-[#dd87ff]",
+    bgColor: "from-[#b066cc]/20 to-[#dd87ff]/20"
   },
   {
     id: 21,

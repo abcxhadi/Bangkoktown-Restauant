@@ -17,12 +17,12 @@ module.exports = {
           warmGray: '#8B7355'
         },
         company: {
-          primary: '#9a80a4',
+          primary: '#dd87ff',
           secondary: '#fdfeff',
           accent: '#f3b742',
           neutral: '#353535',
-          violet: '#9a80a4',
-          mauve: '#9a80a4'
+          violet: '#dd87ff',
+          vibrantPurple: '#dd87ff'
         }
       },
       fontFamily: {

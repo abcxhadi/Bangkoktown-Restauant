@@ -16,6 +16,12 @@ export const BranchSelectionModal: React.FC<BranchSelectionModalProps> = ({ isOp
       name: "Zawaya Walk, Sharjah",
       phone: "06 546 8383",
       tel: "065468383"
+    },
+    {
+      name: "Dubai (Opening Soon)",
+      phone: "Coming Soon",
+      tel: "upcoming",
+      isUpcoming: true
     }
   ];
 
@@ -34,20 +40,34 @@ export const BranchSelectionModal: React.FC<BranchSelectionModalProps> = ({ isOp
         <div className="w-full flex flex-col gap-4">
           {branches.map((branch, index) => (
             <React.Fragment key={branch.tel}>
-              <a 
-                href={`tel:${branch.tel}`}
-                className="w-full bg-white/5 border border-white/10 p-6 sm:p-8 flex items-center justify-between gap-8 cursor-pointer transition-all duration-300 hover:bg-[#C9A96E]/5 hover:border-[#C9A96E]/35 group no-underline rounded-2xl"
-              >
-                <div className="text-left">
-                  <span className="font-netflix-display text-xl sm:text-2xl font-bold text-[#F0E6D0] block mb-2 leading-tight group-hover:text-[#C9A96E] transition-colors">{branch.name}</span>
-                  <span className="font-netflix-font font-medium text-lg sm:text-xl tracking-tight text-[#C9A96E] block uppercase">
-                    <span className="mr-2">📞</span>
-                    {branch.phone}
-                  </span>
+              {branch.isUpcoming ? (
+                <div 
+                  className="w-full bg-white/5 border border-white/5 p-6 sm:p-8 flex items-center justify-between gap-8 opacity-50 grayscale rounded-2xl"
+                >
+                  <div className="text-left">
+                    <span className="font-netflix-display text-xl sm:text-2xl font-bold text-[#F0E6D0] block mb-2 leading-tight">{branch.name}</span>
+                    <span className="font-netflix-font font-medium text-lg sm:text-xl tracking-tight text-[#C9A96E] block uppercase">
+                      <span className="mr-2">⏳</span>
+                      {branch.phone}
+                    </span>
+                  </div>
                 </div>
-                <span className="text-3xl text-[#C9A96E]/70 group-hover:opacity-100 group-hover:translate-x-2 transition-all">→</span>
-              </a>
-              {index === 0 && (
+              ) : (
+                <a 
+                  href={`tel:${branch.tel}`}
+                  className="w-full bg-white/5 border border-white/10 p-6 sm:p-8 flex items-center justify-between gap-8 cursor-pointer transition-all duration-300 hover:bg-[#C9A96E]/5 hover:border-[#C9A96E]/35 group no-underline rounded-2xl"
+                >
+                  <div className="text-left">
+                    <span className="font-netflix-display text-xl sm:text-2xl font-bold text-[#F0E6D0] block mb-2 leading-tight group-hover:text-[#C9A96E] transition-colors">{branch.name}</span>
+                    <span className="font-netflix-font font-medium text-lg sm:text-xl tracking-tight text-[#C9A96E] block uppercase">
+                      <span className="mr-2">📞</span>
+                      {branch.phone}
+                    </span>
+                  </div>
+                  <span className="text-3xl text-[#C9A96E]/70 group-hover:opacity-100 group-hover:translate-x-2 transition-all">→</span>
+                </a>
+              )}
+              {index < branches.length - 1 && (
                 <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-2" />
               )}
             </React.Fragment>

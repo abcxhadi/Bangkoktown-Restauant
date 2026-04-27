@@ -18,7 +18,7 @@ const offersPageCss = `
 
 .offer-card:hover {
   transform: scale(1.02);
-  border-color: rgba(154, 128, 164, 0.5);
+  border-color: rgba(221, 135, 255, 0.5);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 `;
@@ -48,7 +48,7 @@ export const OffersPage = () => {
       <style>{offersPageCss}</style>
 
       <div className="fixed inset-0 opacity-5 pointer-events-none">
-        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-[#7c6386] to-[#7c6386] rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-[#b066cc] to-[#b066cc] rounded-full blur-3xl animate-pulse"></div>
       </div>
 
       <section className="relative pt-32 pb-20 z-10">
@@ -118,7 +118,7 @@ export const OffersPage = () => {
         >
           <button
             style={{ zIndex: 10000 }}
-            className="fixed top-6 right-6 w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#9a80a4] text-white text-2xl rounded-full transition-colors"
+            className="fixed top-6 right-6 w-10 h-10 flex items-center justify-center bg-white/10 hover:bg-[#dd87ff] text-white text-2xl rounded-full transition-colors"
             onClick={(e) => {
               e.stopPropagation();
               setSelected(null);

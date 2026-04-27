@@ -102,7 +102,7 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
             <a
               key="view-menu-button"
               onClick={handleViewMenu}
-              className="w-full sm:w-auto inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-[#7c6386] via-[#9a80a4] to-[#7c6386] text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-[#9a80a4]/30 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-[#9a80a4]/30 whitespace-nowrap"
+              className="w-full sm:w-auto inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-[#b066cc] via-[#dd87ff] to-[#b066cc] text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-[#dd87ff]/30 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-[#dd87ff]/30 whitespace-nowrap"
             >
               <span>View Menu</span>
             </a>,

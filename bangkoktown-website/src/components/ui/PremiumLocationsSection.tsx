@@ -24,6 +24,13 @@ export const PremiumLocationsSection = () => {
       image: "/images/zawaya.jpg",
       mapUrl: "https://maps.google.com/?cid=14419931823407026958",
     },
+    {
+      name: "Bangkok Town (Dubai - Upcoming Project)",
+      tag: "Dubai",
+      phone: "Coming Soon",
+      image: "/images/burjkhalifa.jpg",
+      mapUrl: "#",
+    },
   ];
 
   return (
@@ -70,15 +77,21 @@ export const PremiumLocationsSection = () => {
                     <span>{location.phone}</span>
                   </div>
 
-                  <NetflixButton
-                    variant="outline"
-                    onClick={() => window.open(location.mapUrl, "_blank")}
-                    size="small"
-                    className="bg-company-secondary/10 backdrop-blur-md border-company-secondary/30 text-company-secondary hover:bg-company-secondary/20 hover:border-company-secondary/50 transition-all duration-300"
-                  >
-                    <span className="mr-2">📍</span>
-                    Get Directions
-                  </NetflixButton>
+                  {location.phone === "Coming Soon" ? (
+                    <div className="bg-company-primary/20 backdrop-blur-md border border-company-primary/30 text-company-primary px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest inline-block mb-4">
+                      Coming Soon
+                    </div>
+                  ) : (
+                    <NetflixButton
+                      variant="outline"
+                      onClick={() => window.open(location.mapUrl, "_blank")}
+                      size="small"
+                      className="bg-company-secondary/10 backdrop-blur-md border-company-secondary/30 text-company-secondary hover:bg-company-secondary/20 hover:border-company-secondary/50 transition-all duration-300"
+                    >
+                      <span className="mr-2">📍</span>
+                      Get Directions
+                    </NetflixButton>
+                  )}
                 </div>
               </div>
             </div>

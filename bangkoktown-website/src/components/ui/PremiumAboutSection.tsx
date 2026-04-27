@@ -272,6 +272,79 @@ const PremiumAboutSection = () => {
         {/* Awards Slider */}
         <AwardsSlider />
 
+        {/* Leadership Section */}
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={staggerContainer}
+          className="mb-24"
+        >
+          <div className="space-y-24">
+            {/* Managing Director */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div variants={fadeInUp} className="lg:order-1">
+                <div className="relative">
+                  <img
+                    src="/images/managing-director.jpg"
+                    alt="Abdul Muneer Abbas"
+                    className="relative rounded-2xl w-full h-[450px] object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop";
+                    }}
+                  />
+                </div>
+              </motion.div>
+              <motion.div variants={fadeInUp} className="lg:order-2">
+                <span className="text-[#dd87ff] font-bold tracking-[0.3em] uppercase text-sm mb-4 block">Managing Director</span>
+                <TypewriterEffect
+                  text="Abdul Muneer Abbas"
+                  className="text-3xl lg:text-4xl font-bold text-company-secondary mb-2"
+                  animateOnInView={true}
+                />
+                <h3 className="text-xl text-company-secondary/60 font-light mb-6 italic">The Heart of Bangkok Town</h3>
+                <p className="text-company-secondary/80 leading-relaxed text-lg font-light">
+                  With over three decades of industry experience, Abdul Muneer Abbas has pioneered a unique culinary philosophy at Bangkok Town. Rather than strictly adhering to traditional recipes, he has spent years conducting deep research and gathering insights from diverse perspectives to refine every flavor. 
+                </p>
+                <p className="text-company-secondary/80 leading-relaxed text-lg font-light mt-4">
+                  By implementing a more evolved and modern interpretation of Thai cuisine, he has perfected a menu that stays true to its spirit while being masterfully optimized for the contemporary palate—a dedication to excellence that has defined Bangkok Town since 2001.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* The Sheikh (Partner) - Center Aligned without Image */}
+            <div className="flex justify-center">
+              <motion.div 
+                variants={fadeInUp} 
+                className="max-w-4xl w-full text-center bg-white/5 backdrop-blur-sm border border-[#dd87ff]/20 rounded-3xl p-8 md:p-16 relative overflow-hidden"
+              >
+                {/* Decorative background element */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-[#dd87ff]/30 rounded-full"></div>
+                
+                <span className="text-[#dd87ff] font-bold tracking-[0.4em] uppercase text-sm mb-6 block">Business Partner</span>
+                
+                <TypewriterEffect
+                  text="Sheikh Majid Saqer Hamad Alqassimi"
+                  className="text-3xl lg:text-5xl font-bold text-company-secondary mb-4"
+                  animateOnInView={true}
+                />
+                
+                <h3 className="text-xl lg:text-2xl text-company-secondary/60 font-light mb-10 italic">Strategic Visionary & Partner</h3>
+                
+                <div className="max-w-2xl mx-auto">
+                  <p className="text-company-secondary/90 leading-relaxed text-xl lg:text-2xl font-light italic">
+                    "Our mission is to bring the authentic hospitality and vibrant culinary culture of Thailand to the UAE, fostering a bridge of cultural appreciation through the universal language of exceptional food."
+                  </p>
+                  <div className="mt-8 flex justify-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#dd87ff]/40"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#dd87ff]/40"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#dd87ff]/40"></div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Main Container */}
         <motion.div
           initial="hidden"

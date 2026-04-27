@@ -96,14 +96,14 @@ const menuPageCss = `
   gap: 0.45rem;
   padding: 0.45rem 1.2rem;
   border-radius: 999px;
-  background: linear-gradient(to right, #7c6386, #9a80a4, #7c6386);
+  background: linear-gradient(to right, #b066cc, #dd87ff, #b066cc);
   color: #fff;
   font-family: 'Jost', sans-serif;
   font-weight: 400;
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   text-decoration: none;
-  border: 1px solid rgba(154, 128, 164, 0.22);
+  border: 1px solid rgba(221, 135, 255, 0.22);
   transition: all 0.3s;
   cursor: pointer;
   background-color: transparent;

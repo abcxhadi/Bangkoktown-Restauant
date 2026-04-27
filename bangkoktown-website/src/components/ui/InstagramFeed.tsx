@@ -316,7 +316,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
             href="https://www.instagram.com/bangkoktownuae/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gradient-to-r from-[#9a80a4] to-[#7c6386] hover:from-[#7c6386] hover:to-[#9a80a4] text-white rounded-full px-8 py-3 transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2 mx-auto w-fit shadow-lg shadow-[#9a80a4]/20"
+            className="bg-gradient-to-r from-[#dd87ff] to-[#b066cc] hover:from-[#b066cc] hover:to-[#dd87ff] text-white rounded-full px-8 py-3 transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2 mx-auto w-fit shadow-lg shadow-[#dd87ff]/20"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
