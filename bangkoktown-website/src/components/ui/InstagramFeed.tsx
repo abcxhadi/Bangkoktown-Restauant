@@ -212,80 +212,61 @@ const captureVideoPoster = (videoSrc: string) =>
 
 export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
   const [selectedReel, setSelectedReel] = useState<Reel | null>(null);
-  const [posters, setPosters] = useState<Record<number, string>>({});
 
   const reels: Reel[] = [
     {
       id: 1,
       videoSrc: "/videos/instagram/video1.mp4",
-      imgSrc: "/images/itemImages/pad_thai.jpg",
+      imgSrc: "/images/gallery/video1.jpg",
       postUrl: "https://www.instagram.com/reel/DNvLn9Z5pAW/",
     },
     {
       id: 2,
       videoSrc: "/videos/instagram/video2.mp4",
-      imgSrc: "/images/itemImages/green_curry.jpg",
+      imgSrc: "/images/gallery/video2.jpg",
       postUrl: "https://www.instagram.com/reel/DWqwMj5DHhz/",
     },
     {
       id: 3,
       videoSrc: "/videos/instagram/video3.mp4",
-      imgSrc: "/images/itemImages/prawn_satay.jpg",
+      imgSrc: "/images/gallery/video3.jpg",
       postUrl: "https://www.instagram.com/reel/DMHy35jzdka/",
     },
     {
       id: 4,
       videoSrc: "/videos/instagram/video4.mp4",
-      imgSrc: "/images/itemImages/tom_yum_soup.jpg",
+      imgSrc: "/images/gallery/video4.jpg",
       postUrl: "https://www.instagram.com/reel/DIydCKvv5cC/",
     },
     {
       id: 5,
       videoSrc: "/videos/instagram/video5.mp4",
-      imgSrc: "/images/itemImages/satay_combo.jpg",
+      imgSrc: "/images/gallery/video5.jpg",
       postUrl: "https://www.instagram.com/reel/DGxPtKvvDeL/",
     },
     {
       id: 6,
       videoSrc: "/videos/instagram/video6.mp4",
-      imgSrc: "/images/itemImages/sticky_rice_with_mango.jpg",
+      imgSrc: "/images/gallery/video6.jpg",
       postUrl: "https://www.instagram.com/reel/C6MfIpbBWgv/",
+    },
+    {
+      id: 7,
+      videoSrc: "/videos/instagram/video7.mp4",
+      imgSrc: "/images/gallery/video7.jpg",
+      postUrl: "https://www.instagram.com/reel/C8891Nbor9W/",
+    },
+    {
+      id: 8,
+      videoSrc: "/videos/instagram/video8.mp4",
+      imgSrc: "/images/gallery/video8.jpg",
+      postUrl: "https://www.instagram.com/reel/C-pK_ouPlZJ/",
     },
   ];
 
   useEffect(() => {
     setIsPlayerOpen(selectedReel !== null);
   }, [selectedReel, setIsPlayerOpen]);
-
-  useEffect(() => {
-    let isCancelled = false;
-
-    const loadPosters = async () => {
-      const posterEntries: [number, string][] = [];
-      
-      // Load posters sequentially to prevent mobile browser crashes/lag
-      for (const reel of reels) {
-        if (isCancelled) break;
-        try {
-          const poster = await captureVideoPoster(reel.videoSrc);
-          posterEntries.push([reel.id, poster]);
-          // Batch updates to show posters as they arrive
-          if (!isCancelled) {
-            setPosters(prev => ({ ...prev, [reel.id]: poster }));
-          }
-        } catch (err) {
-          console.error(`Failed to capture poster for ${reel.videoSrc}:`, err);
-          posterEntries.push([reel.id, reel.imgSrc]);
-        }
-      }
-    };
-
-    loadPosters();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, []);
 
   return (
     <section id="gallery" className="py-24 bg-company-neutral">
@@ -308,7 +289,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
               className="group relative block w-full h-96 overflow-hidden rounded-2xl shadow-lg cursor-pointer"
             >
               <img
-                src={posters[reel.id] ?? reel.imgSrc}
+                src={reel.imgSrc}
                 alt={`Gallery preview ${reel.id}`}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
@@ -357,7 +338,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
           <div className="relative w-full max-h-[90vh] flex flex-col">
             <VideoPlayer
               src={selectedReel.videoSrc}
-              poster={posters[selectedReel.id] ?? selectedReel.imgSrc}
+              poster={selectedReel.imgSrc}
               onClose={() => {
                 setSelectedReel(null);
                 setIsPlayerOpen(false); // Ensure nav bar reappears
