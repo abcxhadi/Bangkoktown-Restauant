@@ -108,7 +108,7 @@ export const SimpleNavigation = ({ className = '' }: SimpleNavigationProps) => {
         {/* Mobile Menu */}
         <div 
           className={`
-            md:hidden fixed top-16 lg:top-20 left-0 right-0 bg-gradient-to-br from-purple-300 to-purple-400 backdrop-blur-md
+            md:hidden fixed top-16 lg:top-20 left-0 right-0 bg-gradient-to-br from-[#b8a2c1] to-[#b8a2c1] backdrop-blur-md
             border-t border-thai-gold/20 transition-all duration-300 ease-in-out
             ${isMobileMenuOpen 
               ? 'opacity-100 translate-y-0' 

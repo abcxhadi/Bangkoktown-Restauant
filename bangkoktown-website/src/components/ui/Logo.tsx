@@ -47,7 +47,7 @@ export const Logo = ({
         ${sizeClasses[size]} 
         overflow-hidden 
         ${borderClasses}
-        ${withBackground && "bg-gradient-to-br from-purple-300 to-purple-400"}
+        ${withBackground && "bg-gradient-to-br from-[#b8a2c1] to-[#b8a2c1]"}
         transition-all duration-300 
         group-hover:scale-105
         
@@ -64,7 +64,7 @@ export const Logo = ({
             const parent = target.parentElement;
             if (parent) {
               parent.innerHTML = `
-                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-300 to-purple-400 text-white font-bold text-sm">
+                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#b8a2c1] to-[#b8a2c1] text-white font-bold text-sm">
                   BT
                 </div>
               `;

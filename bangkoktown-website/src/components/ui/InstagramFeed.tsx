@@ -42,6 +42,14 @@ export const VideoPlayer = ({ src, poster, onClose }: VideoPlayerProps) => {
     video.addEventListener("pause", handlePause);
     video.addEventListener("ended", handleEnded);
 
+    // Attempt to auto-play since this was triggered by a user click
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        console.log("Autoplay prevented, user must click play manually:", error);
+      });
+    }
+
     // Initial hide after a delay
     hideControls();
 
@@ -103,7 +111,7 @@ export const VideoPlayer = ({ src, poster, onClose }: VideoPlayerProps) => {
         onClick={togglePlay}
         className="w-full h-full md:object-contain object-cover"
         playsInline
-        preload="metadata"
+        preload="auto"
       />
       <div
         className={`controls absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 bg-black/50 p-3 rounded-full transition-opacity duration-300 ${
@@ -211,38 +219,37 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
       id: 1,
       videoSrc: "/videos/instagram/video1.mp4",
       imgSrc: "/images/itemImages/pad_thai.jpg",
-      postUrl:
-        "https://www.instagram.com/reel/DNvLn9Z5pAW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      postUrl: "https://www.instagram.com/reel/DNvLn9Z5pAW/",
     },
     {
       id: 2,
-      videoSrc: "/videos/instagram/video2.mp4", // Placeholder
+      videoSrc: "/videos/instagram/video2.mp4",
       imgSrc: "/images/itemImages/green_curry.jpg",
-      postUrl: "https://www.instagram.com/reel/DWqwMj5DHhz/?igsh=NmZ3NTZlYWhvM3U1",
+      postUrl: "https://www.instagram.com/reel/DWqwMj5DHhz/",
     },
     {
       id: 3,
-      videoSrc: "/videos/instagram/video3.mp4", // Placeholder
+      videoSrc: "/videos/instagram/video3.mp4",
       imgSrc: "/images/itemImages/prawn_satay.jpg",
-      postUrl: "https://www.instagram.com/reel/DMHy35jzdka/?igsh=MWdjZG10eGxjbzY5",
+      postUrl: "https://www.instagram.com/reel/DMHy35jzdka/",
     },
     {
       id: 4,
-      videoSrc: "/videos/instagram/video4.mp4", // Placeholder
+      videoSrc: "/videos/instagram/video4.mp4",
       imgSrc: "/images/itemImages/tom_yum_soup.jpg",
-      postUrl: "https://www.instagram.com/reel/DIydCKvv5cC/?igsh=cTFhNWs3cDN5Z3J5",
+      postUrl: "https://www.instagram.com/reel/DIydCKvv5cC/",
     },
     {
       id: 5,
-      videoSrc: "/videos/instagram/video2.mp4", // Placeholder
+      videoSrc: "/videos/instagram/video5.mp4",
       imgSrc: "/images/itemImages/satay_combo.jpg",
-      postUrl: "https://www.instagram.com/reel/DGxPtKvvDeL/?igsh=bGdpcW15ZGRiNTIw",
+      postUrl: "https://www.instagram.com/reel/DGxPtKvvDeL/",
     },
     {
       id: 6,
-      videoSrc: "/videos/instagram/video3.mp4", // Placeholder
+      videoSrc: "/videos/instagram/video6.mp4",
       imgSrc: "/images/itemImages/sticky_rice_with_mango.jpg",
-      postUrl: "https://www.instagram.com/reel/C6MfIpbBWgv/?igsh=ZjI0NHR4NHl5NDJi",
+      postUrl: "https://www.instagram.com/reel/C6MfIpbBWgv/",
     },
   ];
 
@@ -254,19 +261,22 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
     let isCancelled = false;
 
     const loadPosters = async () => {
-      const posterEntries = await Promise.all(
-        reels.map(async (reel) => {
-          try {
-            const poster = await captureVideoPoster(reel.videoSrc);
-            return [reel.id, poster] as const;
-          } catch {
-            return [reel.id, reel.imgSrc] as const;
+      const posterEntries: [number, string][] = [];
+      
+      // Load posters sequentially to prevent mobile browser crashes/lag
+      for (const reel of reels) {
+        if (isCancelled) break;
+        try {
+          const poster = await captureVideoPoster(reel.videoSrc);
+          posterEntries.push([reel.id, poster]);
+          // Batch updates to show posters as they arrive
+          if (!isCancelled) {
+            setPosters(prev => ({ ...prev, [reel.id]: poster }));
           }
-        })
-      );
-
-      if (!isCancelled) {
-        setPosters(Object.fromEntries(posterEntries));
+        } catch (err) {
+          console.error(`Failed to capture poster for ${reel.videoSrc}:`, err);
+          posterEntries.push([reel.id, reel.imgSrc]);
+        }
       }
     };
 
@@ -325,7 +335,7 @@ export const InstagramFeed = ({ setIsPlayerOpen }: InstagramFeedProps) => {
             href="https://www.instagram.com/bangkoktownuae/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gradient-to-r from-[#bf00fe] to-[#7a00a3] hover:from-[#7a00a3] hover:to-[#bf00fe] text-white rounded-full px-8 py-3 transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2 mx-auto w-fit shadow-lg shadow-[#bf00fe]/20"
+            className="bg-gradient-to-r from-[#9a80a4] to-[#7c6386] hover:from-[#7c6386] hover:to-[#9a80a4] text-white rounded-full px-8 py-3 transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2 mx-auto w-fit shadow-lg shadow-[#9a80a4]/20"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -152,7 +152,7 @@ const TickerCarousel = () => {
                   {/* Responsive card container */}
                   <div className="w-[320px] sm:w-[480px] h-[520px] sm:h-[520px] relative group perspective-1000">
                     {/* Enhanced gradient border with animation */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-[#7a00a3] via-[#bf00fe] to-[#7a00a3] rounded-2xl opacity-60 group-hover:opacity-90 transition-all duration-500 animate-pulse"></div>
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#7c6386] via-[#9a80a4] to-[#7c6386] rounded-2xl opacity-60 group-hover:opacity-90 transition-all duration-500 animate-pulse"></div>
 
                     {/* Main card with enhanced styling */}
                     <div className="relative bg-gradient-to-br from-company-neutral to-company-neutral rounded-2xl overflow-hidden h-full border border-company-secondary/20 group-hover:border-company-secondary/30 transition-all duration-500 shadow-2xl">
@@ -218,7 +218,7 @@ const TickerCarousel = () => {
                   onClick={() => goToSlide(index)}
                   className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-500 ${
                     isActive
-                      ? "bg-gradient-to-r from-[#bf00fe] to-[#7a00a3] w-6 sm:w-8 shadow-lg shadow-[#bf00fe]/50"
+                      ? "bg-gradient-to-r from-[#9a80a4] to-[#7c6386] w-6 sm:w-8 shadow-lg shadow-[#9a80a4]/50"
                       : "bg-company-secondary/30 hover:bg-company-secondary/50"
                   }`}
                 />
