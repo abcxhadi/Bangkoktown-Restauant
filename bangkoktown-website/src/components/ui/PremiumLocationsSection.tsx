@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { TypewriterEffect } from "./TypewriterEffect";
 import { Heading2, Heading3, BodyText, BranchSelectionModal } from ".";
 import { NetflixButton } from "./NetflixButton";
+import { playMenuEntrySound } from "../../utils/playMenuEntrySound";
 
 // Premium Locations Section
 export const PremiumLocationsSection = () => {
@@ -114,7 +115,10 @@ export const PremiumLocationsSection = () => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <NetflixButton
                 variant="primary"
-                onClick={() => navigate("/menu")}
+                onClick={() => {
+                  void playMenuEntrySound();
+                  navigate("/menu");
+                }}
                 icon="🍽️"
               >
                 Menu
@@ -137,4 +141,3 @@ export const PremiumLocationsSection = () => {
     </section>
   );
 };
-

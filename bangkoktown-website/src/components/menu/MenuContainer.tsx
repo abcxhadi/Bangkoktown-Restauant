@@ -10,6 +10,7 @@ import {
   menuCategories,
   getFeaturedItems,
 } from "../../data/menuData";
+import { playMenuEntrySound } from "../../utils/playMenuEntrySound";
 
 export const MenuContainer: React.FC<MenuContainerProps & { searchTerm: string; isVegOnly: boolean; setSearchTerm: (term: string) => void; setIsVegOnly: (vegOnly: boolean) => void; }> = ({
   isPreview = false,
@@ -109,7 +110,10 @@ export const MenuContainer: React.FC<MenuContainerProps & { searchTerm: string; 
             variant="primary"
             size="lg"
             className="group"
-            onClick={() => navigate("/menu")}
+            onClick={() => {
+              void playMenuEntrySound();
+              navigate("/menu");
+            }}
           >
             <span>View Full Menu</span>
             <LanternIcon
@@ -194,4 +198,3 @@ export const MenuContainer: React.FC<MenuContainerProps & { searchTerm: string; 
     </div>
   );
 };
-

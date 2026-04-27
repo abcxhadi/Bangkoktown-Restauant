@@ -27,6 +27,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { NetflixButton } from "../components/ui/NetflixButton";
+import { playMenuEntrySound } from "../utils/playMenuEntrySound";
 
 import { MenuItem } from "../types";
 
@@ -83,6 +84,7 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
   }, [location]);
 
   const handleViewMenu = () => {
+    void playMenuEntrySound();
     navigate("/menu");
   };
 

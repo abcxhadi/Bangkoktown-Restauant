@@ -18,6 +18,7 @@ import {
 } from '../../data/menuData';
 import { MenuCategory } from '../../types';
 import { useAutoScroll } from '../../hooks/useAutoScroll';
+import { playMenuEntrySound } from '../../utils/playMenuEntrySound';
 
 
 interface MenuPreviewProps {
@@ -45,6 +46,7 @@ export const MenuPreview: React.FC<MenuPreviewProps> = ({
   ].filter(preview => preview.item);
 
   const handleViewFullMenu = () => {
+    void playMenuEntrySound();
     navigate('/menu');
   };
 
