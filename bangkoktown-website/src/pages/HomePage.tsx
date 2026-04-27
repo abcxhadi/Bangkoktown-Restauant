@@ -109,7 +109,7 @@ export const HomePage = ({ setIsPlayerOpen }: HomePageProps) => {
             <a
               key="call-to-order-button"
               onClick={() => setIsBranchModalOpen(true)}
-              className="w-full sm:w-auto inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-company-neutral text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer border border-company-secondary/30 whitespace-nowrap"
+              className="w-full sm:w-auto inline-flex flex-col items-center justify-center px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-gradient-to-r from-[#b066cc] via-[#dd87ff] to-[#b066cc] text-white font-bold text-sm sm:text-lg shadow-lg hover:shadow-[#dd87ff]/30 transform hover:scale-105 transition-all duration-300 cursor-pointer border border-[#dd87ff]/30 whitespace-nowrap"
             >
               <span>📞 Call for Enquiry</span>
             </a>,
